@@ -23,15 +23,28 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuRetouche_d_image">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>Fichier</string>
     </property>
     <addaction name="actionOpenImage"/>
     <addaction name="actionSave"/>
+    <addaction name="actionCloseImage"/>
     <addaction name="actionQuit"/>
    </widget>
-   <addaction name="menuRetouche_d_image"/>
+   <widget class="QMenu" name="menuRetouche">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Retouche</string>
+    </property>
+    <addaction name="actionFiltre"/>
+    <addaction name="actionRedimensionnement"/>
+    <addaction name="actionRogner"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuRetouche"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenImage">
@@ -53,6 +66,29 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionCloseImage">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Fermer l'image</string>
+   </property>
+  </action>
+  <action name="actionFiltre">
+   <property name="text">
+    <string>Filtre</string>
+   </property>
+  </action>
+  <action name="actionRedimensionnement">
+   <property name="text">
+    <string>Redimensionnement</string>
+   </property>
+  </action>
+  <action name="actionRogner">
+   <property name="text">
+    <string>Rogner</string>
    </property>
   </action>
  </widget>

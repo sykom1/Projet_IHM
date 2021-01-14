@@ -6,14 +6,14 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     setupUi(this);
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
-    scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
-    scrollAreaForImage->setFixedWidth(this->width());
+    initSize();
     labelForImage = new QLabel();
     scrollAreaForImage->setWidget(labelForImage);
     labelForImage->setVisible(false);
     scrollAreaForImage->setVisible(false);
     connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
+    connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
 }
 
 void mainWindowMenu::openNewFile(){
@@ -28,7 +28,27 @@ void mainWindowMenu::openNewFile(){
         scrollAreaForImage->setVisible(true);
         labelForImage->setFixedHeight(theImg.height());
         labelForImage->setFixedWidth(theImg.width());
+        setMenuEnabled(true);
     }
+}
+
+void mainWindowMenu::closeFile(){
+    labelForImage->clear();
+    scrollAreaForImage->setWidget(labelForImage);
+    initSize();
+    scrollAreaForImage->setVisible(false);
+    setMenuEnabled(false);
+}
+
+void mainWindowMenu::initSize(){
+    scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
+    scrollAreaForImage->setFixedWidth(this->width());
+}
+
+void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
+    actionCloseImage->setEnabled(valueMenuEnabled);
+    actionSave->setEnabled(valueMenuEnabled);
+    menuRetouche->setEnabled(valueMenuEnabled);
 }
 
 mainWindowMenu::~mainWindowMenu()

@@ -20,9 +20,12 @@ public:
 
 private slots:
     void openNewFile();
+    void closeFile();
+    void initSize();
 
 private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
+    void setMenuEnabled(bool valueMenuEnabled);
 };
 #endif // MAINWINDOWMENU_H
