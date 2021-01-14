@@ -21,7 +21,7 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image (*.png *.jpg *.bmp)")));
     QImageReader readerImage(pathImage);
     readerImage.setAutoTransform(true);
-    const QImage theImg = readerImage.read();
+    theImg = readerImage.read();
     if(!theImg.isNull()){
         labelForImage->setPixmap(QPixmap::fromImage(theImg));
         labelForImage->setVisible(true);

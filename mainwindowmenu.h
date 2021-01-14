@@ -26,6 +26,7 @@ private slots:
 private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
+    QImage theImg;
     void setMenuEnabled(bool valueMenuEnabled);
 };
 #endif // MAINWINDOWMENU_H
