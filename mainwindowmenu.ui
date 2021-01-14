@@ -13,21 +13,7 @@
   <property name="windowTitle">
    <string>mainWindowMenu</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>150</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TestDeBoutton</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -37,8 +23,32 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuRetouche_d_image">
+    <property name="title">
+     <string>Fichier</string>
+    </property>
+    <addaction name="actionOuvrir_une_image"/>
+    <addaction name="actionSauvegarder"/>
+   </widget>
+   <addaction name="menuRetouche_d_image"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOuvrir_une_image">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ouvrir une image</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sauvegarder</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

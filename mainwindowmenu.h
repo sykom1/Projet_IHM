@@ -12,5 +12,8 @@ class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 public:
     mainWindowMenu(QWidget *parent = nullptr);
     ~mainWindowMenu();
+
+private slots:
+    void createNewFile();
 };
 #endif // MAINWINDOWMENU_H
