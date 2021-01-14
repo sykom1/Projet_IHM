@@ -18,6 +18,8 @@ void mainWindowMenu::openNewFile(){
     if(!theImg.isNull()){
         labelForImage->setPixmap(QPixmap::fromImage(theImg));
         labelForImage->setVisible(true);
+        labelForImage->setFixedHeight(theImg.height());
+        labelForImage->setFixedWidth(theImg.width());
     }
 }
 
