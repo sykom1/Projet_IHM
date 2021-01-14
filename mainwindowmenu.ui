@@ -13,21 +13,7 @@
   <property name="windowTitle">
    <string>mainWindowMenu</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="labelForImage">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>131</width>
-      <height>171</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>

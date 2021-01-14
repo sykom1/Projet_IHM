@@ -4,7 +4,14 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
     setupUi(this);
+    scrollAreaForImage = new QScrollArea(this);
+    scrollAreaForImage->move(0,menubar->height());
+    scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
+    scrollAreaForImage->setFixedWidth(this->width());
+    labelForImage = new QLabel();
+    scrollAreaForImage->setWidget(labelForImage);
     labelForImage->setVisible(false);
+    scrollAreaForImage->setVisible(false);
     connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
 }
@@ -18,6 +25,7 @@ void mainWindowMenu::openNewFile(){
     if(!theImg.isNull()){
         labelForImage->setPixmap(QPixmap::fromImage(theImg));
         labelForImage->setVisible(true);
+        scrollAreaForImage->setVisible(true);
         labelForImage->setFixedHeight(theImg.height());
         labelForImage->setFixedWidth(theImg.width());
     }

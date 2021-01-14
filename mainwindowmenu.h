@@ -6,6 +6,8 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QImageReader>
+#include <QScrollArea>
+#include <QLabel>
 #include <iostream>
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -18,5 +20,9 @@ public:
 
 private slots:
     void openNewFile();
+
+private:
+    QScrollArea *scrollAreaForImage;
+    QLabel *labelForImage;
 };
 #endif // MAINWINDOWMENU_H
