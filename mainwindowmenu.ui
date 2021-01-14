@@ -13,7 +13,21 @@
   <property name="windowTitle">
    <string>mainWindowMenu</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="labelForImage">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>150</y>
+      <width>131</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -27,13 +41,14 @@
     <property name="title">
      <string>Fichier</string>
     </property>
-    <addaction name="actionOuvrir_une_image"/>
-    <addaction name="actionSauvegarder"/>
+    <addaction name="actionOpenImage"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuRetouche_d_image"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOuvrir_une_image">
+  <action name="actionOpenImage">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -41,12 +56,17 @@
     <string>Ouvrir une image</string>
    </property>
   </action>
-  <action name="actionSauvegarder">
+  <action name="actionSave">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Sauvegarder</string>
+    <string>Sauvegarder sous</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quitter</string>
    </property>
   </action>
  </widget>

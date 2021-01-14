@@ -4,6 +4,9 @@
 #include "ui_mainwindowmenu.h"
 
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QImageReader>
+#include <iostream>
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
@@ -14,6 +17,6 @@ public:
     ~mainWindowMenu();
 
 private slots:
-    void createNewFile();
+    void openNewFile();
 };
 #endif // MAINWINDOWMENU_H
