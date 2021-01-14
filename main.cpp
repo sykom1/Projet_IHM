@@ -1,7 +1,7 @@
 #include "mainwindowmenu.h"
 
 #include <QApplication>
-//test git
+//test gitff
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
