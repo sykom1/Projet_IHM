@@ -6,7 +6,6 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     setupUi(this);
     addShortCutToAction();
     setWindowTitle("Retouche d'Image");
-    actionOpenImage->setShortcut(QKeySequence(Qt::Key_N + Qt::CTRL));
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
     initSize();
