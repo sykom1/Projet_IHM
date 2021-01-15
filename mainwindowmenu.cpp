@@ -4,6 +4,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
     setupUi(this);
+    setWindowTitle("Retouche d'Image");
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
     initSize();
