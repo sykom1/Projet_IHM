@@ -17,6 +17,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
+    connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);}); // pass argument in function with connect.
 }
 
 void mainWindowMenu::openNewFile(){
@@ -44,7 +45,21 @@ void mainWindowMenu::closeFile(){
 }
 
 void mainWindowMenu::saveFile(){
+    // TODO
     std::cout << "saveFile function on" << std::endl;
+}
+
+void mainWindowMenu::doFilter(QImage img){
+    //TODO
+    std::cout << "rentrer dans la fonction filtre" << std::endl;
+}
+
+void mainWindowMenu::doResizing(QImage img){
+
+}
+
+void mainWindowMenu::doTrim(QImage img){
+
 }
 
 void mainWindowMenu::initSize(){

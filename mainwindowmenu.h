@@ -22,6 +22,9 @@ private slots:
     void openNewFile();
     void closeFile();
     void saveFile();
+    void doFilter(QImage img);
+    void doResizing(QImage img);
+    void doTrim(QImage img);
 
 private:
     QScrollArea *scrollAreaForImage;
