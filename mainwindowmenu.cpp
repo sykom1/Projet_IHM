@@ -3,9 +3,10 @@
 mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
-    //comentaire
     setupUi(this);
+    addShortCutToAction();
     setWindowTitle("Retouche d'Image");
+    actionOpenImage->setShortcut(QKeySequence(Qt::Key_N + Qt::CTRL));
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
     initSize();
@@ -16,6 +17,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
+    connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
 }
 
 void mainWindowMenu::openNewFile(){
@@ -42,6 +44,10 @@ void mainWindowMenu::closeFile(){
     setMenuEnabled(false);
 }
 
+void mainWindowMenu::saveFile(){
+    std::cout << "saveFile function on" << std::endl;
+}
+
 void mainWindowMenu::initSize(){
     scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
     scrollAreaForImage->setFixedWidth(this->width());
@@ -51,6 +57,13 @@ void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
     actionCloseImage->setEnabled(valueMenuEnabled);
     actionSave->setEnabled(valueMenuEnabled);
     menuRetouche->setEnabled(valueMenuEnabled);
+}
+
+void mainWindowMenu::addShortCutToAction(){
+    actionOpenImage->setShortcut(QKeySequence(Qt::Key_N + Qt::CTRL));
+    actionQuit->setShortcut(QKeySequence(Qt::Key_X + Qt::CTRL));
+    actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
+    actionCloseImage->setShortcut(QKeySequence(Qt::Key_A + Qt::CTRL));
 }
 
 mainWindowMenu::~mainWindowMenu()
