@@ -3,6 +3,7 @@
 mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
+    //comentaire
     setupUi(this);
     setWindowTitle("Retouche d'Image");
     scrollAreaForImage = new QScrollArea(this);
