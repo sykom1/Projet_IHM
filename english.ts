@@ -66,7 +66,7 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="7"/>
         <source>Retouche d&apos;Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Image Touch</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="19"/>
