@@ -19,58 +19,53 @@
         <translation type="unfinished">Retouch</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="48"/>
-        <source>Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindowmenu.ui" line="52"/>
-        <source>Langue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindowmenu.ui" line="69"/>
+        <location filename="mainwindowmenu.ui" line="55"/>
         <source>Ouvrir une image</source>
         <translation type="unfinished">Open an image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="77"/>
+        <location filename="mainwindowmenu.ui" line="63"/>
         <source>Sauvegarder sous</source>
         <translation type="unfinished">Save as</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="82"/>
+        <location filename="mainwindowmenu.ui" line="68"/>
         <source>Quitter</source>
         <translation type="unfinished">Quit</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="90"/>
+        <location filename="mainwindowmenu.ui" line="76"/>
         <source>Fermer l&apos;image</source>
         <translation type="unfinished">Close Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="98"/>
+        <location filename="mainwindowmenu.ui" line="84"/>
         <source>Filtre</source>
         <translation type="unfinished">Filter</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="103"/>
+        <location filename="mainwindowmenu.ui" line="89"/>
         <source>Redimensionnement</source>
         <translation type="unfinished">Resize</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="108"/>
+        <location filename="mainwindowmenu.ui" line="94"/>
         <source>Rogner</source>
         <translation type="unfinished">Crop</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="113"/>
+        <location filename="mainwindowmenu.ui" line="99"/>
         <source>Français</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="118"/>
+        <location filename="mainwindowmenu.ui" line="104"/>
         <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindowmenu.cpp" line="7"/>
+        <source>Retouche d&apos;Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
