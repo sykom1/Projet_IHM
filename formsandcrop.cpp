@@ -9,10 +9,17 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width): QWidget()
 {
+    QImage newImage(QSize(width, height), QImage::Format_ARGB32);
+    newImage.fill(qRgba(0, 0, 0, 0));
 
-
+    QPainter painter(&newImage);
+    painter.drawImage(QPoint(0, 0), image);
+    image = newImage;
+    this->move(x, y);
+    this->setFixedWidth(width);
+    this->setFixedHeight(height);
 }
 
 
@@ -63,17 +70,17 @@ void FormsAndCrop::paintEvent(QPaintEvent *event)
     painter.drawImage(dirtyRect, image, dirtyRect);
 }
 
-void FormsAndCrop::resizeEvent(QResizeEvent *event)
-//! [15] //! [16]
-{
-    if (width() > image.width() || height() > image.height()) {
-        int newWidth = qMax(width() + 128, image.width());
-        int newHeight = qMax(height() + 128, image.height());
-        resizeImage(&image, QSize(newWidth, newHeight));
+//void FormsAndCrop::resizeEvent(QResizeEvent *event)
+////! [15] //! [16]
+//{
+//    if (width() > image.width() || height() > image.height()) {
+//        int newWidth = qMax(width() + 128, image.width());
+//        int newHeight = qMax(height() + 128, image.height());
+//        resizeImage(&image, QSize(newWidth, newHeight));
 
-    }
+//    }
 
-}
+//}
 
 void FormsAndCrop::drawLineTo(const QPoint &endPoint)
 
@@ -92,16 +99,16 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint)
     lastPoint = endPoint;
 }
 
-void FormsAndCrop::resizeImage(QImage *image, const QSize &newSize)
+//void FormsAndCrop::resizeImage(QImage *image, const QSize &newSize)
 
-{
-    if (image->size() == newSize)
-        return;
+//{
+//    if (image->size() == newSize)
+//        return;
 
-    QImage newImage(newSize, QImage::Format_ARGB32);
-    newImage.fill(qRgba(0, 0, 0, 0));
+//    QImage newImage(newSize, QImage::Format_ARGB32);
+//    newImage.fill(qRgba(0, 0, 0, 0));
 
-    QPainter painter(&newImage);
-    painter.drawImage(QPoint(0, 0), *image);
-    *image = newImage;
-}
+//    QPainter painter(&newImage);
+//    painter.drawImage(QPoint(0, 0), *image);
+//    *image = newImage;
+//}

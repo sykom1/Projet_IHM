@@ -9,6 +9,8 @@
 #include <QScrollArea>
 #include <QLabel>
 #include <iostream>
+#include <QLayout>
+#include "formsandcrop.h"
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
@@ -26,13 +28,18 @@ private slots:
     void doResizing(QImage img);
     void doTrim(QImage img);
 
+protected:
+    void resizeEvent(QResizeEvent *event);
+
 private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
     QImage theImg;
+    int mode = 0;
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
+    FormsAndCrop *formAndCrop = nullptr;
 };
 #endif // MAINWINDOWMENU_H

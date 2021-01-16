@@ -85,6 +85,9 @@
    </property>
   </action>
   <action name="actionRedimensionnement">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Redimensionnement</string>
    </property>

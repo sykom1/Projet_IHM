@@ -7,6 +7,8 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     setWindowTitle(tr("Retouche d'Image"));
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
+    scrollAreaForImage->verticalScrollBar()->setFixedWidth(30);
+    scrollAreaForImage->horizontalScrollBar()->setFixedHeight(30);
     initSize();
     labelForImage = new QLabel();
     scrollAreaForImage->setWidget(labelForImage);
@@ -54,7 +56,33 @@ void mainWindowMenu::doResizing(QImage img){
 }
 
 void mainWindowMenu::doTrim(QImage img){
-    //TODO
+    formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
+                                         scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
+                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width());
+    mode = 3;
+    this->layout()->addWidget(formAndCrop);
+}
+
+void mainWindowMenu::resizeEvent(QResizeEvent *event){
+    scrollAreaForImage->setFixedHeight(this->height()-scrollAreaForImage->horizontalScrollBar()->height());
+    scrollAreaForImage->setFixedWidth(this->width());
+    if(formAndCrop!=nullptr){
+        this->layout()->removeWidget(formAndCrop);
+        formAndCrop->clearImage();
+    }
+    switch(mode){
+        case 1:
+            doFilter(theImg);
+            break;
+        case 2:
+            doResizing(theImg);
+            break;
+        case 3:
+            doTrim(theImg);
+            break;
+        default:
+            mode=0;
+    }
 }
 
 void mainWindowMenu::runAllEventFromTheMainWindow(){

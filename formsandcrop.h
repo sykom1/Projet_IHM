@@ -12,12 +12,13 @@
 #include <QPoint>
 #include <QWidget>
 #include <QMouseEvent>
+#include <QScrollBar>
 
 
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop();
+    FormsAndCrop(int x, int y, int height, int width);
 
 
 
@@ -31,12 +32,12 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+//    void resizeEvent(QResizeEvent *event) override;
 
 
 private:
     void drawLineTo(const QPoint &endPoint);
-    void resizeImage(QImage *image, const QSize &newSize);
+//    void resizeImage(QImage *image, const QSize &newSize);
 
     bool modified = false;
     bool scribbling = false;
