@@ -4,7 +4,6 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
     setupUi(this);
-    addShortCutToAction();
     setWindowTitle("Retouche d'Image");
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
@@ -13,11 +12,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     scrollAreaForImage->setWidget(labelForImage);
     labelForImage->setVisible(false);
     scrollAreaForImage->setVisible(false);
-    connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
-    connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
-    connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
-    connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
-    connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);}); // pass argument in function with connect.
+    runAllEventFromTheMainWindow();
 }
 
 void mainWindowMenu::openNewFile(){
@@ -55,11 +50,22 @@ void mainWindowMenu::doFilter(QImage img){
 }
 
 void mainWindowMenu::doResizing(QImage img){
-
+    //TODO
 }
 
 void mainWindowMenu::doTrim(QImage img){
+    //TODO
+}
 
+void mainWindowMenu::runAllEventFromTheMainWindow(){
+    connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
+    connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
+    connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
+    connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
+    connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);});
+    connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
+    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg);});
+    addShortCutToAction();
 }
 
 void mainWindowMenu::initSize(){

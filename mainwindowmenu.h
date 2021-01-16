@@ -33,5 +33,6 @@ private:
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
+    void runAllEventFromTheMainWindow();
 };
 #endif // MAINWINDOWMENU_H
