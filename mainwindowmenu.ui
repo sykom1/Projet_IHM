@@ -43,22 +43,8 @@
     <addaction name="actionRedimensionnement"/>
     <addaction name="actionRogner"/>
    </widget>
-   <widget class="QMenu" name="menuOptions">
-    <property name="title">
-     <string>Options</string>
-    </property>
-    <widget class="QMenu" name="menuLangue">
-     <property name="title">
-      <string>Langue</string>
-     </property>
-     <addaction name="actionFran_ais"/>
-     <addaction name="actionEnglish"/>
-    </widget>
-    <addaction name="menuLangue"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRetouche"/>
-   <addaction name="menuOptions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenImage">
@@ -91,6 +77,9 @@
    </property>
   </action>
   <action name="actionFiltre">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Filtre</string>
    </property>
