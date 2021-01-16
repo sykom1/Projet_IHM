@@ -17,9 +17,9 @@ HEADERS += \
 
 FORMS += \
     mainwindowmenu.ui
+TRANSLATIONS += french.ts \
+english.ts
 
-TRANSLATIONS += \
-    Projet_IHM_fr_FR.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
