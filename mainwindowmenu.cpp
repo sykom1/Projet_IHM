@@ -47,8 +47,10 @@ void mainWindowMenu::doFilter(QImage img){
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
-void mainWindowMenu::doResizing(QImage img){
-    //TODO
+void mainWindowMenu::doResizing(QImage img, int x,int y){
+    resizePicture *picture = new resizePicture();
+    theImg = picture->resize(img,x,y);
+    labelForImage->setPixmap(QPixmap::fromImage(theImg));
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
@@ -94,7 +96,7 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
             doFilter(theImg);
             break;
         case 2:
-            doResizing(theImg);
+            doResizing(theImg,0,0);
             break;
         case 3:
             selectMode(theImg,modState);
@@ -113,7 +115,11 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
     connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);});
-    connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
+    //connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
+    connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(theImg,1980,1024);});
+    connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(theImg,1600,900);});
+    connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(theImg,1680,1050);});
+    connect(action1024_par_768, &QAction::triggered, this, [this]{doResizing(theImg,1024,768);});
     connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(theImg,1);});
     connect(actionCercle, &QAction::triggered, this, [this]{selectMode(theImg,2);});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg,modState);});

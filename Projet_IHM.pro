@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindowmenu.cpp \
-    formsandcrop.cpp
+    formsandcrop.cpp \
+    resizepicture.cpp
 
 HEADERS += \
     mainwindowmenu.h \
-    formsandcrop.h
+    formsandcrop.h \
+    resizepicture.h
 
 FORMS += \
     mainwindowmenu.ui

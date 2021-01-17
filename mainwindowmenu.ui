@@ -39,8 +39,17 @@
     <property name="title">
      <string>Retouche</string>
     </property>
+    <widget class="QMenu" name="menuRedimensionnement">
+     <property name="title">
+      <string>Redimensionnement</string>
+     </property>
+     <addaction name="action1980_par_1024"/>
+     <addaction name="action1024_par_768"/>
+     <addaction name="action1680_par_1050"/>
+     <addaction name="action1600_par_900"/>
+    </widget>
     <addaction name="actionFiltre"/>
-    <addaction name="actionRedimensionnement"/>
+    <addaction name="menuRedimensionnement"/>
     <addaction name="actionRogner"/>
    </widget>
    <widget class="QMenu" name="menuSelection">
@@ -95,14 +104,6 @@
     <string>Filtre</string>
    </property>
   </action>
-  <action name="actionRedimensionnement">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Redimensionnement</string>
-   </property>
-  </action>
   <action name="actionRogner">
    <property name="text">
     <string>Rogner</string>
@@ -132,6 +133,26 @@
    </property>
    <property name="text">
     <string>Cercle</string>
+   </property>
+  </action>
+  <action name="action1980_par_1024">
+   <property name="text">
+    <string>1980 par 1024</string>
+   </property>
+  </action>
+  <action name="action1024_par_768">
+   <property name="text">
+    <string>1024 par 768</string>
+   </property>
+  </action>
+  <action name="action1680_par_1050">
+   <property name="text">
+    <string>1680 par 1050</string>
+   </property>
+  </action>
+  <action name="action1600_par_900">
+   <property name="text">
+    <string>1600 par 900</string>
    </property>
   </action>
  </widget>

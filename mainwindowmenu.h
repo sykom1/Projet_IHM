@@ -12,6 +12,7 @@
 #include <QLayout>
 #include <cmath>
 #include "formsandcrop.h"
+#include "resizepicture.h"
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
@@ -26,7 +27,7 @@ private slots:
     void closeFile();
     void saveFile();
     void doFilter(QImage img);
-    void doResizing(QImage img);
+    void doResizing(QImage img, int x, int y);
     void doTrim(QImage img,int trimSelect);
     void selectMode(QImage img,int trimSelect);
 
