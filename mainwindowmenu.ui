@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -48,7 +48,21 @@
      <addaction name="action1680_par_1050"/>
      <addaction name="action1600_par_900"/>
     </widget>
-    <addaction name="actionFiltre"/>
+    <widget class="QMenu" name="menuFiltre">
+     <property name="title">
+      <string>Filtre</string>
+     </property>
+     <widget class="QMenu" name="menuMiroir">
+      <property name="title">
+       <string>Miroir</string>
+      </property>
+      <addaction name="actionHorizontal"/>
+      <addaction name="actionVertical"/>
+     </widget>
+     <addaction name="actionInverser_Pixels"/>
+     <addaction name="menuMiroir"/>
+    </widget>
+    <addaction name="menuFiltre"/>
     <addaction name="menuRedimensionnement"/>
     <addaction name="actionRogner"/>
    </widget>
@@ -94,14 +108,6 @@
    </property>
    <property name="text">
     <string>Fermer l'image</string>
-   </property>
-  </action>
-  <action name="actionFiltre">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Filtre</string>
    </property>
   </action>
   <action name="actionRogner">
@@ -153,6 +159,21 @@
   <action name="action1600_par_900">
    <property name="text">
     <string>1600 par 900</string>
+   </property>
+  </action>
+  <action name="actionInverser_Pixels">
+   <property name="text">
+    <string>Inverser Pixels</string>
+   </property>
+  </action>
+  <action name="actionHorizontal">
+   <property name="text">
+    <string>Horizontal</string>
+   </property>
+  </action>
+  <action name="actionVertical">
+   <property name="text">
+    <string>Vertical</string>
    </property>
   </action>
  </widget>

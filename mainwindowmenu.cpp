@@ -42,9 +42,20 @@ void mainWindowMenu::saveFile(){
     std::cout << "saveFile function on" << std::endl;
 }
 
-void mainWindowMenu::doFilter(QImage img){
-    //TODO
+void mainWindowMenu::invertPixel(){
+    theImg.invertPixels();
+    refreshImage();
     std::cout << "rentrer dans la fonction filtre" << std::endl;
+}
+
+void mainWindowMenu::mirroiredH(){
+    theImg = theImg.mirrored(true,false);
+    refreshImage();
+}
+
+void mainWindowMenu::mirroiredV(){
+    theImg = theImg.mirrored(false,true);
+    refreshImage();
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
@@ -93,7 +104,7 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
 
     switch(mode){
         case 1:
-            doFilter(theImg);
+            invertPixel();
             break;
         case 2:
             doResizing(theImg,0,0);
@@ -114,7 +125,9 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
-    connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);});
+    connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
+    connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroiredH);
+    connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroiredV);
     //connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(theImg,1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(theImg,1600,900);});
