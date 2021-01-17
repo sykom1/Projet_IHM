@@ -65,16 +65,41 @@ void mainWindowMenu::doResizing(QImage img, int x,int y){
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
-//    formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
-//                                         scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
-//                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width());
-//    mode = 3;
-//    this->layout()->addWidget(formAndCrop);
+    if(trimSelect== 1){
+        theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+        refreshImage();
+    }
+    else if(trimSelect == 2){
 
-    theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+        QPixmap target = QPixmap(size());
+        target.fill(Qt::transparent);
+
+        QPixmap p = QPixmap::fromImage(img);
+        //p.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
+
+        QPainter painter (&target);
+
+        painter.setRenderHint(QPainter::Antialiasing, true);
+        painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
+
+        QPainterPath path = QPainterPath();
+       // path.addRoundedRect(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP, 50, 50);
+        path.addEllipse(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP);
+        std::cout<<formAndCrop->x<<" "<<formAndCrop->y;
+        std::cout<<"\n";
+        std::cout<<formAndCrop->lastP<<" "<<formAndCrop->firstP;
+        painter.setClipPath(path);
+        painter.drawPixmap(0, 0, p);
+        labelForImage->setPixmap(target);
+
+    }
+
     formAndCrop->clearImage();
-    refreshImage();
-    scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
+   // scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
+
+
 }
 
 void mainWindowMenu::selectMode(QImage img, int trimSelect){

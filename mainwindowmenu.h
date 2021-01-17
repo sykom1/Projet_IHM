@@ -11,6 +11,7 @@
 #include <iostream>
 #include <QLayout>
 #include <cmath>
+#include <QPainterPath>
 #include "formsandcrop.h"
 #include "resizepicture.h"
 
