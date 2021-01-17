@@ -10,6 +10,7 @@
 #include <QLabel>
 #include <iostream>
 #include <QLayout>
+#include <cmath>
 #include "formsandcrop.h"
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -36,12 +37,13 @@ private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
     QImage theImg;
+    FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;
     int mode = 0;
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
-    FormsAndCrop *formAndCrop = nullptr;
+    void refreshImage();
 };
 #endif // MAINWINDOWMENU_H

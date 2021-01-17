@@ -24,11 +24,7 @@ void mainWindowMenu::openNewFile(){
     readerImage.setAutoTransform(true);
     theImg = readerImage.read();
     if(!theImg.isNull()){
-        labelForImage->setPixmap(QPixmap::fromImage(theImg));
-        labelForImage->setVisible(true);
-        scrollAreaForImage->setVisible(true);
-        labelForImage->setFixedHeight(theImg.height());
-        labelForImage->setFixedWidth(theImg.width());
+        refreshImage();
         setMenuEnabled(true);
     }
 }
@@ -62,8 +58,10 @@ void mainWindowMenu::doTrim(QImage img, int trimSelect){
 //    mode = 3;
 //    this->layout()->addWidget(formAndCrop);
 
-    std::cout<<formAndCrop->x<<formAndCrop->y<<formAndCrop->lastP<<formAndCrop->firstP;
-    img = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+    theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+    formAndCrop->clearImage();
+    refreshImage();
+    scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
 }
 
 void mainWindowMenu::selectMode(QImage img, int trimSelect){
@@ -89,7 +87,6 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     if(formAndCrop!=nullptr){
         this->layout()->removeWidget(formAndCrop);
         formAndCrop->clearImage();
-        std::cout << "AAAAAAAAAAAAAAAAAAAAAA";
     }
 
     switch(mode){
@@ -142,6 +139,14 @@ void mainWindowMenu::addShortCutToAction(){
     actionQuit->setShortcut(QKeySequence(Qt::Key_X + Qt::CTRL));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_A + Qt::CTRL));
+}
+
+void mainWindowMenu::refreshImage(){
+    labelForImage->setPixmap(QPixmap::fromImage(theImg));
+    labelForImage->setVisible(true);
+    scrollAreaForImage->setVisible(true);
+    labelForImage->setFixedHeight(theImg.height());
+    labelForImage->setFixedWidth(theImg.width());
 }
 
 mainWindowMenu::~mainWindowMenu()
