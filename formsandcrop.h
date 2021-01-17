@@ -18,8 +18,12 @@
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop(int x, int y, int height, int width);
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect);
+    int x;
+    int y;
 
+    int lastP;
+    int firstP;
 
 
 
@@ -45,8 +49,8 @@ private:
     QColor myPenColor = Qt::blue;
     QImage image;
     QPoint lastPoint;
-    int x;
-    int y;
+    int trimSelect;
+
 
 
 };

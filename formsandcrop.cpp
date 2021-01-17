@@ -9,7 +9,7 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
     newImage.fill(qRgba(0, 0, 0, 0));
@@ -20,6 +20,8 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width): QWidget()
     this->move(x, y);
     this->setFixedWidth(width);
     this->setFixedHeight(height);
+    this->trimSelect = trimSelect;
+
 }
 
 
@@ -37,6 +39,7 @@ void FormsAndCrop::clearImage()
 void FormsAndCrop::mousePressEvent(QMouseEvent *event)
 
 {
+
     if (event->button() == Qt::LeftButton) {
 
         lastPoint = event->pos();
@@ -46,12 +49,14 @@ void FormsAndCrop::mousePressEvent(QMouseEvent *event)
         }
         scribbling = true;
     }
+
 }
 
 void FormsAndCrop::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && scribbling)
         drawLineTo(event->pos());
+
 }
 
 void FormsAndCrop::mouseReleaseEvent(QMouseEvent *event)
@@ -60,6 +65,7 @@ void FormsAndCrop::mouseReleaseEvent(QMouseEvent *event)
         drawLineTo(event->pos());
         scribbling = false;
     }
+
 }
 
 void FormsAndCrop::paintEvent(QPaintEvent *event)
@@ -68,6 +74,7 @@ void FormsAndCrop::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, image, dirtyRect);
+
 }
 
 //void FormsAndCrop::resizeEvent(QResizeEvent *event)
@@ -89,7 +96,15 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint)
     painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
                         Qt::RoundJoin));
     clearImage();
-    painter.drawRect(x,y,lastPoint.x()-x, endPoint.y()-y);
+    lastP = lastPoint.x()-x;
+    firstP = endPoint.y()-y;
+    if(trimSelect == 1 ){
+        painter.drawRect(x,y,lastP, firstP);
+    }
+    else if(trimSelect == 2 ){
+        painter.drawEllipse(x,y,lastP, firstP);
+    }
+
 
     modified = true;
 

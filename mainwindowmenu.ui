@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -43,8 +43,19 @@
     <addaction name="actionRedimensionnement"/>
     <addaction name="actionRogner"/>
    </widget>
+   <widget class="QMenu" name="menuSelection">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Selection</string>
+    </property>
+    <addaction name="actionRectangle"/>
+    <addaction name="actionCercle"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRetouche"/>
+   <addaction name="menuSelection"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenImage">
@@ -105,6 +116,22 @@
   <action name="actionEnglish">
    <property name="text">
     <string>English</string>
+   </property>
+  </action>
+  <action name="actionRectangle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rectangle</string>
+   </property>
+  </action>
+  <action name="actionCercle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Cercle</string>
    </property>
   </action>
  </widget>

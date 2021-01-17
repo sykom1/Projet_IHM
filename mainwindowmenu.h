@@ -26,7 +26,8 @@ private slots:
     void saveFile();
     void doFilter(QImage img);
     void doResizing(QImage img);
-    void doTrim(QImage img);
+    void doTrim(QImage img,int trimSelect);
+    void selectMode(QImage img,int trimSelect);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -35,6 +36,7 @@ private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
     QImage theImg;
+    int modState = 1;
     int mode = 0;
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);

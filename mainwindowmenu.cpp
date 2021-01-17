@@ -55,13 +55,33 @@ void mainWindowMenu::doResizing(QImage img){
     //TODO
 }
 
-void mainWindowMenu::doTrim(QImage img){
+void mainWindowMenu::doTrim(QImage img, int trimSelect){
+//    formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
+//                                         scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
+//                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width());
+//    mode = 3;
+//    this->layout()->addWidget(formAndCrop);
+
+    std::cout<<formAndCrop->x<<formAndCrop->y<<formAndCrop->lastP<<formAndCrop->firstP;
+    img = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+}
+
+void mainWindowMenu::selectMode(QImage img, int trimSelect){
+    if(formAndCrop!=nullptr){
+        this->layout()->removeWidget(formAndCrop);
+        formAndCrop->clearImage();
+    }
+    modState = trimSelect;
     formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
                                          scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
-                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width());
+                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width(),trimSelect);
     mode = 3;
     this->layout()->addWidget(formAndCrop);
+
+
 }
+
+
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     scrollAreaForImage->setFixedHeight(this->height()-scrollAreaForImage->horizontalScrollBar()->height());
@@ -69,7 +89,9 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     if(formAndCrop!=nullptr){
         this->layout()->removeWidget(formAndCrop);
         formAndCrop->clearImage();
+        std::cout << "AAAAAAAAAAAAAAAAAAAAAA";
     }
+
     switch(mode){
         case 1:
             doFilter(theImg);
@@ -78,22 +100,29 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
             doResizing(theImg);
             break;
         case 3:
-            doTrim(theImg);
+            selectMode(theImg,modState);
             break;
+
         default:
             mode=0;
     }
+
 }
 
 void mainWindowMenu::runAllEventFromTheMainWindow(){
+
     connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
     connect(actionFiltre, &QAction::triggered, this, [this]{doFilter(theImg);});
     connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
-    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg);});
+    connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(theImg,1);});
+    connect(actionCercle, &QAction::triggered, this, [this]{selectMode(theImg,2);});
+    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg,modState);});
     addShortCutToAction();
+
+
 }
 
 void mainWindowMenu::initSize(){
@@ -105,6 +134,7 @@ void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
     actionCloseImage->setEnabled(valueMenuEnabled);
     actionSave->setEnabled(valueMenuEnabled);
     menuRetouche->setEnabled(valueMenuEnabled);
+    menuSelection->setEnabled(valueMenuEnabled);
 }
 
 void mainWindowMenu::addShortCutToAction(){
