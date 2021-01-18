@@ -33,6 +33,7 @@ private slots:
     void doResizing(QImage img, int x, int y);
     void doTrim(QImage img,int trimSelect);
     void selectMode(QImage img,int trimSelect);
+    void deleteSelec(QImage img,int trimSelect);
 
 protected:
     void resizeEvent(QResizeEvent *event);

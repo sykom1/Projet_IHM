@@ -91,9 +91,7 @@ void mainWindowMenu::doTrim(QImage img, int trimSelect){
             QPainterPath path = QPainterPath();
            // path.addRoundedRect(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP, 50, 50);
             path.addEllipse(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP);
-            std::cout<<formAndCrop->x<<" "<<formAndCrop->y;
-            std::cout<<"\n";
-            std::cout<<formAndCrop->lastP<<" "<<formAndCrop->firstP;
+
             painter.setClipPath(path);
             painter.drawPixmap(0, 0, p);
             labelForImage->setPixmap(target);
@@ -121,6 +119,23 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
 
+
+}
+
+void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
+    if(trimSelect ==1){
+
+         QPixmap target = QPixmap::fromImage(img);
+         QPainter painter (&target);
+         painter.eraseRect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
+         painter.drawPixmap(0, 0, target);
+         labelForImage->setPixmap(target);
+         formAndCrop->clearImage();
+
+    }
+    else if(trimSelect == 2){
+
+    }
 
 }
 
@@ -168,6 +183,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(theImg,1);});
     connect(actionCercle, &QAction::triggered, this, [this]{selectMode(theImg,2);});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg,modState);});
+    connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(theImg,modState);});
     addShortCutToAction();
 
 

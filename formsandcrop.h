@@ -19,8 +19,8 @@ class FormsAndCrop : public QWidget
 {
 public:
     FormsAndCrop(int x, int y, int height, int width, int trimSelect);
-    int x;
-    int y;
+    int x = 0;
+    int y = 0;
 
     int lastP;
     int firstP;
@@ -46,7 +46,7 @@ private:
     bool modified = false;
     bool scribbling = false;
     int myPenWidth = 1;
-    QColor myPenColor = Qt::blue;
+    QColor myPenColor = Qt::black;
     QImage image;
     QPoint lastPoint;
     int trimSelect;

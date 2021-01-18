@@ -100,8 +100,10 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint)
     firstP = endPoint.y()-y;
     if(trimSelect == 1 ){
         painter.drawRect(x,y,lastP, firstP);
+        painter.fillRect(x,y,lastP, firstP,QBrush(QColor(199, 225, 246, 127)));
     }
     else if(trimSelect == 2 ){
+        painter.setBrush(QBrush(QColor(199, 225, 246, 127)));
         painter.drawEllipse(x,y,lastP, firstP);
     }
 
