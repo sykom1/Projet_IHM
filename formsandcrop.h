@@ -24,6 +24,7 @@ public:
 
     int lastP;
     int firstP;
+    QPoint lastPoint;
 
 
 
@@ -48,7 +49,6 @@ private:
     int myPenWidth = 1;
     QColor myPenColor = Qt::black;
     QImage image;
-    QPoint lastPoint;
     int trimSelect;
 
 
