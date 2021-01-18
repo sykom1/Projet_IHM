@@ -40,8 +40,10 @@ void mainWindowMenu::closeFile(){
 }
 
 void mainWindowMenu::saveFile(){
-    // TODO
-    std::cout << "saveFile function on" << std::endl;
+    QString fileNameSave = QFileDialog::getSaveFileName(this,
+                                                        tr("Sauvegarder l'image"), "",
+                                                        tr("Fichier Image (*.png *.jpg *.bmp)"));
+    theImg.save(fileNameSave);
 }
 
 void mainWindowMenu::invertPixel(){
