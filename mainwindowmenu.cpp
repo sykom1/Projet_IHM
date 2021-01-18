@@ -9,6 +9,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     scrollAreaForImage->move(0,menubar->height());
     scrollAreaForImage->verticalScrollBar()->setFixedWidth(30);
     scrollAreaForImage->horizontalScrollBar()->setFixedHeight(30);
+    scrollAreaForImage->setFrameShape(QFrame::NoFrame);
     initSize();
     labelForImage = new QLabel();
     scrollAreaForImage->setWidget(labelForImage);
