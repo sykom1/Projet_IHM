@@ -19,11 +19,15 @@ int main(int argc, char *argv[])
 
     if( lang == "English"){
         t.load(":/english.qm");
+
     }
 
-    if( lang != "Français"){
-        a.installTranslator(&t);
+    else if( lang != "Français"){
+
+        printf("Cette langue n'existe pas \n");
+        return 0;
     }
+     a.installTranslator(&t);
     mainWindowMenu w;
     w.show();
     return a.exec();
