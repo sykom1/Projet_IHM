@@ -131,6 +131,7 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
          painter.drawPixmap(0, 0, target);
          labelForImage->setPixmap(target);
          formAndCrop->clearImage();
+         theImg = target.toImage();
 
     }
     else if(trimSelect == 2){
