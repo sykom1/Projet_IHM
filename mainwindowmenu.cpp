@@ -61,7 +61,7 @@ void mainWindowMenu::mirroiredV(){
 void mainWindowMenu::doResizing(QImage img, int x,int y){
     resizePicture *picture = new resizePicture();
     theImg = picture->resize(img,x,y);
-    labelForImage->setPixmap(QPixmap::fromImage(theImg));
+    refreshImage();
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
