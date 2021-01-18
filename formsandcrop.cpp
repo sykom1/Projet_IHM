@@ -98,6 +98,9 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint)
     clearImage();
     lastP = lastPoint.x()-x;
     firstP = endPoint.y()-y;
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
     if(trimSelect == 1 ){
         painter.drawRect(x,y,lastP, firstP);
         painter.fillRect(x,y,lastP, firstP,QBrush(QColor(199, 225, 246, 127)));

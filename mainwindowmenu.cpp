@@ -125,23 +125,32 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 }
 
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
+
+    QPixmap target = QPixmap::fromImage(img);
+    QPainter painter (&target);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
     if(trimSelect ==1){
 
-         QPixmap target = QPixmap::fromImage(img);
-         QPainter painter (&target);
+
          painter.eraseRect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
-         painter.drawPixmap(0, 0, target);
-         labelForImage->setPixmap(target);
-         formAndCrop->clearImage();
-         theImg = target.toImage();
+
 
     }
     else if(trimSelect == 2){
 
+        painter.setBrush(QBrush(painter.background()));
+        painter.setPen(QPen(Qt::white,2));
+        painter.drawEllipse(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
+
     }
+    painter.drawPixmap(0, 0, target);
+    labelForImage->setPixmap(target);
+    formAndCrop->clearImage();
+    theImg = target.toImage();
 
 }
-
 
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
