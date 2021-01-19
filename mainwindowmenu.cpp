@@ -1,9 +1,10 @@
 #include "mainwindowmenu.h"
 #include <QTranslator>
-mainWindowMenu::mainWindowMenu(QWidget *parent)
+mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     : QMainWindow(parent)
 {
     setupUi(this);
+    translator = t;
     setWindowTitle(tr("Retouche d'Image"));
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->move(0,menubar->height());
@@ -190,17 +191,18 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     }
 
 }
+
+void mainWindowMenu::changeEvent(QEvent *event){
+    if(event->type() == QEvent::LanguageChange){
+        menuFile->setTitle(tr("Fichier"));
+        setWindowTitle(tr("Retouche d'Image"));
+    }
+}
+
 void mainWindowMenu::updateLanguage(const QString language) {
     QTranslator mTranslator;
-    QString translations = QString(":/"+language.toLower()+".qm").arg(QLocale().name());
-    QApplication::instance()->removeTranslator(&mTranslator);
-    if (mTranslator.load(translations, "app/native/qm")) {
-        qDebug() << "LOAD FINISHED";
-        QApplication::instance()->installTranslator(&mTranslator);
-    } else {
-        qDebug() << "COULD NOT INSTALL TRANSLATIONS " << translations;
-    }
-
+    QString translations = QString(":/"+language.toLower()+".qm");
+    translator->load(translations);
 }
 
 void mainWindowMenu::runAllEventFromTheMainWindow(){

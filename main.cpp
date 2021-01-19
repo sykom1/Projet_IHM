@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
         return 0;
     }
      a.installTranslator(&t);
-    mainWindowMenu w;
-    w.show();
+
+    mainWindowMenu *w = new mainWindowMenu(&t);
+    w->show();
     return a.exec();
 }
