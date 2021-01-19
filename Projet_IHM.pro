@@ -23,7 +23,7 @@ FORMS += \
     mainwindowmenu.ui
 TRANSLATIONS += english.ts
 
-win32:RC_ICONS += icon.ico
+RC_ICONS = icon.ico
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
