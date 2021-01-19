@@ -200,7 +200,6 @@ void mainWindowMenu::changeEvent(QEvent *event){
 }
 
 void mainWindowMenu::updateLanguage(const QString language) {
-    QTranslator mTranslator;
     QString translations = QString(":/"+language.toLower()+".qm");
     translator->load(translations);
 }
