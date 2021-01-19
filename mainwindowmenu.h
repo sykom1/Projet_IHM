@@ -35,6 +35,7 @@ private slots:
     void doTrim(QImage img,int trimSelect);
     void selectMode(QImage img,int trimSelect);
     void deleteSelec(QImage img,int trimSelect);
+    void updateLanguage(const QString language);
 
 protected:
     void resizeEvent(QResizeEvent *event);

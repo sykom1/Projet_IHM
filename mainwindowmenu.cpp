@@ -1,5 +1,5 @@
 #include "mainwindowmenu.h"
-
+#include <QTranslator>
 mainWindowMenu::mainWindowMenu(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -190,6 +190,18 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     }
 
 }
+void mainWindowMenu::updateLanguage(const QString language) {
+    QTranslator mTranslator;
+    QString translations = QString(":/"+language.toLower()+".qm").arg(QLocale().name());
+    QApplication::instance()->removeTranslator(&mTranslator);
+    if (mTranslator.load(translations, "app/native/qm")) {
+        qDebug() << "LOAD FINISHED";
+        QApplication::instance()->installTranslator(&mTranslator);
+    } else {
+        qDebug() << "COULD NOT INSTALL TRANSLATIONS " << translations;
+    }
+
+}
 
 void mainWindowMenu::runAllEventFromTheMainWindow(){
 
@@ -209,10 +221,13 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionCercle, &QAction::triggered, this, [this]{selectMode(theImg,2);});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg,modState);});
     connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(theImg,modState);});
+    connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
+    connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     addShortCutToAction();
 
 
 }
+
 
 void mainWindowMenu::initSize(){
     scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
