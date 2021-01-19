@@ -23,7 +23,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
 
 void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
-                                                                              QDir::currentPath(), tr("Fichier Image (*.png *.jpg *.bmp)")));
+                                                                              QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QImageReader readerImage(pathImage);
     readerImage.setAutoTransform(true);
     theImg = readerImage.read();
@@ -45,7 +45,7 @@ void mainWindowMenu::closeFile(){
 void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
                                                         tr("Sauvegarder l'image"), "",
-                                                        tr("Fichier Image (*.png *.jpg *.bmp)"));
+                                                        tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     theImg.save(fileNameSave);
     pathImg = fileNameSave;
 }

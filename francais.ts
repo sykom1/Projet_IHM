@@ -164,7 +164,8 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="26"/>
         <location filename="mainwindowmenu.cpp" line="48"/>
-        <source>Fichier Image (*.png *.jpg *.bmp)</source>
+        <source>Fichier Image</source>
+        <oldsource>Fichier Image (*.png *.jpg *.bmp)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
