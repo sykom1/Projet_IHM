@@ -17,6 +17,7 @@ mainWindowMenu::mainWindowMenu(QWidget *parent)
     scrollAreaForImage->setVisible(false);
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
+    menuFiltre->setEnabled(true);
 }
 
 void mainWindowMenu::openNewFile(){
