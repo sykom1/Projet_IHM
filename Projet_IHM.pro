@@ -21,7 +21,7 @@ HEADERS += \
 
 FORMS += \
     mainwindowmenu.ui
-TRANSLATIONS += english.ts
+TRANSLATIONS += english.ts \ francais.ts
 
 RC_ICONS = icon.ico
 

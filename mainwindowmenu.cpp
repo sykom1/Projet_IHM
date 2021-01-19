@@ -194,14 +194,30 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
 
 void mainWindowMenu::changeEvent(QEvent *event){
     if(event->type() == QEvent::LanguageChange){
-        menuFile->setTitle(tr("Fichier"));
-
         setWindowTitle(tr("Retouche d'Image"));
+        // File menu
+        menuFile->setTitle(tr("Fichier"));
         actionOpenImage->setText("&"+tr("Ouvrir une image"));
         actionSaveOn->setText("&" + tr("Sauvegarder sous"));
         actionQuit->setText("&" + tr("Quitter"));
         actionCloseImage->setText("&" + tr("Fermer l'image"));
         actionSave->setText("&" + tr("Sauvegarder"));
+
+        // Retouch menu
+        menuRetouche->setTitle("&" + tr("Retouche"));
+        menuRedimensionnement->setTitle("&" + tr("Redimensionnement"));
+        menuFiltre->setTitle("&" + tr("Filtre"));
+        menuMiroir->setTitle("&" + tr("Miroir"));
+        actionHorizontal->setText("&" + tr("Horizontal"));
+        actionHorizontal->setText("&" + tr("Vertical"));
+        actionInverser_Pixels->setText("&" + tr("Inverser Pixels"));
+        actionSupprimer->setText("&" + tr("Supprimer"));
+        actionRogner->setText("&" + tr("Rogner"));
+
+
+
+
+
     }
 }
 
