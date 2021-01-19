@@ -90,7 +90,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Ouvrir une image</string>
+    <string>&amp;Ouvrir une image</string>
    </property>
   </action>
   <action name="actionSave">
@@ -98,12 +98,12 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Sauvegarder sous</string>
+    <string>&amp;Sauvegarder sous</string>
    </property>
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Quitter</string>
+    <string>&amp;Quitter</string>
    </property>
   </action>
   <action name="actionCloseImage">
@@ -111,7 +111,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Fermer l'image</string>
+    <string>&amp;Fermer l'image</string>
    </property>
   </action>
   <action name="actionRogner">

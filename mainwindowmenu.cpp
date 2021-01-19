@@ -218,10 +218,10 @@ void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
 }
 
 void mainWindowMenu::addShortCutToAction(){
-    actionOpenImage->setShortcut(QKeySequence(Qt::Key_N + Qt::CTRL));
-    actionQuit->setShortcut(QKeySequence(Qt::Key_X + Qt::CTRL));
+    actionOpenImage->setShortcut(QKeySequence(Qt::Key_O + Qt::CTRL));
+    actionQuit->setShortcut(QKeySequence(Qt::Key_Q + Qt::CTRL));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
-    actionCloseImage->setShortcut(QKeySequence(Qt::Key_A + Qt::CTRL));
+    actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
 }
 
 void mainWindowMenu::refreshImage(){
