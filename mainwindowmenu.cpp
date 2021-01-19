@@ -45,7 +45,7 @@ void mainWindowMenu::closeFile(){
 void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
                                                         tr("Sauvegarder l'image"), "",
-                                                        tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
+                                                        tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     theImg.save(fileNameSave);
     pathImg = fileNameSave;
 }
@@ -213,6 +213,11 @@ void mainWindowMenu::changeEvent(QEvent *event){
         actionInverser_Pixels->setText("&" + tr("Inverser Pixels"));
         actionSupprimer->setText("&" + tr("Supprimer"));
         actionRogner->setText("&" + tr("Rogner"));
+
+        // Selection Menu
+        menuSelection->setTitle("&" + tr("Selection"));
+        actionRectangle->setText("&" + tr("Rectangle"));
+        actionCercle->setText("&" + tr("Cercle"));
 
 
 
