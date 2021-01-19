@@ -195,7 +195,13 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
 void mainWindowMenu::changeEvent(QEvent *event){
     if(event->type() == QEvent::LanguageChange){
         menuFile->setTitle(tr("Fichier"));
+
         setWindowTitle(tr("Retouche d'Image"));
+        actionOpenImage->setText("&"+tr("Ouvrir une image"));
+        actionSaveOn->setText("&" + tr("Sauvegarder sous"));
+        actionQuit->setText("&" + tr("Quitter"));
+        actionCloseImage->setText("&" + tr("Fermer l'image"));
+        actionSave->setText("&" + tr("Sauvegarder"));
     }
 }
 
