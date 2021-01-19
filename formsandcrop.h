@@ -18,7 +18,7 @@
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop(int x, int y, int height, int width, int trimSelect);
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea);
     int x = 0;
     int y = 0;
 
@@ -50,6 +50,7 @@ private:
     QColor myPenColor = Qt::black;
     QImage image;
     int trimSelect;
+    QScrollArea *scroll;
 
 
 

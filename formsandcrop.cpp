@@ -9,7 +9,7 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
     newImage.fill(qRgba(0, 0, 0, 0));
@@ -21,6 +21,7 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect): 
     this->setFixedWidth(width);
     this->setFixedHeight(height);
     this->trimSelect = trimSelect;
+    this->scroll = scrollArea;
 
 }
 
@@ -54,8 +55,23 @@ void FormsAndCrop::mousePressEvent(QMouseEvent *event)
 
 void FormsAndCrop::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && scribbling)
+    if ((event->buttons() & Qt::LeftButton) && scribbling){
         drawLineTo(event->pos());
+        if(event->x()>=scroll->width()-scroll->width()*0.1){
+            float value = (float)(scroll->horizontalScrollBar()->value()*0.1);
+            if(value>=0 && value <1)
+                value=1;
+            scroll->horizontalScrollBar()->setValue(scroll->horizontalScrollBar()->value()+value);
+        }
+        if(event->y()>=scroll->height()-scroll->height()*0.1){
+            float value = (float)(scroll->verticalScrollBar()->value()*0.1);
+            if(value>=0 && value <1){
+                value = 1;
+            }
+            scroll->verticalScrollBar()->setValue(scroll->verticalScrollBar()->value()+value);
+            std::cout << value << std::endl;
+        }
+    }
 
 }
 
