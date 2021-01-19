@@ -293,6 +293,7 @@ void mainWindowMenu::refreshImage(){
     scrollAreaForImage->setVisible(true);
     labelForImage->setFixedHeight(theImg.height());
     labelForImage->setFixedWidth(theImg.width());
+    scrollAreaForImage->move(0, menubar->height());
 }
 
 mainWindowMenu::~mainWindowMenu()
