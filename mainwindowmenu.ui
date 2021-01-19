@@ -28,6 +28,7 @@
      <string>Fichier</string>
     </property>
     <addaction name="actionOpenImage"/>
+    <addaction name="actionSaveOn"/>
     <addaction name="actionSave"/>
     <addaction name="actionCloseImage"/>
     <addaction name="actionQuit"/>
@@ -93,12 +94,12 @@
     <string>&amp;Ouvrir une image</string>
    </property>
   </action>
-  <action name="actionSave">
+  <action name="actionSaveOn">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Sauvegarder sous</string>
+    <string>Sauvegarder sous</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -183,6 +184,14 @@
   <action name="actionSupprimer">
    <property name="text">
     <string>Supprimer</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Sauvegarder</string>
    </property>
   </action>
  </widget>

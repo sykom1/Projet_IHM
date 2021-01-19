@@ -37,14 +37,23 @@ void mainWindowMenu::closeFile(){
     scrollAreaForImage->setWidget(labelForImage);
     initSize();
     scrollAreaForImage->setVisible(false);
+    pathImg = nullptr;
     setMenuEnabled(false);
 }
 
-void mainWindowMenu::saveFile(){
+void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
                                                         tr("Sauvegarder l'image"), "",
                                                         tr("Fichier Image (*.png *.jpg *.bmp)"));
     theImg.save(fileNameSave);
+    pathImg = fileNameSave;
+}
+
+void mainWindowMenu::saveFile(){
+    if(pathImg!=nullptr){
+        theImg.save(pathImg);
+    }else
+        saveFileOn();
 }
 
 void mainWindowMenu::invertPixel(){
@@ -187,11 +196,11 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionQuit, &QAction::triggered, this, &mainWindowMenu::close);
     connect(actionOpenImage, &QAction::triggered, this, &mainWindowMenu::openNewFile);
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
+    connect(actionSaveOn, &QAction::triggered, this, &mainWindowMenu::saveFileOn);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
     connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
     connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroiredH);
     connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroiredV);
-    //connect(actionRedimensionnement, &QAction::triggered, this, [this]{doResizing(theImg);});
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(theImg,1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(theImg,1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(theImg,1680,1050);});
@@ -212,6 +221,7 @@ void mainWindowMenu::initSize(){
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
     actionCloseImage->setEnabled(valueMenuEnabled);
+    actionSaveOn->setEnabled(valueMenuEnabled);
     actionSave->setEnabled(valueMenuEnabled);
     menuRetouche->setEnabled(valueMenuEnabled);
     menuSelection->setEnabled(valueMenuEnabled);
@@ -220,6 +230,7 @@ void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
 void mainWindowMenu::addShortCutToAction(){
     actionOpenImage->setShortcut(QKeySequence(Qt::Key_O + Qt::CTRL));
     actionQuit->setShortcut(QKeySequence(Qt::Key_Q + Qt::CTRL));
+    actionSaveOn->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL + Qt::ALT));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
 }

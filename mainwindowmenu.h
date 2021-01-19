@@ -26,6 +26,7 @@ public:
 private slots:
     void openNewFile();
     void closeFile();
+    void saveFileOn();
     void saveFile();
     void invertPixel();
     void mirroiredH();
@@ -45,6 +46,7 @@ private:
     FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;
     int mode = 0;
+    QString pathImg = nullptr;
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
