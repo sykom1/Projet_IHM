@@ -45,8 +45,10 @@ protected:
 private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
+    QLabel *labelForReduceImage;
     QImage initImg;
     QImage theImg;
+    QImage reduceImage;
     FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;
     int mode = 0;

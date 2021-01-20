@@ -31,11 +31,19 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QImageReader readerImage(pathImage);
     QImageReader readerImageInit(pathImage);
+    QImageReader readerReduceImage(pathImage);
     readerImage.setAutoTransform(true);
     theImg = readerImage.read();
     initImg = readerImageInit.read();
+    reduceImage = readerReduceImage.read(); // -----> image destiné à être réduire.
     if(!theImg.isNull()){
         refreshImage();
+        labelForReduceImage = new QLabel(this);
+        labelForReduceImage->setPixmap(QPixmap::fromImage(reduceImage));
+        labelForReduceImage->move(100, 100);            // ----> à modifier, pour déplacer le label contenant l'image
+        labelForReduceImage->setVisible(true);
+        labelForReduceImage->setFixedHeight(reduceImage.height());
+        labelForReduceImage->setFixedWidth(reduceImage.width());
         setMenuEnabled(true);
     }
 }
