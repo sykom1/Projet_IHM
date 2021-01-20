@@ -1,5 +1,9 @@
 #include "mainwindowmenu.h"
 #include <QTranslator>
+
+
+
+
 mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     : QMainWindow(parent)
 {
@@ -33,6 +37,7 @@ void mainWindowMenu::openNewFile(){
     QImageReader readerImageInit(pathImage);
     QImageReader readerReduceImage(pathImage);
     readerImage.setAutoTransform(true);
+
     theImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImage = readerReduceImage.read(); // -----> image destiné à être réduire.
@@ -40,7 +45,10 @@ void mainWindowMenu::openNewFile(){
         refreshImage();
         labelForReduceImage = new QLabel(this);
         labelForReduceImage->setPixmap(QPixmap::fromImage(reduceImage));
-        labelForReduceImage->move(100, 100);            // ----> à modifier, pour déplacer le label contenant l'image
+        resizePicture *picture = new resizePicture();
+        reduceImage = picture->resize(reduceImage,reduceImage.width()/3,reduceImage.height()/3);
+        refreshReduceImage();
+        labelForReduceImage->move(620, 30);            // ----> à modifier, pour déplacer le label contenant l'image
         labelForReduceImage->setVisible(true);
         labelForReduceImage->setFixedHeight(reduceImage.height());
         labelForReduceImage->setFixedWidth(reduceImage.width());
@@ -50,11 +58,13 @@ void mainWindowMenu::openNewFile(){
 
 void mainWindowMenu::closeFile(){
     labelForImage->clear();
+    labelForReduceImage->clear();
     scrollAreaForImage->setWidget(labelForImage);
     initSize();
     scrollAreaForImage->setVisible(false);
     pathImg = nullptr;
     setMenuEnabled(false);
+
 }
 
 void mainWindowMenu::saveFileOn(){
@@ -149,6 +159,15 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
     actionRogner->setEnabled(true);
 
 
+}
+
+void mainWindowMenu::reculer(Element *e){
+    theImg = e->precedent->image;
+
+}
+
+void mainWindowMenu::avancer(Element *e){
+    theImg = e->suivant->image;
 }
 
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
@@ -307,6 +326,14 @@ void mainWindowMenu::refreshImage(){
     labelForImage->setFixedHeight(theImg.height());
     labelForImage->setFixedWidth(theImg.width());
     scrollAreaForImage->move(0, menubar->height());
+}
+void mainWindowMenu::refreshReduceImage(){
+    labelForReduceImage->setPixmap(QPixmap::fromImage(reduceImage));
+    labelForReduceImage->setVisible(true);
+    //scrollAreaForImage->setVisible(true);
+    labelForReduceImage->setFixedHeight(reduceImage.height());
+    labelForReduceImage->setFixedWidth(reduceImage.width());
+    //scrollAreaForImage->move(0, menubar->height());
 }
 
 mainWindowMenu::~mainWindowMenu()

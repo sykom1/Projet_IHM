@@ -14,10 +14,20 @@
 #include <QPainterPath>
 #include "formsandcrop.h"
 #include "resizepicture.h"
+typedef struct Element Element;
+struct Element
+{
+    Element *precedent;
+    int id;
+    QImage image;
+    Element *suivant;
+};
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
     Q_OBJECT
+
+
 
 public:
     mainWindowMenu(QTranslator *t, QWidget *parent = nullptr);
@@ -59,5 +69,10 @@ private:
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
     void refreshImage();
+    void refreshReduceImage();
+    void avancer(Element *e);
+    void reculer(Element *e);
+
+
 };
 #endif // MAINWINDOWMENU_H
