@@ -19,6 +19,11 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
+    /*Ui::mainWindowMenu ui;
+    QActionGroup* langGroup = new QActionGroup(ui.menuLangues);
+    langGroup->setExclusive(true);  */
+
+
 }
 
 void mainWindowMenu::openNewFile(){
@@ -45,7 +50,7 @@ void mainWindowMenu::closeFile(){
 void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
                                                         tr("Sauvegarder l'image"), "",
-                                                        tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
+                                                        tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     theImg.save(fileNameSave);
     pathImg = fileNameSave;
 }

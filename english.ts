@@ -131,22 +131,22 @@
     <message>
         <location filename="mainwindowmenu.ui" line="86"/>
         <source>Langues</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Languages</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="102"/>
         <source>&amp;Ouvrir une image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Open Image</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="115"/>
         <source>&amp;Quitter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Quit</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="123"/>
         <source>&amp;Fermer l&apos;image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Close Image</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="128"/>
@@ -158,12 +158,12 @@
         <location filename="mainwindowmenu.ui" line="133"/>
         <location filename="mainwindowmenu.ui" line="216"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">French</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="138"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="8"/>
@@ -191,7 +191,7 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="204"/>
         <source>Sauvegarder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Save</translation>
     </message>
 </context>
 </TS>
