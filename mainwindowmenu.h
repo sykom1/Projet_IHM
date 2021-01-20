@@ -36,6 +36,7 @@ private slots:
     void selectMode(QImage img,int trimSelect);
     void deleteSelec(QImage img,int trimSelect);
     void updateLanguage(const QString language);
+    void initImgDisplay();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -44,6 +45,7 @@ protected:
 private:
     QScrollArea *scrollAreaForImage;
     QLabel *labelForImage;
+    QImage initImg;
     QImage theImg;
     FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;

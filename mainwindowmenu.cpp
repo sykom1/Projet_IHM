@@ -30,8 +30,10 @@ void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QImageReader readerImage(pathImage);
+    QImageReader readerImageInit(pathImage);
     readerImage.setAutoTransform(true);
     theImg = readerImage.read();
+    initImg = readerImageInit.read();
     if(!theImg.isNull()){
         refreshImage();
         setMenuEnabled(true);
@@ -218,6 +220,12 @@ void mainWindowMenu::changeEvent(QEvent *event){
         actionInverser_Pixels->setText("&" + tr("Inverser Pixels"));
         actionSupprimer->setText("&" + tr("Supprimer"));
         actionRogner->setText("&" + tr("Rogner"));
+        actionReturnInitImg->setText("&" + tr("Retour à l'image initiale"));
+
+        // Selection Menu
+        menuSelection->setTitle("&" + tr("Selection"));
+        actionRectangle->setText("&" + tr("Rectangle"));
+        actionCercle->setText("&" + tr("Cercle"));
 
 
 
@@ -251,9 +259,15 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(theImg,modState);});
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
+    connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     addShortCutToAction();
 
 
+}
+
+void mainWindowMenu::initImgDisplay(){
+    theImg = initImg.copy();
+    refreshImage();
 }
 
 
@@ -284,6 +298,7 @@ void mainWindowMenu::refreshImage(){
     scrollAreaForImage->setVisible(true);
     labelForImage->setFixedHeight(theImg.height());
     labelForImage->setFixedWidth(theImg.width());
+    scrollAreaForImage->move(0, menubar->height());
 }
 
 mainWindowMenu::~mainWindowMenu()
