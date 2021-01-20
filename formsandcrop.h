@@ -13,12 +13,13 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QScrollBar>
+#include <QPainterPath>
 
 
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea);
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img,QLabel* labelForImage);
     int x = 0;
     int y = 0;
 
@@ -26,32 +27,38 @@ public:
     int firstP;
     QPoint lastPoint;
 
+    QImage image;
+    QImage img;
 
 
 public slots:
     void clearImage();
     void print();
+    QImage doTrim(QImage img, int trimSelect, QLabel* labelForImage);
+
+    void drawLineTo(const QPoint &endPoint);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
+
 //    void resizeEvent(QResizeEvent *event) override;
 
 
 private:
-    void drawLineTo(const QPoint &endPoint);
+    void drawFormTo(const QPoint &endPoint);
+
 //    void resizeImage(QImage *image, const QSize &newSize);
 
     bool modified = false;
     bool scribbling = false;
     int myPenWidth = 1;
     QColor myPenColor = Qt::black;
-    QImage image;
     int trimSelect;
     QScrollArea *scroll;
-
+    QLabel* labelForImage;
 
 
 };

@@ -47,7 +47,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -98,6 +98,7 @@
     <addaction name="actionRogner"/>
     <addaction name="actionSupprimer"/>
     <addaction name="actionReturnInitImg"/>
+    <addaction name="actionDessiner"/>
    </widget>
    <widget class="QMenu" name="menuSelection">
     <property name="enabled">
@@ -255,6 +256,11 @@
   <action name="actionReturnInitImg">
    <property name="text">
     <string>Retour à l'image initiale</string>
+   </property>
+  </action>
+  <action name="actionDessiner">
+   <property name="text">
+    <string>Dessiner</string>
    </property>
   </action>
  </widget>

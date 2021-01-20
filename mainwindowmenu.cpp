@@ -108,41 +108,50 @@ void mainWindowMenu::doResizing(QImage img, int x,int y){
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
-    if(formAndCrop!=nullptr and formAndCrop->x != formAndCrop->y){
-        if(trimSelect== 1){
-            theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
-            refreshImage();
-            scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
-        }
-        else if(trimSelect == 2){
 
-            QPixmap target = QPixmap(size());
-            target.fill(Qt::transparent);
+       theImg = formAndCrop->doTrim(img,trimSelect,labelForImage);
+            if(trimSelect== 1){
+                refreshImage();
+                scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
 
-            QPixmap p = QPixmap::fromImage(img);
-            //p.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+            }
 
 
-            QPainter painter (&target);
+    //            theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
+    //            refreshImage();
+    //            scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
+    //        }
+    //        else if(trimSelect == 2){
 
-            painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
-            painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
+    //            QPixmap target = QPixmap(size());
+    //            target.fill(Qt::transparent);
 
-            QPainterPath path = QPainterPath();
-           // path.addRoundedRect(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP, 50, 50);
-            path.addEllipse(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP);
+    //            QPixmap p = QPixmap::fromImage(img);
+    //            //p.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
-            painter.setClipPath(path);
-            painter.drawPixmap(0, 0, p);
-            labelForImage->setPixmap(target);
-            theImg = target.toImage();
 
-        }
+    //            QPainter painter (&target);
 
-        formAndCrop->clearImage();
-       // scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
-    }
+    //            painter.setRenderHint(QPainter::Antialiasing, true);
+    //            painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+    //            painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
+
+    //            QPainterPath path = QPainterPath();
+    //           // path.addRoundedRect(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP, 50, 50);
+    //            path.addEllipse(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP);
+
+    //            painter.setClipPath(path);
+    //            painter.drawPixmap(0, 0, p);
+    //            labelForImage->setPixmap(target);
+    //            theImg = target.toImage();
+
+    //        }
+
+    //        formAndCrop->clearImage();
+    //       // scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
+    //    }
+
+
 
 
 }
@@ -155,8 +164,8 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 
     modState = trimSelect;
     formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
-                                         scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
-                                          scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width(),trimSelect, scrollAreaForImage);
+                                             scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
+                                              scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width(),trimSelect, scrollAreaForImage,img,labelForImage);
     mode = 3;
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
@@ -290,6 +299,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
+    connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(theImg,3);});
     addShortCutToAction();
 
 

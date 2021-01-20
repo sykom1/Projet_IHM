@@ -9,7 +9,7 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img,QLabel* labelForImage): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
     newImage.fill(qRgba(0, 0, 0, 0));
@@ -17,11 +17,13 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
     QPainter painter(&newImage);
     painter.drawImage(QPoint(0, 0), image);
     image = newImage;
+    this->img= img;
     this->move(x, y);
     this->setFixedWidth(width);
     this->setFixedHeight(height);
     this->trimSelect = trimSelect;
     this->scroll = scrollArea;
+    this->labelForImage = labelForImage;
 
 }
 
@@ -57,6 +59,7 @@ void FormsAndCrop::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && scribbling){
         drawLineTo(event->pos());
+        drawFormTo(event->pos());
         if(event->x()>=scroll->width()-scroll->width()*0.1){
             float value = (float)(scroll->horizontalScrollBar()->value()*0.1);
             if(value>=0 && value <1)
@@ -79,6 +82,7 @@ void FormsAndCrop::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
         drawLineTo(event->pos());
+        drawFormTo(event->pos());
         scribbling = false;
     }
 
@@ -93,38 +97,30 @@ void FormsAndCrop::paintEvent(QPaintEvent *event)
 
 }
 
-//void FormsAndCrop::resizeEvent(QResizeEvent *event)
-////! [15] //! [16]
-//{
-//    if (width() > image.width() || height() > image.height()) {
-//        int newWidth = qMax(width() + 128, image.width());
-//        int newHeight = qMax(height() + 128, image.height());
-//        resizeImage(&image, QSize(newWidth, newHeight));
 
-//    }
-
-//}
-
-void FormsAndCrop::drawLineTo(const QPoint &endPoint)
+void FormsAndCrop::drawFormTo(const QPoint &endPoint)
 
 {
     QPainter painter(&image);
     painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
                         Qt::RoundJoin));
-    clearImage();
+
     lastP = lastPoint.x()-x;
     firstP = endPoint.y()-y;
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
     if(trimSelect == 1 ){
+        clearImage();
         painter.drawRect(x,y,lastP, firstP);
         painter.fillRect(x,y,lastP, firstP,QBrush(QColor(199, 225, 246, 127)));
     }
     else if(trimSelect == 2 ){
+        clearImage();
         painter.setBrush(QBrush(QColor(199, 225, 246, 127)));
         painter.drawEllipse(x,y,lastP, firstP);
     }
+
 
 
     modified = true;
@@ -135,16 +131,76 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint)
     lastPoint = endPoint;
 }
 
-//void FormsAndCrop::resizeImage(QImage *image, const QSize &newSize)
 
-//{
-//    if (image->size() == newSize)
-//        return;
 
-//    QImage newImage(newSize, QImage::Format_ARGB32);
-//    newImage.fill(qRgba(0, 0, 0, 0));
+void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
-//    QPainter painter(&newImage);
-//    painter.drawImage(QPoint(0, 0), *image);
-//    *image = newImage;
-//}
+
+    if(trimSelect == 3 ){
+
+        QPainter painter (&image);
+
+
+
+        painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
+                            Qt::RoundJoin));
+        painter.drawLine(lastPoint, endPoint);
+        modified = true;
+
+        int rad = (myPenWidth / 2) + 2;
+        update(QRect(lastPoint, endPoint).normalized()
+                                         .adjusted(-rad, -rad, +rad, +rad));
+        lastPoint = endPoint;
+
+
+        QPainter test(&img);
+        test.setCompositionMode(QPainter::CompositionMode_SourceOver);
+        test.drawImage(0, 0, image);
+    }
+
+
+
+
+}
+
+QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
+
+        if(trimSelect== 1){
+            img = img.copy(x,y,lastP,firstP );
+
+        }
+        else if(trimSelect == 2){
+
+            QPixmap target = QPixmap(size());
+            target.fill(Qt::transparent);
+
+            QPixmap p = QPixmap::fromImage(img);
+            //p.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
+
+            QPainter painter (&target);
+
+            painter.setRenderHint(QPainter::Antialiasing, true);
+            painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+            painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
+
+            QPainterPath path = QPainterPath();
+           // path.addRoundedRect(x,y, lastP,firstP, 50, 50);
+            path.addEllipse(x,y, lastP,firstP);
+
+            painter.setClipPath(path);
+            painter.drawPixmap(0, 0, p);
+            labelForImage->setPixmap(target);
+            img = target.toImage();
+
+        }
+
+
+        clearImage();
+        return img;
+
+
+}
+
+
+
