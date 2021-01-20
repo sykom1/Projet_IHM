@@ -41,6 +41,9 @@ void mainWindowMenu::openNewFile(){
     theImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImage = readerReduceImage.read(); // -----> image destiné à être réduire.
+    if(labelForReduceImage!=nullptr){
+        labelForReduceImage->setParent(0);
+    }
     if(!theImg.isNull()){
         refreshImage();
         labelForReduceImage = new QLabel(this);
