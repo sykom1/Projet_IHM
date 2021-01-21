@@ -14,12 +14,13 @@
 #include <QMouseEvent>
 #include <QScrollBar>
 #include <QPainterPath>
+#include "displaycontains.h"
 
 
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img,QLabel* labelForImage);
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains* displayContains);
     int x = 0;
     int y = 0;
 
@@ -59,6 +60,7 @@ private:
     int trimSelect;
     QScrollArea *scroll;
     QLabel* labelForImage;
+    DisplayContains* displayContains = nullptr;
 
 
 };

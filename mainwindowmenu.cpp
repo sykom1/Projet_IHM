@@ -10,16 +10,10 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     setupUi(this);
     translator = t;
     setWindowTitle(tr("Retouche d'Image"));
-    scrollAreaForImage = new QScrollArea(this);
-    scrollAreaForImage->move(0,menubar->height());
-    scrollAreaForImage->verticalScrollBar()->setFixedWidth(30);
-    scrollAreaForImage->horizontalScrollBar()->setFixedHeight(30);
-    scrollAreaForImage->setFrameShape(QFrame::NoFrame);
-    initSize();
-    labelForImage = new QLabel();
-    scrollAreaForImage->setWidget(labelForImage);
-    labelForImage->setVisible(false);
-    scrollAreaForImage->setVisible(false);
+    displayContains = new DisplayContains(this, menubar->height(), this->width(), this->height()-menubar->height());
+    displayContains->setFixedHeight(this->height());
+    displayContains->setFixedWidth(this->width());
+    displayContains->move(0, menubar->height());
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
@@ -41,30 +35,23 @@ void mainWindowMenu::openNewFile(){
     theImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImage = readerReduceImage.read(); // -----> image destiné à être réduire.
-    if(labelForReduceImage!=nullptr){
-        labelForReduceImage->setParent(0);
+    if(!displayContains->reducedLabelIsNull()){
+        displayContains->removeParentForReducedLabel();
     }
     if(!theImg.isNull()){
-        refreshImage();
-        labelForReduceImage = new QLabel(this);
-        labelForReduceImage->setPixmap(QPixmap::fromImage(reduceImage));
+        displayContains->refreshImage(theImg);
         resizePicture *picture = new resizePicture();
         reduceImage = picture->resize(reduceImage,reduceImage.width()/3,reduceImage.height()/3);
-        refreshReduceImage();
-        labelForReduceImage->move(620, 30);            // ----> à modifier, pour déplacer le label contenant l'image
-        labelForReduceImage->setVisible(true);
-        labelForReduceImage->setFixedHeight(reduceImage.height());
-        labelForReduceImage->setFixedWidth(reduceImage.width());
+        //refreshReduceImage();
+        displayContains->createNewReducedLabel(reduceImage);
+        displayContains->refreshReducedImage(reduceImage);
+        displayContains->moveReducedLabel(620, 30);
         setMenuEnabled(true);
     }
 }
 
 void mainWindowMenu::closeFile(){
-    labelForImage->clear();
-    labelForReduceImage->clear();
-    scrollAreaForImage->setWidget(labelForImage);
-    initSize();
-    scrollAreaForImage->setVisible(false);
+    displayContains->clearDisplay();
     pathImg = nullptr;
     setMenuEnabled(false);
 
@@ -87,33 +74,32 @@ void mainWindowMenu::saveFile(){
 
 void mainWindowMenu::invertPixel(){
     theImg.invertPixels();
-    refreshImage();
+    displayContains->refreshImage(theImg);
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
 void mainWindowMenu::mirroiredH(){
     theImg = theImg.mirrored(true,false);
-    refreshImage();
+    displayContains->refreshImage(theImg);
 }
 
 void mainWindowMenu::mirroiredV(){
     theImg = theImg.mirrored(false,true);
-    refreshImage();
+    displayContains->refreshImage(theImg);
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
     resizePicture *picture = new resizePicture();
     theImg = picture->resize(img,x,y);
-    refreshImage();
+    displayContains->refreshImage(theImg);
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
 
-       theImg = formAndCrop->doTrim(img,trimSelect,labelForImage);
+       theImg = formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage());
             if(trimSelect== 1){
-                refreshImage();
-                scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
-
+                displayContains->refreshImage(theImg);
+                displayContains->moveScrollArea(formAndCrop->x, formAndCrop->y);
             }
 
 
@@ -163,9 +149,11 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
     }
 
     modState = trimSelect;
-    formAndCrop = new FormsAndCrop(scrollAreaForImage->x(), scrollAreaForImage->y(),
-                                             scrollAreaForImage->height()-scrollAreaForImage->horizontalScrollBar()->height(),
-                                              scrollAreaForImage->width()-scrollAreaForImage->verticalScrollBar()->width(),trimSelect, scrollAreaForImage,img,labelForImage);
+    formAndCrop = new FormsAndCrop(displayContains->getScrollArea()->x(),
+                                   displayContains->getScrollArea()->y(),
+                                   displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
+                                   displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
+                                   displayContains->getScrollArea(),img, displayContains);
     mode = 3;
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
@@ -209,13 +197,12 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
     }
     theImg = img;
     formAndCrop->clearImage();
-    refreshImage();
+    displayContains->refreshImage(theImg);
 }
 
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
-    scrollAreaForImage->setFixedHeight(this->height()-scrollAreaForImage->horizontalScrollBar()->height());
-    scrollAreaForImage->setFixedWidth(this->width());
+    displayContains->changeSizeOfScrollBar(this->width(), this->height());
     if(formAndCrop!=nullptr){
         this->layout()->removeWidget(formAndCrop);
         formAndCrop->clearImage();
@@ -307,13 +294,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 
 void mainWindowMenu::initImgDisplay(){
     theImg = initImg.copy();
-    refreshImage();
-}
-
-
-void mainWindowMenu::initSize(){
-    scrollAreaForImage->setFixedHeight(this->height()-menubar->height());
-    scrollAreaForImage->setFixedWidth(this->width());
+    displayContains->refreshImage(theImg);
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
@@ -330,23 +311,6 @@ void mainWindowMenu::addShortCutToAction(){
     actionSaveOn->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL + Qt::ALT));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
-}
-
-void mainWindowMenu::refreshImage(){
-    labelForImage->setPixmap(QPixmap::fromImage(theImg));
-    labelForImage->setVisible(true);
-    scrollAreaForImage->setVisible(true);
-    labelForImage->setFixedHeight(theImg.height());
-    labelForImage->setFixedWidth(theImg.width());
-    scrollAreaForImage->move(0, menubar->height());
-}
-void mainWindowMenu::refreshReduceImage(){
-    labelForReduceImage->setPixmap(QPixmap::fromImage(reduceImage));
-    labelForReduceImage->setVisible(true);
-    //scrollAreaForImage->setVisible(true);
-    labelForReduceImage->setFixedHeight(reduceImage.height());
-    labelForReduceImage->setFixedWidth(reduceImage.width());
-    //scrollAreaForImage->move(0, menubar->height());
 }
 
 mainWindowMenu::~mainWindowMenu()

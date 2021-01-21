@@ -14,6 +14,7 @@
 #include <QPainterPath>
 #include "formsandcrop.h"
 #include "resizepicture.h"
+#include "displaycontains.h"
 typedef struct Element Element;
 struct Element
 {
@@ -53,9 +54,7 @@ protected:
     void changeEvent(QEvent *event);
 
 private:
-    QScrollArea *scrollAreaForImage;
-    QLabel *labelForImage;
-    QLabel *labelForReduceImage;
+    DisplayContains *displayContains;
     QImage initImg;
     QImage theImg;
     QImage reduceImage;
@@ -68,8 +67,6 @@ private:
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
-    void refreshImage();
-    void refreshReduceImage();
     void avancer(Element *e);
     void reculer(Element *e);
 

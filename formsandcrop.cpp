@@ -9,7 +9,7 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img,QLabel* labelForImage): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains *displayContains): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
     newImage.fill(qRgba(0, 0, 0, 0));
@@ -23,7 +23,7 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
     this->setFixedHeight(height);
     this->trimSelect = trimSelect;
     this->scroll = scrollArea;
-    this->labelForImage = labelForImage;
+    this->displayContains = displayContains;
 
 }
 
