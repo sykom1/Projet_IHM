@@ -14,6 +14,12 @@ struct Element
     Element *suivant;
 };
 
+typedef struct List List;
+struct List
+{
+    Element *premier;
+};
+
 class ImageForChange
 {
 public:

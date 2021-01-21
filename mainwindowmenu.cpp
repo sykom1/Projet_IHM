@@ -1,6 +1,6 @@
 #include "mainwindowmenu.h"
 #include <QTranslator>
-
+#include <QPushButton>
 
 
 
@@ -28,6 +28,8 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
 void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
+    QPushButton *boutonrevenir;
+    QPushButton *boutonavancer;
     QImageReader readerImage(pathImage);
     QImageReader readerImageInit(pathImage);
     QImageReader readerReduceImage(pathImage);
@@ -46,6 +48,17 @@ void mainWindowMenu::openNewFile(){
         displayContains->moveReducedLabel(620, 30);
         setMenuEnabled(true);
     }
+
+
+    boutonrevenir = new QPushButton("<-", this);
+    boutonavancer = new QPushButton("->",this);
+    boutonavancer->setGeometry(QRect(QPoint(650, 500), QSize(100, 50)));
+    boutonrevenir->setGeometry(QRect(QPoint(550, 500), QSize(100, 50)));
+    boutonavancer->setVisible(true);
+    boutonrevenir->setVisible(true);
+    boutonavancer->setEnabled(false);
+    boutonrevenir->setEnabled(false);
+
 }
 
 void mainWindowMenu::closeFile(){
