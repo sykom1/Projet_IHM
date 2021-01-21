@@ -10,6 +10,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     setupUi(this);
     translator = t;
     setWindowTitle(tr("Retouche d'Image"));
+    imageForChange = new ImageForChange();
     displayContains = new DisplayContains(this, menubar->height(), this->width(), this->height()-menubar->height());
     displayContains->setFixedHeight(this->height());
     displayContains->setFixedWidth(this->width());
@@ -32,19 +33,16 @@ void mainWindowMenu::openNewFile(){
     QImageReader readerReduceImage(pathImage);
     readerImage.setAutoTransform(true);
 
-    theImg = readerImage.read();
-    initImg = readerImageInit.read();
-    reduceImage = readerReduceImage.read(); // -----> image destiné à être réduire.
+    imageForChange->initImgWithPath(pathImage);
     if(!displayContains->reducedLabelIsNull()){
         displayContains->removeParentForReducedLabel();
     }
-    if(!theImg.isNull()){
-        displayContains->refreshImage(theImg);
-        resizePicture *picture = new resizePicture();
-        reduceImage = picture->resize(reduceImage,reduceImage.width()/3,reduceImage.height()/3);
+    if(!imageForChange->isNull()){
+        displayContains->refreshImage(imageForChange->getActualImg());
+        imageForChange->changeSizeReduceImg();
         //refreshReduceImage();
-        displayContains->createNewReducedLabel(reduceImage);
-        displayContains->refreshReducedImage(reduceImage);
+        displayContains->createNewReducedLabel(imageForChange->getReduceImg());
+        displayContains->refreshReducedImage(imageForChange->getReduceImg());
         displayContains->moveReducedLabel(620, 30);
         setMenuEnabled(true);
     }
@@ -61,44 +59,44 @@ void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
                                                         tr("Sauvegarder l'image"), "",
                                                         tr("Fichier Image") +"(*.png *.jpg *.bmp)");
-    theImg.save(fileNameSave);
+    imageForChange->saveImg(fileNameSave);
     pathImg = fileNameSave;
 }
 
 void mainWindowMenu::saveFile(){
     if(pathImg!=nullptr){
-        theImg.save(pathImg);
+        imageForChange->saveImg(pathImg);
     }else
         saveFileOn();
 }
 
 void mainWindowMenu::invertPixel(){
-    theImg.invertPixels();
-    displayContains->refreshImage(theImg);
+    imageForChange->getActualImg().invertPixels();
+    displayContains->refreshImage(imageForChange->getActualImg());
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
 void mainWindowMenu::mirroiredH(){
-    theImg = theImg.mirrored(true,false);
-    displayContains->refreshImage(theImg);
+    imageForChange->changeActualImg(imageForChange->getActualImg().mirrored(true, false));
+    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 void mainWindowMenu::mirroiredV(){
-    theImg = theImg.mirrored(false,true);
-    displayContains->refreshImage(theImg);
+    imageForChange->changeActualImg(imageForChange->getActualImg().mirrored(false, true));
+    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
     resizePicture *picture = new resizePicture();
-    theImg = picture->resize(img,x,y);
-    displayContains->refreshImage(theImg);
+    imageForChange->changeActualImg(picture->resize(imageForChange->getActualImg(), x, y));
+    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
 
-       theImg = formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage());
+       imageForChange->changeActualImg(formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage()));
             if(trimSelect== 1){
-                displayContains->refreshImage(theImg);
+                displayContains->refreshImage(imageForChange->getActualImg());
                 displayContains->moveScrollArea(formAndCrop->x, formAndCrop->y);
             }
 
@@ -161,15 +159,6 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 
 }
 
-void mainWindowMenu::reculer(Element *e){
-    theImg = e->precedent->image;
-
-}
-
-void mainWindowMenu::avancer(Element *e){
-    theImg = e->suivant->image;
-}
-
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 
 
@@ -195,9 +184,9 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
         }
 
     }
-    theImg = img;
+    imageForChange->changeActualImg(img);
     formAndCrop->clearImage();
-    displayContains->refreshImage(theImg);
+    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 
@@ -213,10 +202,10 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
             invertPixel();
             break;
         case 2:
-            doResizing(theImg,0,0);
+            doResizing(imageForChange->getActualImg(),0,0);
             break;
         case 3:
-            selectMode(theImg,modState);
+            selectMode(imageForChange->getActualImg(),modState);
             break;
 
         default:
@@ -275,26 +264,26 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
     connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroiredH);
     connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroiredV);
-    connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(theImg,1980,1024);});
-    connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(theImg,1600,900);});
-    connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(theImg,1680,1050);});
-    connect(action1024_par_768, &QAction::triggered, this, [this]{doResizing(theImg,1024,768);});
-    connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(theImg,1);});
-    connect(actionCercle, &QAction::triggered, this, [this]{selectMode(theImg,2);});
-    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(theImg,modState);});
-    connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(theImg,modState);});
+    connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
+    connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
+    connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});
+    connect(action1024_par_768, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1024,768);});
+    connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),1);});
+    connect(actionCercle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),2);});
+    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),modState);});
+    connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),modState);});
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
-    connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(theImg,3);});
+    connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3);});
     addShortCutToAction();
 
 
 }
 
 void mainWindowMenu::initImgDisplay(){
-    theImg = initImg.copy();
-    displayContains->refreshImage(theImg);
+    imageForChange->initActualImg();
+    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){

@@ -15,20 +15,11 @@
 #include "formsandcrop.h"
 #include "resizepicture.h"
 #include "displaycontains.h"
-typedef struct Element Element;
-struct Element
-{
-    Element *precedent;
-    int id;
-    QImage image;
-    Element *suivant;
-};
+#include "imageforchange.h"
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
     Q_OBJECT
-
-
 
 public:
     mainWindowMenu(QTranslator *t, QWidget *parent = nullptr);
@@ -55,9 +46,7 @@ protected:
 
 private:
     DisplayContains *displayContains;
-    QImage initImg;
-    QImage theImg;
-    QImage reduceImage;
+    ImageForChange *imageForChange;
     FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;
     int mode = 0;
@@ -67,8 +56,6 @@ private:
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
-    void avancer(Element *e);
-    void reculer(Element *e);
 
 
 };

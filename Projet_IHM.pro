@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     displaycontains.cpp \
+    imageforchange.cpp \
     main.cpp \
     mainwindowmenu.cpp \
     formsandcrop.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     displaycontains.h \
+    imageforchange.h \
     mainwindowmenu.h \
     formsandcrop.h \
     resizepicture.h
