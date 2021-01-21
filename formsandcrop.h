@@ -15,12 +15,14 @@
 #include <QScrollBar>
 #include <QPainterPath>
 #include "displaycontains.h"
+#include "imageforchange.h"
 
 
 class FormsAndCrop : public QWidget
 {
 public:
-    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains* displayContains);
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains* displayContains,
+                 ImageForChange *imgForChange);
     int x = 0;
     int y = 0;
 

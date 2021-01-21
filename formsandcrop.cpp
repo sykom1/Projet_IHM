@@ -9,7 +9,8 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains *displayContains): QWidget()
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img,
+                           DisplayContains *displayContains, ImageForChange *imgForChange): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
     newImage.fill(qRgba(0, 0, 0, 0));

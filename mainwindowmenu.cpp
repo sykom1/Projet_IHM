@@ -71,7 +71,10 @@ void mainWindowMenu::saveFile(){
 }
 
 void mainWindowMenu::invertPixel(){
-    imageForChange->getActualImg().invertPixels();
+    QImage img = imageForChange->getActualImg();
+    img.invertPixels();
+    imageForChange->changeActualImg(img);
+    //imageForChange->getActualImg().invertPixels();
     displayContains->refreshImage(imageForChange->getActualImg());
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
@@ -151,7 +154,7 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
                                    displayContains->getScrollArea()->y(),
                                    displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                    displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
-                                   displayContains->getScrollArea(),img, displayContains);
+                                   displayContains->getScrollArea(),img, displayContains, imageForChange);
     mode = 3;
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
