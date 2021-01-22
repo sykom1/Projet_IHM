@@ -11,6 +11,7 @@
 #include <iostream>
 #include <QLayout>
 #include <cmath>
+#include <string>
 #include <QPainterPath>
 #include "formsandcrop.h"
 #include "resizepicture.h"
@@ -51,6 +52,7 @@ private:
     int modState = 1;
     int mode = 0;
     QString pathImg = nullptr;
+    std::string nameImage = "";
     QTranslator *translator;
     void initSize();
     void setMenuEnabled(bool valueMenuEnabled);

@@ -30,11 +30,7 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QPushButton *boutonrevenir;
     QPushButton *boutonavancer;
-    QImageReader readerImage(pathImage);
-    QImageReader readerImageInit(pathImage);
-    QImageReader readerReduceImage(pathImage);
-    readerImage.setAutoTransform(true);
-
+    nameImage = strrchr(pathImage.toStdString().c_str(), '/') + 1;
     imageForChange->initImgWithPath(pathImage);
     if(!displayContains->reducedLabelIsNull()){
         displayContains->removeParentForReducedLabel();
@@ -70,7 +66,7 @@ void mainWindowMenu::closeFile(){
 
 void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,
-                                                        tr("Sauvegarder l'image"), "",
+                                                        tr("Sauvegarder l'image"), QString::fromStdString(nameImage),
                                                         tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     imageForChange->saveImg(fileNameSave);
     pathImg = fileNameSave;
