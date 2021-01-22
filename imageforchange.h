@@ -5,6 +5,7 @@
 #include <QImageReader>
 #include "resizepicture.h"
 #include <vector>
+#define SIZEARRAY 4
 typedef struct Element Element;
 
 class ImageForChange
@@ -32,8 +33,7 @@ public:
 
 private:
     int idarrayImage = 0;
-    const int sizeArrayImage = 4;
-    std::vector<QImage> arrayImage;
+    QImage arrayImage[SIZEARRAY];
     QImage initImg;
     QImage actualImg;
     QImage reduceImg;
