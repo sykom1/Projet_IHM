@@ -59,6 +59,9 @@ void mainWindowMenu::openNewFile(){
 
 void mainWindowMenu::closeFile(){
     displayContains->clearDisplay();
+    if(formAndCrop!=nullptr){
+        formAndCrop->clearImage();
+    }
     pathImg = nullptr;
     setMenuEnabled(false);
 
@@ -258,6 +261,10 @@ void mainWindowMenu::changeEvent(QEvent *event){
 
 
 
+    }
+
+    if(event->type() == QEvent::WindowStateChange){
+        std::cout << "Change position of window" << std::endl;
     }
 }
 

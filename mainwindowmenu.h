@@ -46,8 +46,8 @@ protected:
     void changeEvent(QEvent *event);
 
 private:
-    DisplayContains *displayContains;
-    ImageForChange *imageForChange;
+    DisplayContains *displayContains = nullptr;
+    ImageForChange *imageForChange = nullptr;
     FormsAndCrop *formAndCrop = nullptr;
     int modState = 1;
     int mode = 0;
