@@ -27,7 +27,10 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QPushButton *boutonrevenir;
     QPushButton *boutonavancer;
-    nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
+    if(pathImage.contains("/"))
+        nameImage = strrchr(pathImage.toStdString().c_str(), '/')+1;
+    else
+        nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
     std::cout << pathImage.toStdString().c_str();
     imageForChange->initImgWithPath(pathImage);
     if(!displayContains->reducedLabelIsNull()){
