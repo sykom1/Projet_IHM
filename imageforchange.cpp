@@ -53,21 +53,53 @@ QImage ImageForChange::getReduceImg(){
     return reduceImg;
 }
 
-void ImageForChange::ajouter(QImage newImg){
+void ImageForChange::ajouter(){
+       if(idarrayImage < SIZEARRAY-1){
+           arrayImage[idarrayImage++] = actualImg;
+       }else{
+           if(init){
+               decaler();
+               arrayImage[SIZEARRAY-1] = actualImg;
+           }
+           else{
+              arrayImage[SIZEARRAY-1] = actualImg;
+              init=true;
+           }
+       }
 
 }
 
 void ImageForChange::decaler(){
+    for(int i = 1;i<SIZEARRAY;i++){
+        arrayImage[i-1] = arrayImage[i];
+    }
 
 }
+
 void ImageForChange::retourArriere(){
 
+   if(isPrevious()){
+       std::cout <<idarrayImage << std::endl ;
+       actualImg = arrayImage[idarrayImage-2];
+       init =false;
+       idarrayImage--;
+   }
+
 }
+
+void ImageForChange::retourAvant(){
+    if(isNext())
+        actualImg = arrayImage[++idarrayImage];
+}
+
 bool ImageForChange::isNext(){
 
+    return idarrayImage < SIZEARRAY -1;
 }
+
 bool ImageForChange::isPrevious(){
 
+    return idarrayImage > 0;
 }
 
 

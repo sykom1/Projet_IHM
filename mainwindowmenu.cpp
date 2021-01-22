@@ -20,13 +20,15 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     menuFiltre->setEnabled(true);
 
 
+
+
 }
 
 void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
-    QPushButton *boutonrevenir;
-    QPushButton *boutonavancer;
+   /* QPushButton *boutonrevenir;
+    QPushButton *boutonavancer; */
     if(pathImage.contains("/"))
         nameImage = strrchr(pathImage.toStdString().c_str(), '/')+1;
     else
@@ -45,6 +47,7 @@ void mainWindowMenu::openNewFile(){
         displayContains->moveReducedLabel(620, 30);
         setMenuEnabled(true);
     }
+    imageForChange->ajouter();
 
 
     /*boutonrevenir = new QPushButton("<-", this);
@@ -92,6 +95,7 @@ void mainWindowMenu::invertPixel(){
     //imageForChange->getActualImg().invertPixels();
     displayContains->refreshImage(imageForChange->getActualImg());
     std::cout << "rentrer dans la fonction filtre" << std::endl;
+    imageForChange->ajouter();
 }
 
 void mainWindowMenu::mirroiredH(){
@@ -299,6 +303,8 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3);});
+    connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();displayContains->refreshImage(imageForChange->getActualImg());});
+
     addShortCutToAction();
 
 

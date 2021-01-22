@@ -5,6 +5,8 @@
 #include <QImageReader>
 #include "resizepicture.h"
 #include <vector>
+#include <iostream>
+
 #define SIZEARRAY 4
 typedef struct Element Element;
 
@@ -20,16 +22,15 @@ public:
     QImage getActualImg();
     QImage getInitImg();
     QImage getReduceImg();
-    void ajouter(QImage newImg);
+    void ajouter();
     void decaler();
     void retourArriere();
+    void retourAvant();
     bool isNext();
     bool isPrevious();
     void saveImg(QString pathNameSave);
     void changeActualImg(QImage newImg);
     void initActualImg();
-
-    void updateList(Element *e);
 
 private:
     int idarrayImage = 0;
@@ -37,6 +38,7 @@ private:
     QImage initImg;
     QImage actualImg;
     QImage reduceImg;
+    bool init = false;
 };
 
 #endif // IMAGEFORCHANGE_H
