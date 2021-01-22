@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>mainWindowMenu</class>
  <widget class="QMainWindow" name="mainWindowMenu">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -20,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -97,11 +100,21 @@
     <addaction name="action_Revenir"/>
     <addaction name="actionRevenir_en_avant"/>
    </widget>
+   <widget class="QMenu" name="menuActions">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionZoom"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdition"/>
    <addaction name="menuRetouche"/>
    <addaction name="menuSelection"/>
    <addaction name="menuLangues"/>
+   <addaction name="menuActions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenImage">
@@ -252,6 +265,11 @@
   <action name="actionRevenir_en_avant">
    <property name="text">
     <string>Revenir en avant</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="text">
+    <string>Zoom</string>
    </property>
   </action>
  </widget>

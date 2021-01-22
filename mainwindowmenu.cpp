@@ -19,10 +19,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
-
-
-
-
+    menuActions->setEnabled(false);
 }
 
 void mainWindowMenu::openNewFile(){
@@ -99,6 +96,15 @@ void mainWindowMenu::mirroredH(){
 
 void mainWindowMenu::mirroredV(){
     filters::mirroredV(imageForChange,displayContains);
+}
+
+void mainWindowMenu::zoom(){
+    QImage img = imageForChange->getActualImg();
+    img = img.scaled(1500,500,Qt::KeepAspectRatioByExpanding,Qt::FastTransformation);
+    imageForChange->changeActualImg(img);
+    //imageForChange->getActualImg().invertPixels();
+    displayContains->refreshImage(imageForChange->getActualImg());
+    std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
@@ -284,6 +290,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
     connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroredH);
     connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroredV);
+    connect(actionZoom, &QAction::triggered,this,&mainWindowMenu::zoom);
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});
@@ -297,6 +304,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3);});
     connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();displayContains->refreshImage(imageForChange->getActualImg());});
+
 
     addShortCutToAction();
 
@@ -314,6 +322,7 @@ void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
     actionSave->setEnabled(valueMenuEnabled);
     menuRetouche->setEnabled(valueMenuEnabled);
     menuSelection->setEnabled(valueMenuEnabled);
+    menuActions->setEnabled(valueMenuEnabled);
 }
 
 void mainWindowMenu::addShortCutToAction(){
