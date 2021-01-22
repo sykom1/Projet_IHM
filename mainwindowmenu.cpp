@@ -173,7 +173,7 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
                                    displayContains->getScrollArea()->y(),
                                    displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                    displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
-                                   displayContains->getScrollArea(),img, displayContains, imageForChange);
+                                   displayContains->getScrollArea(), displayContains, imageForChange);
     mode = 3;
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);

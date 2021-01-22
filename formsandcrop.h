@@ -20,8 +20,10 @@
 
 class FormsAndCrop : public QWidget
 {
+
+    Q_OBJECT
 public:
-    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, QImage img, DisplayContains* displayContains,
+    FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, DisplayContains* displayContains,
                  ImageForChange *imgForChange);
     int x = 0;
     int y = 0;
@@ -31,12 +33,12 @@ public:
     QPoint lastPoint;
 
     QImage image;
-    QImage img;
 
 
 public slots:
+    void createColorMenu();
     void clearImage();
-    void print();
+    //void print();
     QImage doTrim(QImage img, int trimSelect, QLabel* labelForImage);
 
     void drawLineTo(const QPoint &endPoint);
@@ -62,6 +64,7 @@ private:
     int trimSelect;
     QScrollArea *scroll;
     QLabel* labelForImage;
+    ImageForChange *imgForChange;
     DisplayContains* displayContains = nullptr;
 
 

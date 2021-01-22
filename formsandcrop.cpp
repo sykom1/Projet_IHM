@@ -1,6 +1,8 @@
 #include "formsandcrop.h"
+#include "drawcolormenu.h"
 #include <QMouseEvent>
 #include <QPainter>
+#include <QtWidgets>
 
 #if defined(QT_PRINTSUPPORT_LIB)
 #include <QtPrintSupport/qtprintsupportglobal.h>
@@ -9,7 +11,7 @@
 #include <QPrintDialog>
 #endif
 #endif
-FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea, QImage img,
+FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea,
                            DisplayContains *displayContains, ImageForChange *imgForChange): QWidget()
 {
     QImage newImage(QSize(width, height), QImage::Format_ARGB32);
@@ -18,13 +20,14 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
     QPainter painter(&newImage);
     painter.drawImage(QPoint(0, 0), image);
     image = newImage;
-    this->img= img;
     this->move(x, y);
     this->setFixedWidth(width);
     this->setFixedHeight(height);
     this->trimSelect = trimSelect;
     this->scroll = scrollArea;
     this->displayContains = displayContains;
+    this->imgForChange = imgForChange;
+    createColorMenu();
 
 }
 
@@ -82,8 +85,11 @@ void FormsAndCrop::mouseMoveEvent(QMouseEvent *event)
 void FormsAndCrop::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
-        drawLineTo(event->pos());
+
+
         drawFormTo(event->pos());
+
+        drawLineTo(event->pos());
         scribbling = false;
     }
 
@@ -139,24 +145,38 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
     if(trimSelect == 3 ){
 
-        QPainter painter (&image);
+
+
+        QImage img =  imgForChange->getActualImg();
+        QPainter painter (&img);
 
 
 
         painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
                             Qt::RoundJoin));
-        painter.drawLine(lastPoint, endPoint);
+
+
+
+        //lastPoint.setX(x+50);
+
+       // std::cout<<lastPoint.x()<< " "<<change.x()<<"\n";
+        QPoint change = endPoint;
+        change.setY(endPoint.y()-25);
+        change.setX(endPoint.x());
+        lastPoint.setY(lastPoint.y()-25);
+
+
+        painter.drawLine(lastPoint, change);
         modified = true;
 
-        int rad = (myPenWidth / 2) + 2;
-        update(QRect(lastPoint, endPoint).normalized()
-                                         .adjusted(-rad, -rad, +rad, +rad));
-        lastPoint = endPoint;
 
 
-        QPainter test(&img);
-        test.setCompositionMode(QPainter::CompositionMode_SourceOver);
-        test.drawImage(0, 0, image);
+        lastPoint = change;
+
+
+
+        imgForChange->changeActualImg(img);
+        displayContains->refreshImage(imgForChange->getActualImg());
     }
 
 
@@ -200,6 +220,58 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
         clearImage();
         return img;
 
+
+}
+
+
+void FormsAndCrop::createColorMenu()
+{
+
+    QItemEditorFactory *factory = new QItemEditorFactory;
+
+    QItemEditorCreatorBase *colorListCreator =
+        new QStandardItemEditorCreator<drawColorMenu>();
+
+
+    factory->registerEditor(QMetaType::QColor, colorListCreator);
+
+    QItemEditorFactory::setDefaultFactory(factory);
+
+
+
+    QColor *colorname = new QColor("aliceblue");
+    QTableWidget *table = new QTableWidget(1, 1);
+
+
+
+    table->setHorizontalHeaderLabels({  tr("Color") });
+    table->verticalHeader()->setVisible(true);
+    table->setColumnWidth(0,table->columnWidth(0)+50);
+    table->resize(table->columnWidth(0), 50);
+//    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+
+   // QTableWidgetItem *nameItem = new QTableWidgetItem(pair.first);
+    QTableWidgetItem *colorItem = new QTableWidgetItem;
+    colorItem->setData(Qt::DisplayRole, *colorname);
+
+    //table->setItem(0, 0, nameItem);
+    table->setItem(0, 0, colorItem);
+
+    //table->resizeColumnToContents(0);
+    //table->horizontalHeader()->setStretchLastSection(false);
+   // std::cout<<table.<<" "<<table->y()<<"\n";
+
+    QGridLayout *layout = new QGridLayout;
+
+    table->setFixedHeight(table->height());
+    table->setFixedWidth(table->width());
+
+
+
+    layout->addWidget(table, 0, 0);
+    layout->setAlignment(table,Qt::AlignBottom);
+    //layout->widget()->move(0,0);
+    setLayout(layout);
 
 }
 
