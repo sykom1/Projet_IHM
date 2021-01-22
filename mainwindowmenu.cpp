@@ -266,6 +266,7 @@ void mainWindowMenu::changeEvent(QEvent *event){
     if(event->type() == QEvent::WindowStateChange){
         std::cout << "Change position of window" << std::endl;
     }
+
 }
 
 void mainWindowMenu::updateLanguage(const QString language) {
