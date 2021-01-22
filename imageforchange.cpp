@@ -5,6 +5,8 @@ ImageForChange::ImageForChange()
     actualImg = QImage();
     initImg = QImage();
     reduceImg = QImage();
+
+
 }
 
 void ImageForChange::initImgWithPath(QString pathImg){
@@ -35,14 +37,6 @@ void ImageForChange::changeActualImg(QImage newImg){
     actualImg = newImg;
 }
 
-void ImageForChange::avancer(Element *e){
-    actualImg = e->precedent->image;
-}
-
-void ImageForChange::reculer(Element *e){
-    actualImg = e->suivant->image;
-}
-
 void ImageForChange::initActualImg(){
     actualImg = initImg.copy();
 }
@@ -57,6 +51,23 @@ QImage ImageForChange::getInitImg(){
 
 QImage ImageForChange::getReduceImg(){
     return reduceImg;
+}
+
+void ImageForChange::ajouter(QImage newImg){
+
+}
+
+void ImageForChange::decaler(){
+
+}
+void ImageForChange::retourArriere(){
+
+}
+bool ImageForChange::isNext(){
+
+}
+bool ImageForChange::isPrevious(){
+
 }
 
 

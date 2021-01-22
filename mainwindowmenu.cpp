@@ -18,9 +18,6 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
-    /*Ui::mainWindowMenu ui;
-    QActionGroup* langGroup = new QActionGroup(ui.menuLangues);
-    langGroup->setExclusive(true);  */
 
 
 }
@@ -30,7 +27,8 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
     QPushButton *boutonrevenir;
     QPushButton *boutonavancer;
-    nameImage = strrchr(pathImage.toStdString().c_str(), '/') + 1;
+    nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
+    std::cout << pathImage.toStdString().c_str();
     imageForChange->initImgWithPath(pathImage);
     if(!displayContains->reducedLabelIsNull()){
         displayContains->removeParentForReducedLabel();
@@ -46,14 +44,14 @@ void mainWindowMenu::openNewFile(){
     }
 
 
-    boutonrevenir = new QPushButton("<-", this);
+    /*boutonrevenir = new QPushButton("<-", this);
     boutonavancer = new QPushButton("->",this);
     boutonavancer->setGeometry(QRect(QPoint(650, 500), QSize(100, 50)));
     boutonrevenir->setGeometry(QRect(QPoint(550, 500), QSize(100, 50)));
     boutonavancer->setVisible(true);
     boutonrevenir->setVisible(true);
     boutonavancer->setEnabled(false);
-    boutonrevenir->setEnabled(false);
+    boutonrevenir->setEnabled(false); */
 
 }
 
@@ -66,6 +64,8 @@ void mainWindowMenu::closeFile(){
     setMenuEnabled(false);
 
 }
+
+
 
 void mainWindowMenu::saveFileOn(){
     QString fileNameSave = QFileDialog::getSaveFileName(this,

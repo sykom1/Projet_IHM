@@ -4,21 +4,8 @@
 #include <QImage>
 #include <QImageReader>
 #include "resizepicture.h"
-
+#include <vector>
 typedef struct Element Element;
-struct Element
-{
-    Element *precedent;
-    int id;
-    QImage image;
-    Element *suivant;
-};
-
-typedef struct List List;
-struct List
-{
-    Element *premier;
-};
 
 class ImageForChange
 {
@@ -32,11 +19,21 @@ public:
     QImage getActualImg();
     QImage getInitImg();
     QImage getReduceImg();
+    void ajouter(QImage newImg);
+    void decaler();
+    void retourArriere();
+    bool isNext();
+    bool isPrevious();
     void saveImg(QString pathNameSave);
     void changeActualImg(QImage newImg);
     void initActualImg();
 
+    void updateList(Element *e);
+
 private:
+    int idarrayImage = 0;
+    const int sizeArrayImage = 4;
+    std::vector<QImage> arrayImage;
     QImage initImg;
     QImage actualImg;
     QImage reduceImg;
