@@ -1,4 +1,5 @@
 #include "mainwindowmenu.h"
+#include "filters.h"
 #include <QTranslator>
 #include <QPushButton>
 
@@ -89,23 +90,15 @@ void mainWindowMenu::saveFile(){
 }
 
 void mainWindowMenu::invertPixel(){
-    QImage img = imageForChange->getActualImg();
-    img.invertPixels();
-    imageForChange->changeActualImg(img);
-    //imageForChange->getActualImg().invertPixels();
-    displayContains->refreshImage(imageForChange->getActualImg());
-    std::cout << "rentrer dans la fonction filtre" << std::endl;
-    imageForChange->ajouter();
+    filters::invertPixel(imageForChange,displayContains);
 }
 
-void mainWindowMenu::mirroiredH(){
-    imageForChange->changeActualImg(imageForChange->getActualImg().mirrored(true, false));
-    displayContains->refreshImage(imageForChange->getActualImg());
+void mainWindowMenu::mirroredH(){
+    filters::mirroredH(imageForChange,displayContains);
 }
 
-void mainWindowMenu::mirroiredV(){
-    imageForChange->changeActualImg(imageForChange->getActualImg().mirrored(false, true));
-    displayContains->refreshImage(imageForChange->getActualImg());
+void mainWindowMenu::mirroredV(){
+    filters::mirroredV(imageForChange,displayContains);
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
@@ -289,8 +282,8 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionSaveOn, &QAction::triggered, this, &mainWindowMenu::saveFileOn);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
     connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
-    connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroiredH);
-    connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroiredV);
+    connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroredH);
+    connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroredV);
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});

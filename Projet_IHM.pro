@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     displaycontains.cpp \
     drawcolormenu.cpp \
+    filters.cpp \
     imageforchange.cpp \
     main.cpp \
     mainwindowmenu.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     displaycontains.h \
     drawcolormenu.h \
+    filters.h \
     imageforchange.h \
     mainwindowmenu.h \
     formsandcrop.h \

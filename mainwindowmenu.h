@@ -32,8 +32,8 @@ private slots:
     void saveFileOn();
     void saveFile();
     void invertPixel();
-    void mirroiredH();
-    void mirroiredV();
+    void mirroredH();
+    void mirroredV();
     void doResizing(QImage img, int x, int y);
     void doTrim(QImage img,int trimSelect);
     void selectMode(QImage img,int trimSelect);
