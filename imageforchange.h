@@ -3,6 +3,7 @@
 
 #include <QImage>
 #include <QImageReader>
+#include <QAction>
 #include "resizepicture.h"
 #include <iostream>
 
@@ -11,7 +12,7 @@
 class ImageForChange
 {
 public:
-    ImageForChange();
+    ImageForChange(QAction *buttonUndo, QAction *buttonRedo);
     void initImgWithPath(QString pathImg);
     bool isNull();
     void changeSizeReduceImg();
@@ -35,7 +36,8 @@ private:
     QImage initImg;
     QImage actualImg;
     QImage reduceImg;
-    bool init = false;
+    QAction *actionUndo;
+    QAction *actionRedo;
 };
 
 #endif // IMAGEFORCHANGE_H

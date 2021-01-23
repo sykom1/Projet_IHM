@@ -1,11 +1,14 @@
 #include "imageforchange.h"
 
-ImageForChange::ImageForChange()
+ImageForChange::ImageForChange(QAction *actionUndo, QAction *actionRedo)
 {
     actualImg = QImage();
     initImg = QImage();
     reduceImg = QImage();
-
+    this->actionUndo = actionUndo;
+    this->actionRedo = actionRedo;
+    actionUndo->setEnabled(false);
+    actionRedo->setEnabled(false);
 
 }
 
@@ -18,7 +21,7 @@ void ImageForChange::initImgWithPath(QString pathImg){
     actualImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImg = readerReduceImage.read();
-    ajouter();
+    //ajouter();
 }
 
 bool ImageForChange::isNull(){
@@ -37,10 +40,31 @@ void ImageForChange::saveImg(QString pathNameSave){
 void ImageForChange::changeActualImg(QImage newImg){
     actualImg = newImg;
     ajouter();
+    if(isNext()){
+        actionRedo->setEnabled(true);
+    }else{
+        actionRedo->setEnabled(false);
+    }
+    if(isPrevious()){
+        actionUndo->setEnabled(true);
+    }else{
+        actionUndo->setEnabled(false);
+    }
 }
 
 void ImageForChange::initActualImg(){
     actualImg = initImg.copy();
+    ajouter();
+    if(isNext()){
+        actionRedo->setEnabled(true);
+    }else{
+        actionRedo->setEnabled(false);
+    }
+    if(isPrevious()){
+        actionUndo->setEnabled(true);
+    }else{
+        actionUndo->setEnabled(false);
+    }
 }
 
 QImage ImageForChange::getActualImg(){
@@ -60,10 +84,8 @@ void ImageForChange::ajouter(){
            arrayImage[++idarrayImage] = actualImg;
            idLimite = idarrayImage;
        }else{
-           if(init){
-               decaler();
-               arrayImage[SIZEARRAY-1] = actualImg;
-           }
+           decaler();
+           arrayImage[SIZEARRAY-1] = actualImg;
        }
 
 }
@@ -80,12 +102,32 @@ void ImageForChange::retourArriere(){
    if(isPrevious()){
        actualImg = arrayImage[--idarrayImage];
    }
+   if(isNext()){
+       actionRedo->setEnabled(true);
+   }else{
+       actionRedo->setEnabled(false);
+   }
+   if(isPrevious()){
+       actionUndo->setEnabled(true);
+   }else{
+       actionUndo->setEnabled(false);
+   }
 
 }
 
 void ImageForChange::retourAvant(){
     if(isNext())
         actualImg = arrayImage[++idarrayImage];
+    if(isNext()){
+        actionRedo->setEnabled(true);
+    }else{
+        actionRedo->setEnabled(false);
+    }
+    if(isPrevious()){
+        actionUndo->setEnabled(true);
+    }else{
+        actionUndo->setEnabled(false);
+    }
 }
 
 bool ImageForChange::isNext(){

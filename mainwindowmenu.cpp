@@ -11,7 +11,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     setupUi(this);
     translator = t;
     setWindowTitle(tr("Retouche d'Image"));
-    imageForChange = new ImageForChange();
+    imageForChange = new ImageForChange(action_Revenir, actionRevenir_en_avant);
     displayContains = new DisplayContains(this, menubar->height(), this->width(), this->height()-menubar->height());
     displayContains->setFixedHeight(this->height());
     displayContains->setFixedWidth(this->width());
