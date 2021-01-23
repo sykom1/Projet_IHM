@@ -145,14 +145,12 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
     }
 
     modState = trimSelect;
-    formAndCrop = new FormsAndCrop(displayContains->getScrollArea()->x(),
-                                   displayContains->getScrollArea()->y(),
+    formAndCrop = new FormsAndCrop(displayContains->x(),
+                                   displayContains->y(),
                                    displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                    displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
                                    displayContains->getScrollArea(), displayContains, imageForChange);
     mode = 3;
-    formAndCrop->setFixedHeight(displayContains->getHeightLabelImage());
-    formAndCrop->setFixedWidth(displayContains->getWidthLabelImage());
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
 
@@ -196,8 +194,9 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
     if(formAndCrop!=nullptr){
         formAndCrop->clearImage();
-        formAndCrop->setFixedHeight(displayContains->getHeightLabelImage());
-        formAndCrop->setFixedWidth(displayContains->getWidthLabelImage());
+        formAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
+        formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
+        formAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
     }
 
 //    switch(mode){
