@@ -18,6 +18,7 @@ void ImageForChange::initImgWithPath(QString pathImg){
     actualImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImg = readerReduceImage.read();
+    ajouter();
 }
 
 bool ImageForChange::isNull(){
@@ -35,6 +36,7 @@ void ImageForChange::saveImg(QString pathNameSave){
 
 void ImageForChange::changeActualImg(QImage newImg){
     actualImg = newImg;
+    ajouter();
 }
 
 void ImageForChange::initActualImg(){
@@ -55,15 +57,12 @@ QImage ImageForChange::getReduceImg(){
 
 void ImageForChange::ajouter(){
        if(idarrayImage < SIZEARRAY-1){
-           arrayImage[idarrayImage++] = actualImg;
+           arrayImage[++idarrayImage] = actualImg;
+           idLimite = idarrayImage;
        }else{
            if(init){
                decaler();
                arrayImage[SIZEARRAY-1] = actualImg;
-           }
-           else{
-              arrayImage[SIZEARRAY-1] = actualImg;
-              init=true;
            }
        }
 
@@ -79,10 +78,7 @@ void ImageForChange::decaler(){
 void ImageForChange::retourArriere(){
 
    if(isPrevious()){
-       std::cout <<idarrayImage << std::endl ;
-       actualImg = arrayImage[idarrayImage-2];
-       init =false;
-       idarrayImage--;
+       actualImg = arrayImage[--idarrayImage];
    }
 
 }
@@ -94,7 +90,7 @@ void ImageForChange::retourAvant(){
 
 bool ImageForChange::isNext(){
 
-    return idarrayImage < SIZEARRAY -1;
+    return idarrayImage < idLimite;
 }
 
 bool ImageForChange::isPrevious(){

@@ -291,7 +291,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3);});
     connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();displayContains->refreshImage(imageForChange->getActualImg());});
-
+    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();displayContains->refreshImage(imageForChange->getActualImg());});
 
     addShortCutToAction();
 
