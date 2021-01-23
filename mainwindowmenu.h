@@ -25,6 +25,8 @@ class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 public:
     mainWindowMenu(QTranslator *t, QWidget *parent = nullptr);
     ~mainWindowMenu();
+    static void printPixels(ImageForChange *image);
+    ImageForChange* getImageForChange();
 
 private slots:
     void openNewFile();
@@ -38,6 +40,7 @@ private slots:
     void deleteSelec(QImage img,int trimSelect);
     void updateLanguage(const QString language);
     void initImgDisplay();
+
 
 protected:
     void resizeEvent(QResizeEvent *event);

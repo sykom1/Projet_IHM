@@ -46,6 +46,8 @@ void mainWindowMenu::openNewFile(){
             displayContains->changeSizeOfScrollBar(this->width(), this->height());
             setMenuEnabled(true);
         }
+
+        printPixels(imageForChange);
     }
 
 
@@ -275,6 +277,9 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionHorizontal, &QAction::triggered, this, [this]{filters::mirroredH(imageForChange,displayContains);});
     connect(actionVertical, &QAction::triggered, this, [this]{filters::mirroredV(imageForChange,displayContains);});
     connect(actionZoom, &QAction::triggered,this,&mainWindowMenu::zoom);
+    connect(actionRed_Filter, &QAction::triggered, this, [this]{filters::redFilter(imageForChange,displayContains);});
+    connect(actionGreen_Filter, &QAction::triggered, this, [this]{filters::greenFilter(imageForChange,displayContains);});
+    connect(actionBlue_Filter, &QAction::triggered, this, [this]{filters::blueFilter(imageForChange,displayContains);});
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});
@@ -317,6 +322,19 @@ void mainWindowMenu::addShortCutToAction(){
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
     actionRevenir_en_avant->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL + Qt::SHIFT));
     action_Revenir->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL));
+}
+
+void mainWindowMenu::printPixels(ImageForChange *image){
+    for(int i = 0; i < image->getActualImg().width();i++){
+        for(int j = 0; j < image->getActualImg().height();j++){
+            std::cout << "Couleur du pixel (" << i << "," <<  j << ") : " <<  image->getActualImg().pixelColor(i,j).blue() << std::endl;
+        }
+    }
+}
+
+
+ImageForChange* mainWindowMenu::getImageForChange(){
+    return imageForChange;
 }
 
 mainWindowMenu::~mainWindowMenu()

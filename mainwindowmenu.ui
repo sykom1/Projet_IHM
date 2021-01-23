@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -71,6 +71,9 @@
      </widget>
      <addaction name="actionInverser_Pixels"/>
      <addaction name="menuMiroir"/>
+     <addaction name="actionRed_Filter"/>
+     <addaction name="actionGreen_Filter"/>
+     <addaction name="actionBlue_Filter"/>
     </widget>
     <addaction name="menuFiltre"/>
     <addaction name="menuRedimensionnement"/>
@@ -273,6 +276,21 @@
   <action name="actionZoom">
    <property name="text">
     <string>Zoom</string>
+   </property>
+  </action>
+  <action name="actionRed_Filter">
+   <property name="text">
+    <string>Red Color</string>
+   </property>
+  </action>
+  <action name="actionGreen_Filter">
+   <property name="text">
+    <string>Green Color</string>
+   </property>
+  </action>
+  <action name="actionBlue_Filter">
+   <property name="text">
+    <string>Blue Color</string>
    </property>
   </action>
  </widget>
