@@ -41,12 +41,11 @@ void mainWindowMenu::openNewFile(){
             imageForChange->changeSizeReduceImg();
             //refreshReduceImage();
             displayContains->createNewReducedLabel(imageForChange->getReduceImg());
-            displayContains->changeSizeOfScrollBar(this->width(), this->height());
             displayContains->refreshReducedImage(imageForChange->getReduceImg());
             displayContains->moveReducedLabel(620, 30);
+            displayContains->changeSizeOfScrollBar(this->width(), this->height());
             setMenuEnabled(true);
         }
-        imageForChange->ajouter();
     }
 
 

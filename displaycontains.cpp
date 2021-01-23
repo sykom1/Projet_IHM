@@ -90,7 +90,7 @@ QScrollArea* DisplayContains::getScrollArea(){
 void DisplayContains::changeSizeOfScrollBar(int width, int height){
     int newWidth = width;
     if(labelForReduceImage!=nullptr)
-        newWidth = width-labelForReduceImage->width();
+        newWidth = width-(labelForReduceImage->width()+10);
     if(newWidth>(labelForImage->width()+scrollAreaForImage->verticalScrollBar()->width()))
         newWidth = labelForImage->width()+scrollAreaForImage->verticalScrollBar()->width();
     scrollAreaForImage->setFixedWidth(newWidth);

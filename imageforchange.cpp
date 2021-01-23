@@ -21,7 +21,7 @@ void ImageForChange::initImgWithPath(QString pathImg){
     actualImg = readerImage.read();
     initImg = readerImageInit.read();
     reduceImg = readerReduceImage.read();
-    //ajouter();
+    ajouter();
 }
 
 bool ImageForChange::isNull(){
