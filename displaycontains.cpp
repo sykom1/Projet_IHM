@@ -88,6 +88,8 @@ QScrollArea* DisplayContains::getScrollArea(){
 void DisplayContains::changeSizeOfScrollBar(int width, int height){
     scrollAreaForImage->setFixedWidth(width);
     scrollAreaForImage->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
+    this->setFixedWidth(width);
+    this->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
 }
 
 
