@@ -40,6 +40,7 @@ public slots:
     void clearImage();
     //void print();
     QImage doTrim(QImage img, int trimSelect, QLabel* labelForImage);
+    void zoom(ImageForChange *image, DisplayContains * displCont);
 
     void drawLineTo(const QPoint &endPoint);
 
