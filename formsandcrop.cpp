@@ -223,6 +223,16 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 
 }
 
+void FormsAndCrop::zoom(ImageForChange *image, DisplayContains *displCont){
+    QImage img = image->getActualImg();
+    img = img.scaledToWidth(1500, Qt::FastTransformation);
+    image->changeActualImg(img);
+    //imageForChange->getActualImg().invertPixels();
+    displCont->refreshImage(image->getActualImg());
+    //img.setOffset(QPoint(500,200)); // ne fonctionne pas
+    std::cout << "rentrer dans la fonction filtre" << std::endl;
+}
+
 
 void FormsAndCrop::createColorMenu()
 {

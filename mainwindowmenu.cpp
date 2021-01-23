@@ -99,12 +99,7 @@ void mainWindowMenu::mirroredV(){
 }
 
 void mainWindowMenu::zoom(){
-    QImage img = imageForChange->getActualImg();
-    img = img.scaled(1500,500,Qt::KeepAspectRatioByExpanding,Qt::FastTransformation);
-    imageForChange->changeActualImg(img);
-    //imageForChange->getActualImg().invertPixels();
-    displayContains->refreshImage(imageForChange->getActualImg());
-    std::cout << "rentrer dans la fonction filtre" << std::endl;
+    formAndCrop->zoom(imageForChange,displayContains);
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
