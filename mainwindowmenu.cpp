@@ -196,7 +196,7 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
         formAndCrop->clearImage();
         formAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
         formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
-        formAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
+        formAndCrop->move(0, menubar->height());
     }
 
 //    switch(mode){

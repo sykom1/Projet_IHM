@@ -102,6 +102,7 @@ void DisplayContains::changeSizeOfScrollBar(int width, int height){
         labelForReduceImage->move(width-labelForReduceImage->width(), 0);
     }
     scrollAreaForImage->move(0,0);
+    this->move(0, heightForScrollArea);
 }
 
 int DisplayContains::getWidthScrollBarArea(){
