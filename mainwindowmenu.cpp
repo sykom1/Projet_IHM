@@ -47,14 +47,7 @@ void mainWindowMenu::openNewFile(){
     imageForChange->ajouter();
 
 
-    /*boutonrevenir = new QPushButton("<-", this);
-    boutonavancer = new QPushButton("->",this);
-    boutonavancer->setGeometry(QRect(QPoint(650, 500), QSize(100, 50)));
-    boutonrevenir->setGeometry(QRect(QPoint(550, 500), QSize(100, 50)));
-    boutonavancer->setVisible(true);
-    boutonrevenir->setVisible(true);
-    boutonavancer->setEnabled(false);
-    boutonrevenir->setEnabled(false); */
+
 
 }
 
@@ -245,6 +238,13 @@ void mainWindowMenu::changeEvent(QEvent *event){
         actionRectangle->setText("&" + tr("Rectangle"));
         actionCercle->setText("&" + tr("Cercle"));
 
+        // Langues Menu
+        menuLangues->setTitle("&" + tr("Langues"));
+
+        // Edition Menu
+        menuEdition->setTitle("&" + tr("Edition"));
+        action_Revenir->setText("&" + tr("Revenir en arrière"));
+        actionRevenir_en_avant->setText("&" + tr("Revenir en avant"));
 
 
 
