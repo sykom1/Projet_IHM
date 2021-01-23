@@ -27,24 +27,26 @@ void mainWindowMenu::openNewFile(){
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
    /* QPushButton *boutonrevenir;
     QPushButton *boutonavancer; */
-    if(pathImage.contains("/"))
-        nameImage = strrchr(pathImage.toStdString().c_str(), '/')+1;
-    else
-        nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
-    imageForChange->initImgWithPath(pathImage);
-    if(!displayContains->reducedLabelIsNull()){
-        displayContains->removeParentForReducedLabel();
+    if(!pathImage.isNull()){
+        if(pathImage.contains("/"))
+            nameImage = strrchr(pathImage.toStdString().c_str(), '/')+1;
+        else
+            nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
+        imageForChange->initImgWithPath(pathImage);
+        if(!displayContains->reducedLabelIsNull()){
+            displayContains->removeParentForReducedLabel();
+        }
+        if(!imageForChange->isNull()){
+            displayContains->refreshImage(imageForChange->getActualImg());
+            imageForChange->changeSizeReduceImg();
+            //refreshReduceImage();
+            displayContains->createNewReducedLabel(imageForChange->getReduceImg());
+            displayContains->refreshReducedImage(imageForChange->getReduceImg());
+            displayContains->moveReducedLabel(620, 30);
+            setMenuEnabled(true);
+        }
+        imageForChange->ajouter();
     }
-    if(!imageForChange->isNull()){
-        displayContains->refreshImage(imageForChange->getActualImg());
-        imageForChange->changeSizeReduceImg();
-        //refreshReduceImage();
-        displayContains->createNewReducedLabel(imageForChange->getReduceImg());
-        displayContains->refreshReducedImage(imageForChange->getReduceImg());
-        displayContains->moveReducedLabel(620, 30);
-        setMenuEnabled(true);
-    }
-    imageForChange->ajouter();
 
 
 
