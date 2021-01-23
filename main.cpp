@@ -20,32 +20,33 @@ int main(int argc, char *argv[])
     languages << "Francais" << "English";
     QString lang;
     fstream myfile;
-    myfile.open ("options.txt");
+    myfile.open ("./options.txt");
     string line;
+    lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
+                                                       "Langage",languages);
+//    if( myfile.tellg() == 0 ){
 
-    if( myfile.tellg() == 0 ){
+//        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
+//                                                           "Langage",languages);
+//        std::cout << "on passe ici" << std::endl;
+//        std::cout << lang.toStdString() << std::endl;
 
-        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
-                                                           "Langage",languages);
-        std::cout << "on passe ici" << std::endl;
-        std::cout << lang.toStdString() << std::endl;
+//        myfile << lang.toStdString();
+//        myfile.close();
+//    }else{
+//          if (myfile.is_open())
+//          {
+//              std::cout << "On passe plutot ici" << std::endl;
+//              std::cout << lang.toStdString();
+//            while (getline(myfile,line) )
+//            {
+//              lang = QString::fromStdString(lang.toStdString());
+//            }
+//            myfile.close();
+//          }
 
-        myfile << lang.toStdString();
-        myfile.close();
-    }else{
-          if (myfile.is_open())
-          {
-              std::cout << "On passe plutot ici" << std::endl;
-              std::cout << lang.toStdString();
-            while (getline(myfile,line) )
-            {
-              lang = QString::fromStdString(lang.toStdString());
-            }
-            myfile.close();
-          }
-
-          else cout << "Unable to open file";
-      }
+//          else cout << "Unable to open file";
+//      }
 
 
     if( lang == "English"){
