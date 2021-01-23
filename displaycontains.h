@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QLabel>
 #include <QScrollBar>
+#include <iostream>
 
 class DisplayContains : public QWidget
 {

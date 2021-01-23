@@ -6,6 +6,8 @@ DisplayContains::DisplayContains(QWidget *parent, int heightForScrollArea,
     scrollAreaForImage = new QScrollArea(this);
     scrollAreaForImage->verticalScrollBar()->setFixedWidth(30);
     scrollAreaForImage->horizontalScrollBar()->setFixedHeight(30);
+    scrollAreaForImage->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollAreaForImage->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     scrollAreaForImage->setFrameShape(QFrame::NoFrame);
     labelForImage = new QLabel();
     scrollAreaForImage->setWidget(labelForImage);
@@ -86,10 +88,21 @@ QScrollArea* DisplayContains::getScrollArea(){
 }
 
 void DisplayContains::changeSizeOfScrollBar(int width, int height){
-    scrollAreaForImage->setFixedWidth(width);
+    int newWidth = width;
+    if(labelForReduceImage!=nullptr)
+        newWidth = width-labelForReduceImage->width();
+    if(newWidth>(labelForImage->width()+scrollAreaForImage->verticalScrollBar()->width()))
+        newWidth = labelForImage->width()+scrollAreaForImage->verticalScrollBar()->width();
+    scrollAreaForImage->setFixedWidth(newWidth);
     scrollAreaForImage->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
     this->setFixedWidth(width);
     this->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
+
+    if(labelForReduceImage!=nullptr)
+    {
+        labelForReduceImage->move(width-labelForReduceImage->width(), 0);
+    }
+    scrollAreaForImage->move(0,0);
 }
 
 
