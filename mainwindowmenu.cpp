@@ -318,6 +318,8 @@ void mainWindowMenu::addShortCutToAction(){
     actionSaveOn->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL + Qt::ALT));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
+    actionRevenir_en_avant->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL + Qt::SHIFT));
+    action_Revenir->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL));
 }
 
 mainWindowMenu::~mainWindowMenu()
