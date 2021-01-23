@@ -31,7 +31,6 @@ void mainWindowMenu::openNewFile(){
         nameImage = strrchr(pathImage.toStdString().c_str(), '/')+1;
     else
         nameImage = strrchr(pathImage.toStdString().c_str(), '\\') + 1;
-    std::cout << pathImage.toStdString().c_str();
     imageForChange->initImgWithPath(pathImage);
     if(!displayContains->reducedLabelIsNull()){
         displayContains->removeParentForReducedLabel();
@@ -84,18 +83,6 @@ void mainWindowMenu::saveFile(){
         imageForChange->saveImg(pathImg);
     }else
         saveFileOn();
-}
-
-void mainWindowMenu::invertPixel(){
-    filters::invertPixel(imageForChange,displayContains);
-}
-
-void mainWindowMenu::mirroredH(){
-    filters::mirroredH(imageForChange,displayContains);
-}
-
-void mainWindowMenu::mirroredV(){
-    filters::mirroredV(imageForChange,displayContains);
 }
 
 void mainWindowMenu::zoom(){
@@ -213,20 +200,20 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
         formAndCrop->clearImage();
     }
 
-    switch(mode){
-        case 1:
-            invertPixel();
-            break;
-        case 2:
-            doResizing(imageForChange->getActualImg(),0,0);
-            break;
-        case 3:
-            selectMode(imageForChange->getActualImg(),modState);
-            break;
+//    switch(mode){
+//        case 1:
+//            invertPixel();
+//            break;
+//        case 2:
+//            doResizing(imageForChange->getActualImg(),0,0);
+//            break;
+//        case 3:
+//            selectMode(imageForChange->getActualImg(),modState);
+//            break;
 
-        default:
-            mode=0;
-    }
+//        default:
+//            mode=0;
+//    }
 
 }
 
@@ -282,9 +269,9 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionCloseImage, &QAction::triggered, this, &mainWindowMenu::closeFile);
     connect(actionSaveOn, &QAction::triggered, this, &mainWindowMenu::saveFileOn);
     connect(actionSave, &QAction::triggered, this, &mainWindowMenu::saveFile);
-    connect(actionInverser_Pixels, &QAction::triggered, this, &mainWindowMenu::invertPixel);
-    connect(actionHorizontal, &QAction::triggered, this, &mainWindowMenu::mirroredH);
-    connect(actionVertical, &QAction::triggered, this, &mainWindowMenu::mirroredV);
+    connect(actionInverser_Pixels, &QAction::triggered, this, [this]{filters::invertPixel(imageForChange, displayContains);});
+    connect(actionHorizontal, &QAction::triggered, this, [this]{filters::mirroredH(imageForChange,displayContains);});
+    connect(actionVertical, &QAction::triggered, this, [this]{filters::mirroredV(imageForChange,displayContains);});
     connect(actionZoom, &QAction::triggered,this,&mainWindowMenu::zoom);
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
@@ -299,7 +286,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3);});
     connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();displayContains->refreshImage(imageForChange->getActualImg());});
-
+    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();displayContains->refreshImage(imageForChange->getActualImg());});
 
     addShortCutToAction();
 
@@ -326,6 +313,8 @@ void mainWindowMenu::addShortCutToAction(){
     actionSaveOn->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL + Qt::ALT));
     actionSave->setShortcut(QKeySequence(Qt::Key_S + Qt::CTRL));
     actionCloseImage->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
+    actionRevenir_en_avant->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL + Qt::SHIFT));
+    action_Revenir->setShortcut(QKeySequence(Qt::Key_Z + Qt::CTRL));
 }
 
 mainWindowMenu::~mainWindowMenu()

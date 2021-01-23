@@ -4,19 +4,15 @@
 #include <QImage>
 #include <QImageReader>
 #include "resizepicture.h"
-#include <vector>
 #include <iostream>
 
 #define SIZEARRAY 4
-typedef struct Element Element;
 
 class ImageForChange
 {
 public:
     ImageForChange();
     void initImgWithPath(QString pathImg);
-    void avancer(Element *e);
-    void reculer(Element *e);
     bool isNull();
     void changeSizeReduceImg();
     QImage getActualImg();
@@ -33,7 +29,8 @@ public:
     void initActualImg();
 
 private:
-    int idarrayImage = 0;
+    int idarrayImage = -1;
+    int idLimite = -1;
     QImage arrayImage[SIZEARRAY];
     QImage initImg;
     QImage actualImg;
