@@ -106,6 +106,14 @@ void DisplayContains::changeSizeOfScrollBar(int width, int height){
     //scrollAreaForImage->move(0,0);
 }
 
+int DisplayContains::getWidthLabelImage(){
+    return labelForImage->width();
+}
+
+int DisplayContains::getHeightLabelImage(){
+    return labelForImage->height();
+}
+
 
 
 

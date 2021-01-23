@@ -26,6 +26,8 @@ public:
     void moveScrollArea(int x, int y);
     QScrollArea* getScrollArea();
     void changeSizeOfScrollBar(int width, int height);
+    int getWidthLabelImage();
+    int getHeightLabelImage();
 
 private:
     QScrollArea *scrollAreaForImage;

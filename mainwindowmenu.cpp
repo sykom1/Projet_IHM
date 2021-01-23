@@ -151,6 +151,8 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
                                    displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
                                    displayContains->getScrollArea(), displayContains, imageForChange);
     mode = 3;
+    formAndCrop->setFixedHeight(displayContains->getHeightLabelImage());
+    formAndCrop->setFixedWidth(displayContains->getWidthLabelImage());
     this->layout()->addWidget(formAndCrop);
     actionRogner->setEnabled(true);
 
@@ -176,8 +178,10 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
         for(int i=formAndCrop->x; i<=formAndCrop->lastPoint.x();i++){
             for(int j=formAndCrop->y; j<=formAndCrop->lastPoint.y();j++){
                 QPointF const *newPoint = new QPointF(i, j);
-                if(path.contains(*newPoint))
-                    img.setPixelColor(i, j, Qt::transparent);
+                if(path.contains(*newPoint)){
+                    if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
+                        img.setPixelColor(i, j, Qt::transparent);
+                }
             }
         }
 
@@ -191,8 +195,9 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
     if(formAndCrop!=nullptr){
-        this->layout()->removeWidget(formAndCrop);
         formAndCrop->clearImage();
+        formAndCrop->setFixedHeight(displayContains->getHeightLabelImage());
+        formAndCrop->setFixedWidth(displayContains->getWidthLabelImage());
     }
 
 //    switch(mode){
