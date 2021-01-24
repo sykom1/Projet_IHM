@@ -18,6 +18,7 @@
 #include "resizepicture.h"
 #include "displaycontains.h"
 #include "imageforchange.h"
+#include "chosecolor.h"
 
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -45,6 +46,7 @@ private slots:
     void updateLanguage(const QString language);
     void initImgDisplay();
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
+    void colorMenu();
 
 
 protected:

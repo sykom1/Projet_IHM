@@ -4,20 +4,25 @@
 
 #include <QtWidgets>
 #include <iostream>
+QColor drawColorMenu::colorStat;
 
 drawColorMenu::drawColorMenu(QWidget *widget) : QComboBox(widget)
 {
+
+
     populateList();
 }
 
 QColor drawColorMenu::color() const
 {
+
     return qvariant_cast<QColor>(itemData(currentIndex(), Qt::DecorationRole));
 }
 
 void drawColorMenu::setColor(const QColor &color)
 {
     setCurrentIndex(findData(color, Qt::DecorationRole));
+    colorStat = color;
 
 }
 

@@ -36,7 +36,7 @@ public:
 
 
 public slots:
-    void createColorMenu();
+
     void clearImage();
     //void print();
     QImage doTrim(QImage img, int trimSelect, QLabel* labelForImage);

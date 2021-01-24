@@ -69,6 +69,7 @@ public:
 
 public:
     QColor color() const;
+    static QColor colorStat;
     void setColor(const QColor &color);
 
 private:

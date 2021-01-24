@@ -27,7 +27,6 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
     this->scroll = scrollArea;
     this->displayContains = displayContains;
     this->imgForChange = imgForChange;
-    createColorMenu();
 
 }
 
@@ -144,6 +143,7 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
 
     if(trimSelect == 3 ){
+        myPenColor = drawColorMenu().colorStat;
 
 
 
@@ -161,9 +161,9 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
        // std::cout<<lastPoint.x()<< " "<<change.x()<<"\n";
         QPoint change = endPoint;
-        change.setY(endPoint.y()-25);
-        change.setX(endPoint.x());
-        lastPoint.setY(lastPoint.y()-25);
+//        change.setY(endPoint.y()-25);
+//        change.setX(endPoint.x());
+//        lastPoint.setY(lastPoint.y()-25);
 
 
         painter.drawLine(lastPoint, change);
@@ -234,56 +234,7 @@ void FormsAndCrop::zoom(ImageForChange *image, DisplayContains *displCont){
 }
 
 
-void FormsAndCrop::createColorMenu()
-{
 
-    QItemEditorFactory *factory = new QItemEditorFactory;
-
-    QItemEditorCreatorBase *colorListCreator =
-        new QStandardItemEditorCreator<drawColorMenu>();
-
-
-    factory->registerEditor(QMetaType::QColor, colorListCreator);
-
-    QItemEditorFactory::setDefaultFactory(factory);
-
-
-
-    QColor *colorname = new QColor("aliceblue");
-    QTableWidget *table = new QTableWidget(1, 1);
-
-
-
-    table->setHorizontalHeaderLabels({  tr("Color") });
-    table->verticalHeader()->setVisible(true);
-    table->setColumnWidth(0,table->columnWidth(0)+50);
-    table->resize(table->columnWidth(0), 50);
-//    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-
-   // QTableWidgetItem *nameItem = new QTableWidgetItem(pair.first);
-    QTableWidgetItem *colorItem = new QTableWidgetItem;
-    colorItem->setData(Qt::DisplayRole, *colorname);
-
-    //table->setItem(0, 0, nameItem);
-    table->setItem(0, 0, colorItem);
-
-    //table->resizeColumnToContents(0);
-    //table->horizontalHeader()->setStretchLastSection(false);
-   // std::cout<<table.<<" "<<table->y()<<"\n";
-
-    QGridLayout *layout = new QGridLayout;
-
-    table->setFixedHeight(table->height());
-    table->setFixedWidth(table->width());
-
-
-
-    layout->addWidget(table, 0, 0);
-    layout->setAlignment(table,Qt::AlignBottom);
-    //layout->widget()->move(0,0);
-    setLayout(layout);
-
-}
 
 
 
