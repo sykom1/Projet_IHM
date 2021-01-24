@@ -2,7 +2,7 @@
 #include "filters.h"
 #include <QTranslator>
 #include <QPushButton>
-
+#include <QMessageBox>
 
 
 mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
@@ -52,7 +52,25 @@ void mainWindowMenu::openNewFile(){
 
 
 
+}
 
+
+
+void mainWindowMenu::closeEvent(QCloseEvent *event){
+    int rep = QMessageBox::question(this,"Fermer le progarmme","Voulez vous vraiment fermer le programme?",QMessageBox::Yes,QMessageBox::No);
+
+
+    switch(rep){
+
+    case QMessageBox::Yes:
+        event->accept();
+        break;
+
+    case QMessageBox::No:
+        event->ignore();
+        break;
+
+    }
 }
 
 void mainWindowMenu::closeFile(){

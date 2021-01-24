@@ -29,6 +29,7 @@ public:
     ImageForChange* getImageForChange();
 
 private slots:
+    void closeEvent(QCloseEvent *event);
     void openNewFile();
     void closeFile();
     void saveFileOn();
