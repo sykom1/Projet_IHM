@@ -6,7 +6,7 @@
     <message>
         <location filename="formsandcrop.cpp" line="257"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Color</translation>
     </message>
 </context>
 <context>
@@ -131,43 +131,43 @@
         <location filename="mainwindowmenu.ui" line="258"/>
         <location filename="mainwindowmenu.cpp" line="242"/>
         <source>Retour à l&apos;image initiale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Back to Initial Image</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="263"/>
         <source>Dessiner</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Draw</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="268"/>
         <source> Revenir en arrière</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Undo</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="273"/>
         <location filename="mainwindowmenu.cpp" line="255"/>
         <source>Revenir en avant</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Redo</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="278"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoom</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="283"/>
         <source>Red Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Red Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="288"/>
         <source>Green Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Green Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="293"/>
         <source>Blue Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Blue Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="63"/>
@@ -191,7 +191,7 @@
         <location filename="mainwindowmenu.ui" line="104"/>
         <location filename="mainwindowmenu.cpp" line="253"/>
         <source>Edition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Editing</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="114"/>
@@ -261,7 +261,7 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="254"/>
         <source>Revenir en arrière</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Undo</translation>
     </message>
 </context>
 </TS>

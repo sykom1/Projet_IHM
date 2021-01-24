@@ -22,10 +22,13 @@ int main(int argc, char *argv[])
     languages << "Francais" << "English";
     QString lang;
     fstream myfile;
-    myfile.open ("./options.txt");
+    system("dir");
+    //myfile.open ("./options.txt");
     string line;
+
     lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
                                                        "Langage",languages);
+
 //    if( myfile.tellg() == 0 ){
 
 //        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
@@ -55,8 +58,11 @@ int main(int argc, char *argv[])
         t.load(":/english.qm");
 
     }
+    else if(lang == "Francais"){
+        t.load(":/francais.qm");
+    }
 
-    else if( lang != "Francais"){
+    else {
 
         printf("Cette langue n'existe pas \n");
         return 0;
