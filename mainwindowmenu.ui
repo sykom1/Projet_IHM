@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -41,7 +41,7 @@
    </widget>
    <widget class="QMenu" name="menuRetouche">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Retouche</string>
@@ -54,6 +54,8 @@
      <addaction name="action1024_par_768"/>
      <addaction name="action1680_par_1050"/>
      <addaction name="action1600_par_900"/>
+     <addaction name="separator"/>
+     <addaction name="actionPersonnalis_e"/>
     </widget>
     <widget class="QMenu" name="menuFiltre">
      <property name="enabled">
@@ -291,6 +293,11 @@
   <action name="actionBlue_Filter">
    <property name="text">
     <string>Blue Color</string>
+   </property>
+  </action>
+  <action name="actionPersonnalis_e">
+   <property name="text">
+    <string>Personnalisée</string>
    </property>
   </action>
  </widget>

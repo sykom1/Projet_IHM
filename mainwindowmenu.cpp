@@ -3,6 +3,8 @@
 #include <QTranslator>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QFormLayout>
 
 
 mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
@@ -109,6 +111,50 @@ void mainWindowMenu::doResizing(QImage img, int x,int y){
     imageForChange->changeActualImg(picture->resize(imageForChange->getActualImg(), x, y));
     displayContains->refreshImage(imageForChange->getActualImg());
 }
+
+
+void mainWindowMenu::doResizing(QImage img){
+
+    dialog.setWindowTitle(tr("Redimensionnement"));
+
+    QFormLayout form(&dialog);
+
+
+    form.addRow(new QLabel("Veuillez choisir le format de l'image :"));
+
+
+    QList<QLineEdit *> fields;
+
+    lineEdit = new QLineEdit(&dialog);
+    QString label = QString(tr("Hauteur"));
+    form.addRow(label,lineEdit);
+    fields << lineEdit;
+
+    lineEdit2 = new QLineEdit(&dialog);
+    label = QString(tr("Largeur"));
+    form.addRow(label,lineEdit2);
+    fields << lineEdit2;
+
+
+    QPushButton *button = new QPushButton;
+    button->setText(tr("Confirmer"));
+    form.addRow(button);
+
+    connect(button,&QPushButton::clicked,&dialog,[this]{resizeClicked(lineEdit,lineEdit2,&dialog,imageForChange->getActualImg());});
+
+//    connect(button,SIGNAL(clicked()),&dialog,SLOT(resizeClicked(QLineEdit,QLineEdit,QDialog,QImage)));
+
+    dialog.exec();
+
+}
+
+
+void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *qdialog,QImage img){
+
+    doResizing(img,lineEdit->text().toInt(),lineEdit2->text().toInt());
+    dialog.close();
+}
+
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
 
@@ -302,6 +348,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});
     connect(action1024_par_768, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1024,768);});
+    connect(actionPersonnalis_e,&QAction::triggered,this,[this]{doResizing(imageForChange->getActualImg());});
     connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),1);});
     connect(actionCercle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),2);});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),modState);});

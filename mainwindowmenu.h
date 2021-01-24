@@ -7,16 +7,18 @@
 #include <QFileDialog>
 #include <QImageReader>
 #include <QScrollArea>
+#include <QLineEdit>
 #include <QLabel>
-#include <iostream>
+#include <QPainterPath>
 #include <QLayout>
 #include <cmath>
 #include <string>
-#include <QPainterPath>
+#include <iostream>
 #include "formsandcrop.h"
 #include "resizepicture.h"
 #include "displaycontains.h"
 #include "imageforchange.h"
+
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
 {
@@ -36,11 +38,13 @@ private slots:
     void saveFile();
     void zoom();
     void doResizing(QImage img, int x, int y);
+    void doResizing(QImage img);
     void doTrim(QImage img,int trimSelect);
     void selectMode(QImage img,int trimSelect);
     void deleteSelec(QImage img,int trimSelect);
     void updateLanguage(const QString language);
     void initImgDisplay();
+    void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
 
 
 protected:
@@ -60,7 +64,9 @@ private:
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
-
+    QLineEdit *lineEdit;
+    QLineEdit *lineEdit2;
+    QDialog dialog;
 
 };
 #endif // MAINWINDOWMENU_H
