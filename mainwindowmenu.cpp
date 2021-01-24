@@ -47,7 +47,7 @@ void mainWindowMenu::openNewFile(){
             setMenuEnabled(true);
         }
 
-        printPixels(imageForChange);
+        //printPixels(imageForChange);
     }
 
 
