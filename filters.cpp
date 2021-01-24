@@ -26,7 +26,7 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             int red(image->getActualImg().pixelColor(x,y).red());
+             //int red(image->getActualImg().pixelColor(x,y).red());
              int green(image->getActualImg().pixelColor(x,y).green());
              int blue(image->getActualImg().pixelColor(x,y).blue());
              QColor c(255,green,blue);
@@ -42,7 +42,7 @@ filters::filters()
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
              int red(image->getActualImg().pixelColor(x,y).red());
-             int green(image->getActualImg().pixelColor(x,y).green());
+             //int green(image->getActualImg().pixelColor(x,y).green());
              int blue(image->getActualImg().pixelColor(x,y).blue());
              QColor c(red,255,blue);
              img.setPixelColor(x,y,c);
@@ -58,7 +58,7 @@ filters::filters()
          for(int x = 0; x < img.width(); x++){
              int red(image->getActualImg().pixelColor(x,y).red());
              int green(image->getActualImg().pixelColor(x,y).green());
-             int blue(image->getActualImg().pixelColor(x,y).blue());
+             //int blue(image->getActualImg().pixelColor(x,y).blue());
              QColor c(red,green,255);
              img.setPixelColor(x,y,c);
          }
