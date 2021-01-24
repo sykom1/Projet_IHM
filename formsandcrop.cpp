@@ -11,23 +11,39 @@
 #include <QPrintDialog>
 #endif
 #endif
+
+int FormsAndCrop::xCrop;
+int FormsAndCrop::yCrop;
 FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea,
                            DisplayContains *displayContains, ImageForChange *imgForChange): QWidget()
 {
-    QImage newImage(QSize(width, height), QImage::Format_ARGB32);
-    newImage.fill(qRgba(0, 0, 0, 0));
 
-    QPainter painter(&newImage);
-    painter.drawImage(QPoint(0, 0), image);
-    image = newImage;
-    this->move(x, y);
-    this->setFixedWidth(width);
-    this->setFixedHeight(height);
+
+    //    QImage tempoImg = imgForChange->getActualImg();
+    //    QImage newImage(QSize(tempoImg.width(), tempoImg.height()), QImage::Format_ARGB32);
+
+
+    //    qInfo()<<"AAAAA";
+    //    qInfo()<<tempoImg.width()<<" "<<tempoImg.height()<<"\n\n";
+    //    newImage.fill(qRgba(0, 0, 0, 0));
+
+    //    QPainter painter(&newImage);
+
+    //    //painter.drawImage(QPoint(0, 0), image);
+    //    image = newImage;
+    //    this->move(x, y);
+    //    this->setFixedWidth(width);
+    //    this->setFixedHeight(height);
     this->trimSelect = trimSelect;
     this->scroll = scrollArea;
     this->displayContains = displayContains;
     this->imgForChange = imgForChange;
+    this->newImage = newImage;
 
+    xScroll = x;
+    yScroll = y;
+
+    pictureArea();
 }
 
 
@@ -52,6 +68,7 @@ void FormsAndCrop::mousePressEvent(QMouseEvent *event)
         if(scribbling == false){
             x = lastPoint.x();
             y = lastPoint.y();
+
         }
         scribbling = true;
     }
@@ -143,40 +160,31 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
 
     if(trimSelect == 3 ){
+
+
+
+
         myPenColor = drawColorMenu().colorStat;
-
-
-
         QImage img =  imgForChange->getActualImg();
         QPainter painter (&img);
-
-
-
         painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
                             Qt::RoundJoin));
 
-
-
-        //lastPoint.setX(x+50);
-
-       // std::cout<<lastPoint.x()<< " "<<change.x()<<"\n";
         QPoint change = endPoint;
-//        change.setY(endPoint.y()-25);
-//        change.setX(endPoint.x());
-//        lastPoint.setY(lastPoint.y()-25);
-
+//        change.setY(endPoint.y()-yCrop);
+//        change.setX(endPoint.x()-xCrop);
+//        lastPoint.setY(lastPoint.y()-yCrop);
+//        lastPoint.setX(lastPoint.x()-xCrop);
 
         painter.drawLine(lastPoint, change);
         modified = true;
-
-
-
         lastPoint = change;
-
-
-
         imgForChange->changeActualImg(img);
         displayContains->refreshImage(imgForChange->getActualImg());
+
+
+        displayContains->moveScrollArea(xCrop, yCrop);
+
     }
 
 
@@ -186,8 +194,13 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
 QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 
+
+
         if(trimSelect== 1){
             img = img.copy(x,y,lastP,firstP );
+
+
+
 
         }
         else if(trimSelect == 2){
@@ -214,10 +227,28 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
             labelForImage->setPixmap(target);
             img = target.toImage();
 
+
+
         }
 
 
         clearImage();
+        imgForChange->changeActualImg(img);
+        displayContains->refreshImage(imgForChange->getActualImg());
+
+        if(trimSelect ==1){
+
+            displayContains->moveScrollArea(x + xCrop, y+ yCrop);
+        }else if(trimSelect == 2){
+             //displayContains->moveScrollArea(-xCrop, -yCrop);
+        }
+        xCrop += x;
+        yCrop += y;
+        //this->move(x, y);
+
+
+        //displayContains->moveScrollArea(0, 0);
+       // pictureArea();
         return img;
 
 
@@ -233,6 +264,20 @@ void FormsAndCrop::zoom(ImageForChange *image, DisplayContains *displCont){
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
+
+void FormsAndCrop::pictureArea(){
+    QImage tempoImg = imgForChange->getActualImg();
+    QImage newImage(QSize(tempoImg.width(), tempoImg.height()), QImage::Format_ARGB32);
+    newImage.fill(qRgba(0, 0, 0, 0));
+
+    QPainter painter(&newImage);
+
+    //painter.drawImage(QPoint(0, 0), image);
+    image = newImage;
+    this->move(xCrop+xScroll, yCrop+yScroll);
+    this->setFixedWidth(tempoImg.width());
+    this->setFixedHeight(tempoImg.height());
+}
 
 
 

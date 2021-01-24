@@ -28,8 +28,14 @@ public:
     int x = 0;
     int y = 0;
 
+
+    static int xCrop;
+    static int yCrop;
     int lastP;
     int firstP;
+
+    int xScroll;
+    int yScroll;
     QPoint lastPoint;
 
     QImage image;
@@ -49,6 +55,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
+    void pictureArea();
 
 //    void resizeEvent(QResizeEvent *event) override;
 
@@ -67,6 +74,8 @@ private:
     QLabel* labelForImage;
     ImageForChange *imgForChange;
     DisplayContains* displayContains = nullptr;
+    QImage newImage;
+    QPainter painter;
 
 
 };

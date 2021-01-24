@@ -159,45 +159,7 @@ void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDi
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
 
        imageForChange->changeActualImg(formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage()));
-            if(trimSelect== 1){
-                displayContains->refreshImage(imageForChange->getActualImg());
-                displayContains->moveScrollArea(formAndCrop->x, formAndCrop->y);
-            }
 
-
-    //            theImg = img.copy(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP );
-    //            refreshImage();
-    //            scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
-    //        }
-    //        else if(trimSelect == 2){
-
-    //            QPixmap target = QPixmap(size());
-    //            target.fill(Qt::transparent);
-
-    //            QPixmap p = QPixmap::fromImage(img);
-    //            //p.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-
-
-    //            QPainter painter (&target);
-
-    //            painter.setRenderHint(QPainter::Antialiasing, true);
-    //            painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
-    //            painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
-
-    //            QPainterPath path = QPainterPath();
-    //           // path.addRoundedRect(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP, 50, 50);
-    //            path.addEllipse(formAndCrop->x,formAndCrop->y, formAndCrop->lastP,formAndCrop->firstP);
-
-    //            painter.setClipPath(path);
-    //            painter.drawPixmap(0, 0, p);
-    //            labelForImage->setPixmap(target);
-    //            theImg = target.toImage();
-
-    //        }
-
-    //        formAndCrop->clearImage();
-    //       // scrollAreaForImage->move(formAndCrop->x, formAndCrop->y);
-    //    }
 
 
 
@@ -209,6 +171,7 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
         this->layout()->removeWidget(formAndCrop);
         formAndCrop->clearImage();
     }
+
 
     modState = trimSelect;
     formAndCrop = new FormsAndCrop(displayContains->x(),
@@ -231,8 +194,10 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
         {
             for(int j=formAndCrop->y;j<=formAndCrop->lastPoint.y();j++){
                 img.setPixelColor(i, j, Qt::transparent);
+
             }
         }
+
     }
     else if(trimSelect == 2){
         QPainterPath path;
@@ -253,6 +218,7 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
     imageForChange->changeActualImg(img);
     formAndCrop->clearImage();
     displayContains->refreshImage(imageForChange->getActualImg());
+    displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
 }
 
 void mainWindowMenu::colorMenu(){
