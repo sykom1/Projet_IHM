@@ -248,7 +248,7 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 
 
         //displayContains->moveScrollArea(0, 0);
-       // pictureArea();
+        pictureArea();
         return img;
 
 
