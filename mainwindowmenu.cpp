@@ -275,6 +275,9 @@ void mainWindowMenu::changeEvent(QEvent *event){
         actionSupprimer->setText("&" + tr("Supprimer"));
         actionRogner->setText("&" + tr("Rogner"));
         actionReturnInitImg->setText("&" + tr("Retour à l'image initiale"));
+        actionGreen_Filter->setText("&" + tr("Green Color"));
+        actionRed_Filter->setText("&" + tr("Red Color"));
+        actionBlue_Filter->setText("&" + tr("Blue Color"));
 
         // Selection Menu
         menuSelection->setTitle("&" + tr("Selection"));
@@ -289,6 +292,13 @@ void mainWindowMenu::changeEvent(QEvent *event){
         action_Revenir->setText("&" + tr("Revenir en arrière"));
         actionRevenir_en_avant->setText("&" + tr("Revenir en avant"));
 
+        //ResizeMenu
+        menuRedimensionnement->setTitle("&" + tr("Redimensionnement"));
+        action1024_par_768->setText("&" + tr("1024 par 768"));
+        action1600_par_900->setText("&" + tr("1600 par 900"));
+        action1680_par_1050->setText("&" + tr("1680 par 1050"));
+        action1980_par_1024->setText("&" + tr("1980 par 1024"));
+        actionPersonnalis_e->setText("&" + tr("Personnalisée"));
 
 
 
