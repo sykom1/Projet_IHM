@@ -225,8 +225,8 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
             painter.setClipPath(path);
             painter.drawPixmap(0, 0, p);
             labelForImage->setPixmap(target);
-            img = target.toImage();
-
+            img = target.toImage();      
+            img = img.copy(x,y,lastP,firstP );
 
 
         }
@@ -235,10 +235,10 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
         clearImage();
         imgForChange->changeActualImg(img);
         displayContains->refreshImage(imgForChange->getActualImg());
-
+         displayContains->moveScrollArea(x + xCrop, y+ yCrop);
         if(trimSelect ==1){
 
-            displayContains->moveScrollArea(x + xCrop, y+ yCrop);
+
         }else if(trimSelect == 2){
              //displayContains->moveScrollArea(-xCrop, -yCrop);
         }
