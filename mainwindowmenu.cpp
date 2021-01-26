@@ -59,7 +59,7 @@ void mainWindowMenu::openNewFile(){
 
 
 void mainWindowMenu::closeEvent(QCloseEvent *event){
-    int rep = QMessageBox::question(this,"Fermer le progarmme","Voulez vous vraiment fermer le programme?",QMessageBox::Yes,QMessageBox::No);
+    int rep = QMessageBox::question(this,tr("Fermer le programme"),tr("Voulez vous vraiment fermer le programme?"),QMessageBox::Yes,QMessageBox::No);
 
 
     switch(rep){
@@ -341,7 +341,10 @@ void mainWindowMenu::changeEvent(QEvent *event){
 }
 
 void mainWindowMenu::updateLanguage(const QString language) {
+    QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";
+    QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFile);
     QString translations = QString(":/"+language.toLower()+".qm");
+    settings.setValue("langue", language);
     translator->load(translations);
 }
 

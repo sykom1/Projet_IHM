@@ -3,7 +3,6 @@
 #include <QTranslator>
 #include <QInputDialog>
 #include <iostream>
-#include <fstream>
 #include <string>
 using namespace std;
 
@@ -21,52 +20,35 @@ int main(int argc, char *argv[])
     QStringList languages;
     languages << "Francais" << "English";
     QString lang;
-    fstream myfile;
-    //system("dir");
-    //myfile.open ("./options.txt");
+    system("dir");
     string line;
 
-    lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
-                                                       "Langage",languages);
-
-//    if( myfile.tellg() == 0 ){
-
-//        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
-//                                                           "Langage",languages);
-//        std::cout << "on passe ici" << std::endl;
-//        std::cout << lang.toStdString() << std::endl;
-
-//        myfile << lang.toStdString();
-//        myfile.close();
-//    }else{
-//          if (myfile.is_open())
-//          {
-//              std::cout << "On passe plutot ici" << std::endl;
-//              std::cout << lang.toStdString();
-//            while (getline(myfile,line) )
-//            {
-//              lang = QString::fromStdString(lang.toStdString());
-//            }
-//            myfile.close();
-//          }
-
-//          else cout << "Unable to open file";
-//      }
-
-
-    if( lang == "English"){
-        t.load(":/english.qm");
-
-    }
-    else if(lang == "Francais"){
-        t.load(":/francais.qm");
+    QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";
+    QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFile);
+    //settings.setValue("langue", "francais");
+    if(settings.value("langue").toString().toStdString().compare("")==0){
+        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
+                                                           "Langage",languages);
+        settings.setValue("langue", lang);
+    }else{
+        lang = settings.value("langue").toString();
     }
 
-    else {
+    t.load(":/"+lang.toLower()+".qm");
 
-        printf("Cette langue n'existe pas \n");
-        return 0;
-    }
+//    if( lang == "English"){
+//        t.load(":/english.qm");
+
+//    }
+//    else if(lang == "Francais"){
+//        t.load(":/francais.qm");
+//    }
+
+//    else {
+
+//        printf("Cette langue n'existe pas \n");
+//        return 0;
+//    }
 
 
 
