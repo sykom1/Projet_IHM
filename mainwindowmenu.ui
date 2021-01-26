@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -71,11 +71,17 @@
       <addaction name="actionHorizontal"/>
       <addaction name="actionVertical"/>
      </widget>
-     <addaction name="actionInverser_Pixels"/>
+     <widget class="QMenu" name="menuCouleurs">
+      <property name="title">
+       <string>Couleurs</string>
+      </property>
+      <addaction name="actionRed_Filter"/>
+      <addaction name="actionGreen_Filter"/>
+      <addaction name="actionBlue_Filter"/>
+      <addaction name="actionInverser_Pixels"/>
+     </widget>
+     <addaction name="menuCouleurs"/>
      <addaction name="menuMiroir"/>
-     <addaction name="actionRed_Filter"/>
-     <addaction name="actionGreen_Filter"/>
-     <addaction name="actionBlue_Filter"/>
     </widget>
     <addaction name="menuFiltre"/>
     <addaction name="menuRedimensionnement"/>
@@ -205,11 +211,6 @@
     <string>1600 par 900</string>
    </property>
   </action>
-  <action name="actionInverser_Pixels">
-   <property name="text">
-    <string>Inverser Pixels</string>
-   </property>
-  </action>
   <action name="actionHorizontal">
    <property name="text">
     <string>Horizontal</string>
@@ -280,24 +281,29 @@
     <string>Zoom</string>
    </property>
   </action>
+  <action name="actionPersonnalis_e">
+   <property name="text">
+    <string>Personnaliser</string>
+   </property>
+  </action>
   <action name="actionRed_Filter">
    <property name="text">
-    <string>Red Color</string>
+    <string>Couleur Rouge</string>
    </property>
   </action>
   <action name="actionGreen_Filter">
    <property name="text">
-    <string>Green Color</string>
+    <string>Couleur Verte</string>
    </property>
   </action>
   <action name="actionBlue_Filter">
    <property name="text">
-    <string>Blue Color</string>
+    <string>Couleur Bleue</string>
    </property>
   </action>
-  <action name="actionPersonnalis_e">
+  <action name="actionInverser_Pixels">
    <property name="text">
-    <string>Personnaliser</string>
+    <string>Inverser Pixels</string>
    </property>
   </action>
  </widget>
