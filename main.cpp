@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     languages << "Francais" << "English";
     QString lang;
     fstream myfile;
-    system("dir");
+    //system("dir");
     //myfile.open ("./options.txt");
     string line;
 
