@@ -120,7 +120,7 @@ void mainWindowMenu::doResizing(QImage img){
     QFormLayout form(&dialog);
 
 
-    form.addRow(new QLabel("Veuillez choisir le format de l'image :"));
+    form.addRow(new QLabel(tr("Veuillez choisir le format de l'image :")));
 
 
     QList<QLineEdit *> fields;
@@ -270,7 +270,7 @@ void mainWindowMenu::changeEvent(QEvent *event){
         menuFiltre->setTitle("&" + tr("Filtre"));
         menuMiroir->setTitle("&" + tr("Miroir"));
         actionHorizontal->setText("&" + tr("Horizontal"));
-        actionHorizontal->setText("&" + tr("Vertical"));
+        actionVertical->setText("&" + tr("Vertical"));
         actionInverser_Pixels->setText("&" + tr("Inverser Pixels"));
         actionSupprimer->setText("&" + tr("Supprimer"));
         actionRogner->setText("&" + tr("Rogner"));
@@ -286,6 +286,8 @@ void mainWindowMenu::changeEvent(QEvent *event){
 
         // Langues Menu
         menuLangues->setTitle("&" + tr("Langues"));
+        actionFrancais->setText("&" + tr("Français"));
+        actionAnglais->setText("&" + tr("Anglais"));
 
         // Edition Menu
         menuEdition->setTitle("&" + tr("Edition"));

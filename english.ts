@@ -13,7 +13,7 @@
     <message>
         <location filename="chosecolor.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="chosecolor.cpp" line="59"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="255"/>
         <source>Anglais</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="260"/>
@@ -192,7 +192,7 @@
         <location filename="mainwindowmenu.ui" line="300"/>
         <location filename="mainwindowmenu.cpp" line="301"/>
         <source>Personnalisée</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Personalize</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="65"/>
@@ -283,17 +283,17 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="129"/>
         <source>Hauteur</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Height</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="134"/>
         <source>Largeur</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Width</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="140"/>
         <source>Confirmer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Confirm</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="265"/>

@@ -13,12 +13,12 @@
     <message>
         <location filename="chosecolor.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogue</translation>
     </message>
     <message>
         <location filename="chosecolor.cpp" line="59"/>
         <source>Color</source>
-        <translation type="unfinished">Couleur</translation>
+        <translation>Couleur</translation>
     </message>
 </context>
 <context>
@@ -240,7 +240,7 @@
         <location filename="mainwindowmenu.ui" line="300"/>
         <location filename="mainwindowmenu.cpp" line="301"/>
         <source>Personnalisée</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Personnaliser</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="15"/>
@@ -268,17 +268,17 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="129"/>
         <source>Hauteur</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hauteur</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="134"/>
         <source>Largeur</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Largeur</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="140"/>
         <source>Confirmer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Confirmer</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="261"/>
