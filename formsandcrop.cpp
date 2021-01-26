@@ -133,8 +133,34 @@ void FormsAndCrop::drawFormTo(const QPoint &endPoint)
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
+
+
+
     if(trimSelect == 1 ){
+
+
+
+        if(lastP<0){
+            if(x+lastP <0){
+                lastP = -x;
+            }
+        }
+        if(firstP<0){
+            if(y+firstP <0){
+                firstP = -y;
+            }
+        }
+        if(firstP >imgForChange->getActualImg().height()){
+            firstP =imgForChange->getActualImg().height()-y;
+        }
+
+        if(lastP >imgForChange->getActualImg().width()){
+            lastP =imgForChange->getActualImg().width()-x;
+        }
+
         clearImage();
+
+
         painter.drawRect(x,y,lastP, firstP);
         painter.fillRect(x,y,lastP, firstP,QBrush(QColor(199, 225, 246, 127)));
     }
@@ -194,13 +220,11 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
 
 QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 
-
+        QRect rect(x,y,lastP,firstP );
+        rect= rect.normalized();
 
         if(trimSelect== 1){
-            img = img.copy(x,y,lastP,firstP );
-
-
-
+            img = img.copy(rect );
 
         }
         else if(trimSelect == 2){
@@ -220,34 +244,25 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 
             QPainterPath path = QPainterPath();
            // path.addRoundedRect(x,y, lastP,firstP, 50, 50);
-            path.addEllipse(x,y, lastP,firstP);
+            path.addEllipse(rect);
 
             painter.setClipPath(path);
             painter.drawPixmap(0, 0, p);
             labelForImage->setPixmap(target);
             img = target.toImage();      
-            img = img.copy(x,y,lastP,firstP );
+            img = img.copy(rect );
 
 
         }
-
 
         clearImage();
         imgForChange->changeActualImg(img);
         displayContains->refreshImage(imgForChange->getActualImg());
-         displayContains->moveScrollArea(x + xCrop, y+ yCrop);
-        if(trimSelect ==1){
+        displayContainsCrop(x,y,lastP,firstP);
 
 
-        }else if(trimSelect == 2){
-             //displayContains->moveScrollArea(-xCrop, -yCrop);
-        }
-        xCrop += x;
-        yCrop += y;
-        //this->move(x, y);
 
 
-        //displayContains->moveScrollArea(0, 0);
         pictureArea();
         return img;
 
@@ -279,6 +294,30 @@ void FormsAndCrop::pictureArea(){
     this->setFixedHeight(tempoImg.height());
 }
 
+
+void FormsAndCrop::displayContainsCrop(int x,int y,int lastP, int firstP){
+    if(lastP > 0 && firstP >0){
+        displayContains->moveScrollArea(x + xCrop, y+ yCrop);
+        xCrop += x;
+        yCrop += y;
+    }
+    else if(lastP < 0 && firstP >0){
+        displayContains->moveScrollArea(x+lastP+xCrop, y+yCrop);
+
+        xCrop += x +lastP;
+        yCrop += y;
+    }
+    else if(lastP > 0 && firstP <0){
+        displayContains->moveScrollArea(x+xCrop, y+firstP+yCrop);
+        xCrop += x;
+        yCrop += y+firstP;
+    }
+    else if(lastP < 0 && firstP <0){
+        displayContains->moveScrollArea(x+lastP+xCrop, y+firstP+yCrop);
+        xCrop += x+lastP;
+        yCrop += y+firstP;
+    }
+}
 
 
 

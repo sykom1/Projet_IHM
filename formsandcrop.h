@@ -49,6 +49,7 @@ public slots:
     void zoom(ImageForChange *image, DisplayContains * displCont);
 
     void drawLineTo(const QPoint &endPoint);
+    void displayContainsCrop(int x,int y,int lastP, int firstP);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

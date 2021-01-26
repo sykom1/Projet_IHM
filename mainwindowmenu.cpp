@@ -188,11 +188,15 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 
+    QRect rect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
+    rect = rect.normalized();
+
 
     if(trimSelect ==1){
-        for(int i=formAndCrop->x; i<=formAndCrop->lastPoint.x();i++)
+        for(int i=rect.x(); i<=rect.width()+rect.x();i++)
         {
-            for(int j=formAndCrop->y;j<=formAndCrop->lastPoint.y();j++){
+            for(int j=rect.y();j<=rect.height()+rect.y();j++){
+
                 img.setPixelColor(i, j, Qt::transparent);
 
             }
@@ -201,11 +205,11 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
     }
     else if(trimSelect == 2){
         QPainterPath path;
-        path.moveTo(formAndCrop->x, formAndCrop->y);
-        path.addEllipse(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
+        path.moveTo(rect.x(), rect.y());
+        path.addEllipse(rect);
 
-        for(int i=formAndCrop->x; i<=formAndCrop->lastPoint.x();i++){
-            for(int j=formAndCrop->y; j<=formAndCrop->lastPoint.y();j++){
+        for(int i=rect.x(); i<=rect.width()+rect.x();i++){
+            for(int j=rect.y();j<=rect.height()+rect.y();j++){
                 QPointF const *newPoint = new QPointF(i, j);
                 if(path.contains(*newPoint)){
                     if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
@@ -218,6 +222,7 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
     imageForChange->changeActualImg(img);
     formAndCrop->clearImage();
     displayContains->refreshImage(imageForChange->getActualImg());
+
     displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
 }
 
