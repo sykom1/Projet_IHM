@@ -30,15 +30,19 @@ class choseColor : public QDialog
 public:
     explicit choseColor(QWidget *parent = nullptr);
     ~choseColor();
-     QColor color;
+     QColor color;    
+     static bool isOpen;
 
-
+private slots:
+    void closeEvent(QCloseEvent *event);
 private:
     Ui::choseColor *ui;
     void createColorMenu();
     void runEvents();
     QPushButton *m_button;
+
     void handleButton();
+
 
 
 };

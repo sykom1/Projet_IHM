@@ -5,16 +5,20 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QtWidgets>
-
+bool choseColor::isOpen;
 
 choseColor::choseColor(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::choseColor)
 {
-    ui->setupUi(this);
 
+
+    ui->setupUi(this);
     createColorMenu();
     runEvents();
+    QMainWindow w;
+    this->setFixedSize(w.width()*.3,w.height()*0.3);
+
 
 
 }
@@ -27,6 +31,7 @@ choseColor::~choseColor()
 
 void choseColor::createColorMenu()
 {
+
 
     QGridLayout *layout = new QGridLayout;
 
@@ -60,30 +65,16 @@ void choseColor::createColorMenu()
     table->verticalHeader()->setVisible(true);
     table->setColumnWidth(0,table->columnWidth(0)+50);
     table->resize(table->columnWidth(0), 50);
-//    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
 
-   // QTableWidgetItem *nameItem = new QTableWidgetItem(pair.first);
     QTableWidgetItem *colorItem = new QTableWidgetItem;
     colorItem->setData(Qt::DisplayRole, *colorname);
 
-    //table->setItem(0, 0, nameItem);
     table->setItem(0, 0, colorItem);
-
-    //table->resizeColumnToContents(0);
-    //table->horizontalHeader()->setStretchLastSection(false);
-
-
-
-
-    //table->setFixedHeight(table->height());
-//    table->setFixedWidth(table->width());
 
 
 
     layout->addWidget(table);
-//    layout->setAlignment(table,Qt::AlignCenter);
-//    layout->setAlignment(m_button,Qt::AlignBottom);
-    //layout->widget()->move(0,0);
+
     setLayout(layout);
 
 
@@ -93,18 +84,22 @@ void choseColor::runEvents(){
 
     connect(m_button, &QPushButton::clicked, this,[this]{handleButton();});
 
-
 }
 
 
 void choseColor::handleButton()
 {
-
-
     color = drawColorMenu().colorStat.name();
+    isOpen = false;
     close();
 
 
+}
+void choseColor::closeEvent(QCloseEvent *event)
+{
+
+    isOpen = false;
+    QWidget::closeEvent(event);
 }
 
 

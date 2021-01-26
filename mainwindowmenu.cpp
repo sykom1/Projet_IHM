@@ -222,10 +222,36 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 }
 
 void mainWindowMenu::colorMenu(){
-    choseColor *test = new choseColor(this);
 
-    test->show();
+
+
+
+    if(choseColor().isOpen == false){
+        colorWindow = new choseColor(this);
+        moveColorWindow();
+        colorWindow->show();
+
+        choseColor().isOpen = true;
+    }
+
+
 }
+
+void mainWindowMenu::moveColorWindow()
+{
+    QPoint p = mapToGlobal(QPoint(size().width()-5, size().height()-40)) -
+            QPoint(colorWindow->size().width(), colorWindow->size().height());
+    colorWindow->move(p);
+}
+
+
+void mainWindowMenu::moveEvent(QMoveEvent *event)
+{
+     moveColorWindow();
+
+    QMainWindow::moveEvent(event);
+}
+
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
@@ -236,6 +262,7 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
         formAndCrop->move(0, menubar->height());
     }
 
+    moveColorWindow();
 //    switch(mode){
 //        case 1:
 //            invertPixel();

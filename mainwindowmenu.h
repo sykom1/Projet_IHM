@@ -33,6 +33,7 @@ public:
 
 private slots:
     void closeEvent(QCloseEvent *event);
+    void moveEvent(QMoveEvent *event);
     void openNewFile();
     void closeFile();
     void saveFileOn();
@@ -47,6 +48,7 @@ private slots:
     void initImgDisplay();
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
     void colorMenu();
+    void moveColorWindow();
 
 
 protected:
@@ -69,6 +71,8 @@ private:
     QLineEdit *lineEdit;
     QLineEdit *lineEdit2;
     QDialog dialog;
+    bool isOpen;
+    choseColor *colorWindow = new choseColor(this);
 
 };
 #endif // MAINWINDOWMENU_H
