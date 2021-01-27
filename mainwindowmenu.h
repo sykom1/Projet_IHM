@@ -19,6 +19,7 @@
 #include "displaycontains.h"
 #include "imageforchange.h"
 #include "chosecolor.h"
+#include "barbuttonretouch.h"
 
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -73,6 +74,7 @@ private:
     QDialog dialog;
     bool isOpen;
     choseColor *colorWindow = new choseColor(this);
+    BarButtonRetouch *barButtonRetouch = nullptr;
 
 };
 #endif // MAINWINDOWMENU_H

@@ -48,6 +48,8 @@ void mainWindowMenu::openNewFile(){
             displayContains->moveReducedLabel(620, 30);
             displayContains->changeSizeOfScrollBar(this->width(), this->height());
             setMenuEnabled(true);
+            barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
+            barButtonRetouch->show();
         }
 
         //printPixels(imageForChange);
@@ -66,6 +68,7 @@ void mainWindowMenu::closeEvent(QCloseEvent *event){
     switch(rep){
 
     case QMessageBox::Yes:
+        barButtonRetouch->close();
         event->accept();
         break;
 
