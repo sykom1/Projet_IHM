@@ -1,10 +1,11 @@
 #include "imageforchange.h"
 
-ImageForChange::ImageForChange(QAction *actionUndo, QAction *actionRedo)
+ImageForChange::ImageForChange(QAction *actionUndo, QAction *actionRedo,DisplayContains *displayContains)
 {
     actualImg = QImage();
     initImg = QImage();
     reduceImg = QImage();
+    this->displayContains = displayContains;
     this->actionUndo = actionUndo;
     this->actionRedo = actionRedo;
     actionUndo->setEnabled(false);
@@ -40,6 +41,7 @@ void ImageForChange::saveImg(QString pathNameSave){
 void ImageForChange::changeActualImg(QImage newImg){
     actualImg = newImg;
     ajouter();
+
     if(isNext()){
         actionRedo->setEnabled(true);
     }else{
@@ -80,12 +82,18 @@ QImage ImageForChange::getReduceImg(){
 }
 
 void ImageForChange::ajouter(){
+
        if(idarrayImage < SIZEARRAY-1){
            arrayImage[++idarrayImage] = actualImg;
            idLimite = idarrayImage;
+           arrayPosImage[idarrayImage] = QPoint(displayContains->getScrollArea()->x(),displayContains->getScrollArea()->y());
+
+           std::cout << arrayPosImage[idarrayImage].x()  <<" | " <<  arrayPosImage[idarrayImage].y() << std::endl;
+
        }else{
            decaler();
            arrayImage[SIZEARRAY-1] = actualImg;
+           arrayPosImage[SIZEARRAY-1] = QPoint(displayContains->getScrollArea()->x(),displayContains->getScrollArea()->y());
        }
 
 }
@@ -93,14 +101,21 @@ void ImageForChange::ajouter(){
 void ImageForChange::decaler(){
     for(int i = 1;i<SIZEARRAY;i++){
         arrayImage[i-1] = arrayImage[i];
+        arrayPosImage[i-1] = arrayPosImage[i];
     }
 
 }
 
 void ImageForChange::retourArriere(){
+        std::cout << idarrayImage << std::endl;
 
    if(isPrevious()){
        actualImg = arrayImage[--idarrayImage];
+       displayContains->refreshImage(actualImg);
+       displayContains->moveScrollArea(arrayPosImage[idarrayImage].x(),arrayPosImage[idarrayImage].y());
+       std::cout << arrayPosImage[idarrayImage].x()  <<" " <<  arrayPosImage[idarrayImage].y() << std::endl;
+
+
    }
    if(isNext()){
        actionRedo->setEnabled(true);
@@ -116,8 +131,12 @@ void ImageForChange::retourArriere(){
 }
 
 void ImageForChange::retourAvant(){
-    if(isNext())
+    if(isNext()){
         actualImg = arrayImage[++idarrayImage];
+        displayContains->refreshImage(actualImg);
+        displayContains->moveScrollArea(arrayPosImage[idarrayImage].x(),arrayPosImage[idarrayImage].y());
+
+    }
     if(isNext()){
         actionRedo->setEnabled(true);
     }else{

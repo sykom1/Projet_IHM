@@ -13,11 +13,12 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     setupUi(this);
     translator = t;
     setWindowTitle(tr("Retouche d'Image"));
-    imageForChange = new ImageForChange(action_Revenir, actionRevenir_en_avant);
+
     displayContains = new DisplayContains(this, menubar->height(), this->width(), this->height()-menubar->height());
     displayContains->setFixedHeight(this->height());
     displayContains->setFixedWidth(this->width());
     displayContains->move(0, menubar->height());
+    imageForChange = new ImageForChange(action_Revenir, actionRevenir_en_avant,displayContains);
     runAllEventFromTheMainWindow();
     actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
@@ -158,7 +159,7 @@ void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDi
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
 
-       imageForChange->changeActualImg(formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage()));
+       formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage());
 
 
 
@@ -375,8 +376,8 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3); colorMenu();});
-    connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();displayContains->refreshImage(imageForChange->getActualImg());});
-    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();displayContains->refreshImage(imageForChange->getActualImg());});
+    connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();});
+    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();});
 
     addShortCutToAction();
 

@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
     QStringList languages;
     languages << "Francais" << "English";
     QString lang;
-    system("dir");
     string line;
 
     QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";

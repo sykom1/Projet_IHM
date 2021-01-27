@@ -6,13 +6,13 @@
 #include <QAction>
 #include "resizepicture.h"
 #include <iostream>
-
+#include "displaycontains.h"
 #define SIZEARRAY 4
 
 class ImageForChange
 {
 public:
-    ImageForChange(QAction *buttonUndo, QAction *buttonRedo);
+    ImageForChange(QAction *buttonUndo, QAction *buttonRedo,DisplayContains *displayContains);
     void initImgWithPath(QString pathImg);
     bool isNull();
     void changeSizeReduceImg();
@@ -33,6 +33,8 @@ private:
     int idarrayImage = -1;
     int idLimite = -1;
     QImage arrayImage[SIZEARRAY];
+    QPoint arrayPosImage[SIZEARRAY];
+    DisplayContains *displayContains;
     QImage initImg;
     QImage actualImg;
     QImage reduceImg;
