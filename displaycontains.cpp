@@ -95,13 +95,14 @@ void DisplayContains::changeSizeOfScrollBar(int width, int height){
     scrollAreaForImage->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
     this->setFixedWidth(width);
     this->setFixedHeight(height-scrollAreaForImage->horizontalScrollBar()->height());
-    if(labelForImage->height()<height-scrollAreaForImage->horizontalScrollBar()->height())
-        this->setFixedHeight(labelForImage->height());
+//    if(labelForImage->height()<height-scrollAreaForImage->horizontalScrollBar()->height())
+//        this->setFixedHeight(labelForImage->height());
+
     if(labelForReduceImage!=nullptr)
     {
         labelForReduceImage->move(width-labelForReduceImage->width(), 0);
     }
-    scrollAreaForImage->move(0,0);
+    //scrollAreaForImage->move(0,0);
     this->move(0, heightForScrollArea);
 }
 
