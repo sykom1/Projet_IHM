@@ -209,6 +209,9 @@ void BarButtonRetouch::enableAllButton(){
     deleteSelectionButton->setVisible(true);
 }
 
+FormsAndCrop* BarButtonRetouch::getFormsAndCrop(){
+    return formsAndCrop;
+}
 
 
 

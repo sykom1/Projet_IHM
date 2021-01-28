@@ -19,6 +19,7 @@ class BarButtonRetouch : public QWidget
 public:
     explicit BarButtonRetouch(ImageForChange *imageForChange, DisplayContains *displayContains,
                               QWidget *parent = nullptr);
+    FormsAndCrop* getFormsAndCrop();
 
 private slots:
     void squareSelectButton();
