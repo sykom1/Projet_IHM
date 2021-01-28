@@ -12,6 +12,7 @@ BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContai
     this->setFixedHeight(HEIGHTVAL * this->children().size());
     move(0, ((QMainWindow*)this->parent())->height()/2);
     runAllEvent();
+    disableAllButton();
 }
 
 void BarButtonRetouch::initAllButton(){
@@ -54,8 +55,10 @@ void BarButtonRetouch::squareSelectButton(){
         selectSquare->setDown(true);
         selectSquareIsDown = true;
         selectMode(Square);
+        enableAllButton();
     }
     else{
+        disableAllButton();
         selectSquare->setDown(false);
         selectSquareIsDown = false;
         if(formsAndCrop != nullptr){
@@ -73,8 +76,10 @@ void BarButtonRetouch::circleSelectButton(){
         selectCircle->setDown(true);
         selectCircleIsDown = true;
         selectMode(Circle);
+        enableAllButton();
     }
     else{
+        disableAllButton();
         selectCircle->setDown(false);
         selectCircleIsDown = false;
         if(formsAndCrop != nullptr){
@@ -183,6 +188,21 @@ void BarButtonRetouch::deleteSelec(){
     }
 }
 
+void BarButtonRetouch::disableAllButton(){
+    crop->setEnabled(false);
+    crop->setVisible(false);
+
+    deleteSelectionButton->setEnabled(false);
+    deleteSelectionButton->setVisible(false);
+}
+
+void BarButtonRetouch::enableAllButton(){
+    crop->setEnabled(true);
+    crop->setVisible(true);
+
+    deleteSelectionButton->setEnabled(true);
+    deleteSelectionButton->setVisible(true);
+}
 
 
 

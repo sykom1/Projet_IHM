@@ -42,6 +42,8 @@ private:
     void runAllEvent();
     void upAllButton();
     void selectMode(Selection select);
+    void disableAllButton();
+    void enableAllButton();
 };
 
 #endif // BARBUTTONRETOUCH_H
