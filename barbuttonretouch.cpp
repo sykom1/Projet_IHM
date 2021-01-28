@@ -118,6 +118,19 @@ void BarButtonRetouch::selectMode(Selection select){
     raise();
 }
 
+void BarButtonRetouch::recreateFormsAndCrop(){
+    if(formsAndCrop!=nullptr){
+        ((QMainWindow*)this->parent())->layout()->removeWidget(formsAndCrop);
+        formsAndCrop->close();
+        formsAndCrop->clearImage();
+        formsAndCrop = new FormsAndCrop(displayContains->x(),
+                                        displayContains->y(),
+                                        displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
+                                        displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),modState,
+                                        displayContains->getScrollArea(), displayContains, imageForChange);
+    }
+}
+
 void BarButtonRetouch::doTrim(){
     if(formsAndCrop->x != formsAndCrop->y != formsAndCrop->firstP != formsAndCrop->lastP){
         formsAndCrop->doTrim(imageForChange->getActualImg(), modState, displayContains->getLabelForImage());
@@ -211,6 +224,18 @@ void BarButtonRetouch::enableAllButton(){
 
 FormsAndCrop* BarButtonRetouch::getFormsAndCrop(){
     return formsAndCrop;
+}
+
+void BarButtonRetouch::closeFormsAndCrop(){
+    if(formsAndCrop!=nullptr){
+        ((QMainWindow*)this->parent())->layout()->removeWidget(formsAndCrop);
+        formsAndCrop->close();
+        formsAndCrop->clearImage();
+    }
+}
+
+int BarButtonRetouch::getModState(){
+    return modState;
 }
 
 

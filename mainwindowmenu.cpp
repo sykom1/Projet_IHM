@@ -81,9 +81,7 @@ void mainWindowMenu::closeEvent(QCloseEvent *event){
 
 void mainWindowMenu::closeFile(){
     displayContains->clearDisplay();
-    if(formAndCrop!=nullptr){
-        formAndCrop->clearImage();
-    }
+    barButtonRetouch->closeFormsAndCrop();
     pathImg = nullptr;
     setMenuEnabled(false);
 
@@ -107,7 +105,7 @@ void mainWindowMenu::saveFile(){
 }
 
 void mainWindowMenu::zoom(){
-    formAndCrop->zoom(imageForChange,displayContains);
+    barButtonRetouch->getFormsAndCrop()->zoom(imageForChange,displayContains);
 }
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
@@ -160,30 +158,22 @@ void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDi
 
 
 void mainWindowMenu::doTrim(QImage img, int trimSelect){
-
-       formAndCrop->doTrim(img,trimSelect,displayContains->getLabelForImage());
-
-
-
-
-
+       barButtonRetouch->doTrim();
 }
 
 void mainWindowMenu::selectMode(QImage img, int trimSelect){
-    if(formAndCrop!=nullptr){
-        this->layout()->removeWidget(formAndCrop);
-        formAndCrop->clearImage();
-    }
+    barButtonRetouch->closeFormsAndCrop();
 
 
-    modState = trimSelect;
-    formAndCrop = new FormsAndCrop(displayContains->x(),
-                                   displayContains->y(),
-                                   displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
-                                   displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
-                                   displayContains->getScrollArea(), displayContains, imageForChange);
-    mode = 3;
-    this->layout()->addWidget(formAndCrop);
+//    modState = trimSelect;
+//    formAndCrop = new FormsAndCrop(displayContains->x(),
+//                                   displayContains->y(),
+//                                   displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
+//                                   displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
+//                                   displayContains->getScrollArea(), displayContains, imageForChange);
+//    mode = 3;
+//    this->layout()->addWidget(formAndCrop);
+    barButtonRetouch->selectMode((BarButtonRetouch::Selection)trimSelect);
     actionRogner->setEnabled(true);
 
 
@@ -191,42 +181,43 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 
-    QRect rect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
-    rect = rect.normalized();
+//    QRect rect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
+//    rect = rect.normalized();
 
 
-    if(trimSelect ==1){
-        for(int i=rect.x(); i<=rect.width()+rect.x();i++)
-        {
-            for(int j=rect.y();j<=rect.height()+rect.y();j++){
+//    if(trimSelect ==1){
+//        for(int i=rect.x(); i<=rect.width()+rect.x();i++)
+//        {
+//            for(int j=rect.y();j<=rect.height()+rect.y();j++){
 
-                img.setPixelColor(i, j, Qt::transparent);
+//                img.setPixelColor(i, j, Qt::transparent);
 
-            }
-        }
+//            }
+//        }
 
-    }
-    else if(trimSelect == 2){
-        QPainterPath path;
-        path.moveTo(rect.x(), rect.y());
-        path.addEllipse(rect);
+//    }
+//    else if(trimSelect == 2){
+//        QPainterPath path;
+//        path.moveTo(rect.x(), rect.y());
+//        path.addEllipse(rect);
 
-        for(int i=rect.x(); i<=rect.width()+rect.x();i++){
-            for(int j=rect.y();j<=rect.height()+rect.y();j++){
-                QPointF const *newPoint = new QPointF(i, j);
-                if(path.contains(*newPoint)){
-                    if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
-                        img.setPixelColor(i, j, Qt::transparent);
-                }
-            }
-        }
+//        for(int i=rect.x(); i<=rect.width()+rect.x();i++){
+//            for(int j=rect.y();j<=rect.height()+rect.y();j++){
+//                QPointF const *newPoint = new QPointF(i, j);
+//                if(path.contains(*newPoint)){
+//                    if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
+//                        img.setPixelColor(i, j, Qt::transparent);
+//                }
+//            }
+//        }
 
-    }
-    displayContains->refreshImage(img, formAndCrop->xCrop, formAndCrop->yCrop);
-    imageForChange->changeActualImg(img);
-    formAndCrop->clearImage();
+//    }
+//    displayContains->refreshImage(img, formAndCrop->xCrop, formAndCrop->yCrop);
+//    imageForChange->changeActualImg(img);
+//    formAndCrop->clearImage();
 
-    displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
+//    displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
+    barButtonRetouch->deleteSelec();
 }
 
 void mainWindowMenu::colorMenu(){
@@ -263,13 +254,16 @@ void mainWindowMenu::moveEvent(QMoveEvent *event)
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
-    if(formAndCrop!=nullptr){
-        formAndCrop->clearImage();
-        formAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
-        formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
-        formAndCrop->move(0, menubar->height());
-    }
-
+//    if(formAndCrop!=nullptr){
+//        formAndCrop->clearImage();
+//        formAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
+//        formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
+//        formAndCrop->move(0, menubar->height());
+//    }
+    if(!firstResize)
+        barButtonRetouch->recreateFormsAndCrop();
+    else
+        firstResize = false;
     moveColorWindow();
 //    switch(mode){
 //        case 1:
@@ -372,8 +366,8 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionPersonnalis_e,&QAction::triggered,this,[this]{doResizing(imageForChange->getActualImg());});
     connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),1);});
     connect(actionCercle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),2);});
-    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),modState);});
-    connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),modState);});
+    connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),barButtonRetouch->getModState());});
+    connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),barButtonRetouch->getModState());});
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);

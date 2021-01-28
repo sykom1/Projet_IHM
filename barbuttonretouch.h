@@ -16,19 +16,26 @@
 class BarButtonRetouch : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit BarButtonRetouch(ImageForChange *imageForChange, DisplayContains *displayContains,
                               QWidget *parent = nullptr);
+    enum Selection { Square = 1, Circle};
     FormsAndCrop* getFormsAndCrop();
+    void closeFormsAndCrop();
+    void selectMode(Selection select);
+    void recreateFormsAndCrop();
+    int getModState();
 
+
+public slots:
+    void doTrim();
+    void deleteSelec();
 private slots:
     void squareSelectButton();
     void circleSelectButton();
-    void doTrim();
-    void deleteSelec();
 
 private:
-    enum Selection { Square = 1, Circle};
     ImageForChange *imageForChange = nullptr;
     DisplayContains *displayContains = nullptr;
     QPushButton *selectSquare;
@@ -42,7 +49,6 @@ private:
     void initAllButton();
     void runAllEvent();
     void upAllButton();
-    void selectMode(Selection select);
     void disableAllButton();
     void enableAllButton();
 };

@@ -59,11 +59,9 @@ protected:
 private:
     DisplayContains *displayContains = nullptr;
     ImageForChange *imageForChange = nullptr;
-    FormsAndCrop *formAndCrop = nullptr;
     QLabel *name = new QLabel();
     QLabel *labelHauteur = new QLabel();
     QLabel *labelLargeur = new QLabel();
-    int modState = 1;
     int mode = 0;
     QString pathImg = nullptr;
     std::string nameImage = "";
@@ -78,6 +76,7 @@ private:
     bool isOpen;
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
+    bool firstResize = true;
 
 };
 #endif // MAINWINDOWMENU_H
