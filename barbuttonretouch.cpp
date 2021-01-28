@@ -125,11 +125,19 @@ void BarButtonRetouch::recreateFormsAndCrop(){
         ((QMainWindow*)this->parent())->layout()->removeWidget(formsAndCrop);
         formsAndCrop->close();
         formsAndCrop->clearImage();
-        formsAndCrop = new FormsAndCrop(displayContains->x(),
-                                        displayContains->y(),
-                                        displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
-                                        displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),modState,
-                                        displayContains->getScrollArea(), displayContains, imageForChange);
+
+        disableAllButton();
+
+        switch(modState){
+            case BarButtonRetouch::Square:
+                squareSelectButton();
+                squareSelectButton();
+                break;
+            case BarButtonRetouch::Circle:
+                circleSelectButton();
+                circleSelectButton();
+                break;
+        }
     }
 }
 
