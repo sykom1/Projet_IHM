@@ -40,7 +40,7 @@ void mainWindowMenu::openNewFile(){
             displayContains->removeParentForReducedLabel();
         }
         if(!imageForChange->isNull()){
-            displayContains->refreshImage(imageForChange->getActualImg());
+            displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
             imageForChange->changeSizeReduceImg();
             //refreshReduceImage();
             displayContains->createNewReducedLabel(imageForChange->getReduceImg());
@@ -112,8 +112,8 @@ void mainWindowMenu::zoom(){
 
 void mainWindowMenu::doResizing(QImage img, int x,int y){
     resizePicture *picture = new resizePicture();
+    displayContains->refreshImage(picture->resize(imageForChange->getActualImg(), x, y), 0, 0);
     imageForChange->changeActualImg(picture->resize(imageForChange->getActualImg(), x, y));
-    displayContains->refreshImage(imageForChange->getActualImg());
 }
 
 
@@ -222,9 +222,9 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
         }
 
     }
+    displayContains->refreshImage(img, formAndCrop->xCrop, formAndCrop->yCrop);
     imageForChange->changeActualImg(img);
     formAndCrop->clearImage();
-    displayContains->refreshImage(imageForChange->getActualImg());
 
     displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
 }
@@ -387,8 +387,9 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 }
 
 void mainWindowMenu::initImgDisplay(){
+    displayContains->moveScrollArea(0,0);
     imageForChange->initActualImg();
-    displayContains->refreshImage(imageForChange->getActualImg());
+    displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){

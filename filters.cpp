@@ -8,18 +8,18 @@ filters::filters()
  void filters::invertPixel(ImageForChange *image, DisplayContains *displayCont){
     QImage img = image->getActualImg();
     img.invertPixels();
+    displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
     image->changeActualImg(img);
-    displayCont->refreshImage(image->getActualImg());
 }
 
  void filters::mirroredH(ImageForChange *image, DisplayContains *displayCont){
+    displayCont->refreshImage(image->getActualImg().mirrored(true, false), displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
     image->changeActualImg(image->getActualImg().mirrored(true, false));
-    displayCont->refreshImage(image->getActualImg());
 }
 
  void filters::mirroredV(ImageForChange *image, DisplayContains *displayCont){
+    displayCont->refreshImage(image->getActualImg().mirrored(false, true), displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
     image->changeActualImg(image->getActualImg().mirrored(false, true));
-    displayCont->refreshImage(image->getActualImg());
 }
 
  void filters::redFilter(ImageForChange *image, DisplayContains *displayCont){
@@ -33,8 +33,8 @@ filters::filters()
              img.setPixelColor(x,y,c);
          }
      }
+     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
      image->changeActualImg(img);
-     displayCont->refreshImage(image->getActualImg());
  }
 
  void filters::greenFilter(ImageForChange *image, DisplayContains *displayCont){
@@ -48,8 +48,8 @@ filters::filters()
              img.setPixelColor(x,y,c);
          }
      }
+     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
      image->changeActualImg(img);
-     displayCont->refreshImage(image->getActualImg());
  }
 
  void filters::blueFilter(ImageForChange * image, DisplayContains *displayCont){
@@ -63,8 +63,8 @@ filters::filters()
              img.setPixelColor(x,y,c);
          }
      }
+     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
      image->changeActualImg(img);
-     displayCont->refreshImage(image->getActualImg());
  }
 
 

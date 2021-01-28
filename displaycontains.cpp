@@ -43,13 +43,13 @@ void DisplayContains::refreshReducedImage(QImage reducedImage){
     labelForReduceImage->setFixedWidth(reducedImage.width());
 }
 
-void DisplayContains::refreshImage(QImage img){
+void DisplayContains::refreshImage(QImage img, int x, int y){
     labelForImage->setPixmap(QPixmap::fromImage(img));
     labelForImage->setVisible(true);
     scrollAreaForImage->setVisible(true);
     labelForImage->setFixedHeight(img.height());
     labelForImage->setFixedWidth(img.width());
-    scrollAreaForImage->move(0, 0);
+    scrollAreaForImage->move(x, y);
 }
 
 bool DisplayContains::reducedLabelIsNull(){

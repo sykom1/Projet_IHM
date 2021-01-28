@@ -18,7 +18,7 @@ public:
     void setVisibleReducedLabel(bool value);
     void setSizeReducedLabel(int height, int width);
     void refreshReducedImage(QImage reducedImage);
-    void refreshImage(QImage img);
+    void refreshImage(QImage img, int x, int y);
     bool reducedLabelIsNull();
     void moveReducedLabel(int x, int y);
     void clearDisplay();

@@ -111,8 +111,7 @@ void ImageForChange::retourArriere(){
 
    if(isPrevious()){
        actualImg = arrayImage[--idarrayImage];
-       displayContains->refreshImage(actualImg);
-       displayContains->moveScrollArea(arrayPosImage[idarrayImage].x(),arrayPosImage[idarrayImage].y());
+       displayContains->refreshImage(actualImg, arrayPosImage[idarrayImage].x(), arrayPosImage[idarrayImage].y());
        std::cout << arrayPosImage[idarrayImage].x()  <<" " <<  arrayPosImage[idarrayImage].y() << std::endl;
 
 
@@ -133,8 +132,7 @@ void ImageForChange::retourArriere(){
 void ImageForChange::retourAvant(){
     if(isNext()){
         actualImg = arrayImage[++idarrayImage];
-        displayContains->refreshImage(actualImg);
-        displayContains->moveScrollArea(arrayPosImage[idarrayImage].x(),arrayPosImage[idarrayImage].y());
+        displayContains->refreshImage(actualImg, arrayPosImage[idarrayImage].x(), arrayPosImage[idarrayImage].y());
 
     }
     if(isNext()){
