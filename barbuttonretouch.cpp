@@ -142,35 +142,38 @@ void BarButtonRetouch::doTrim(){
 }
 
 void BarButtonRetouch::deleteSelec(){
-    QRect rect(formsAndCrop->x, formsAndCrop->y, formsAndCrop->lastP, formsAndCrop->firstP);
-    rect = rect.normalized();
+    if(formsAndCrop->x != formsAndCrop->y != formsAndCrop->firstP != formsAndCrop->lastP){
+        QRect rect(formsAndCrop->x, formsAndCrop->y, formsAndCrop->lastP, formsAndCrop->firstP);
+        rect = rect.normalized();
 
-    QImage img = imageForChange->getActualImg();
-    if(modState == Square){
-        for(int i=rect.x(); i<=rect.width() + rect.x(); i++){
-            for(int j=rect.y(); j<=rect.height()+rect.y();j++){
-                img.setPixelColor(i, j, Qt::transparent);
-            }
-        }
-    }
-    else if(modState == Circle){
-        QPainterPath path;
-        path.moveTo(rect.x(), rect.y());
-        path.addEllipse(rect);
-
-        for(int i=rect.x(); i<=rect.width()+rect.x();i++){
-            for(int j = rect.y(); j<=rect.height()+rect.y();j++){
-                QPointF const *newPoint = new QPointF(i, j);
-                if(path.contains(*newPoint)){
-                    if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
-                        img.setPixelColor(i, j, Qt::transparent);
+        QImage img = imageForChange->getActualImg();
+        if(modState == Square){
+            for(int i=rect.x(); i<=rect.width() + rect.x(); i++){
+                for(int j=rect.y(); j<=rect.height()+rect.y();j++){
+                    img.setPixelColor(i, j, Qt::transparent);
                 }
             }
         }
+        else if(modState == Circle){
+            QPainterPath path;
+            path.moveTo(rect.x(), rect.y());
+            path.addEllipse(rect);
+
+            for(int i=rect.x(); i<=rect.width()+rect.x();i++){
+                for(int j = rect.y(); j<=rect.height()+rect.y();j++){
+                    QPointF const *newPoint = new QPointF(i, j);
+                    if(path.contains(*newPoint)){
+                        if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
+                            img.setPixelColor(i, j, Qt::transparent);
+                    }
+                }
+            }
+        }
+        imageForChange->changeActualImg(img);
+        displayContains->refreshImage(imageForChange->getActualImg());
+        displayContains->moveScrollArea(formsAndCrop->xCrop, formsAndCrop->yCrop);
+
     }
-    imageForChange->changeActualImg(img);
-    displayContains->refreshImage(imageForChange->getActualImg());
-    displayContains->moveScrollArea(formsAndCrop->xCrop, formsAndCrop->yCrop);
     switch(modState){
         case Square :
         {
