@@ -60,6 +60,9 @@ private:
     DisplayContains *displayContains = nullptr;
     ImageForChange *imageForChange = nullptr;
     FormsAndCrop *formAndCrop = nullptr;
+    QLabel *name = new QLabel();
+    QLabel *labelHauteur = new QLabel();
+    QLabel *labelLargeur = new QLabel();
     int modState = 1;
     int mode = 0;
     QString pathImg = nullptr;
@@ -69,9 +72,9 @@ private:
     void setMenuEnabled(bool valueMenuEnabled);
     void addShortCutToAction();
     void runAllEventFromTheMainWindow();
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit2;
     QDialog dialog;
+    QLineEdit *lineEdit = new QLineEdit(&dialog);
+    QLineEdit *lineEdit2 = new QLineEdit(&dialog);
     bool isOpen;
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;

@@ -123,20 +123,19 @@ void mainWindowMenu::doResizing(QImage img){
 
     QFormLayout form(&dialog);
 
-
-    form.addRow(new QLabel(tr("Veuillez choisir le format de l'image :")));
+    name->setText(tr("Veuillez choisir le format de l'image :"));
+    form.addRow(name);
 
 
     QList<QLineEdit *> fields;
 
-    lineEdit = new QLineEdit(&dialog);
-    QString label = QString(tr("Hauteur"));
-    form.addRow(label,lineEdit);
+    //QString label = QString(tr("Hauteur"));
+    labelHauteur->setText(tr("Hauteur"));
+    form.addRow(labelHauteur,lineEdit);
     fields << lineEdit;
-
-    lineEdit2 = new QLineEdit(&dialog);
-    label = QString(tr("Largeur"));
-    form.addRow(label,lineEdit2);
+    //label = QString(tr("Largeur"));
+    labelLargeur->setText(tr("Largeur"));
+    form.addRow(labelLargeur,lineEdit2);
     fields << lineEdit2;
 
 
