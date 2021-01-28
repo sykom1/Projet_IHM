@@ -173,7 +173,16 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 //                                   displayContains->getScrollArea(), displayContains, imageForChange);
 //    mode = 3;
 //    this->layout()->addWidget(formAndCrop);
-    barButtonRetouch->selectMode((BarButtonRetouch::Selection)trimSelect);
+    switch(trimSelect){
+        case BarButtonRetouch::Square:
+            barButtonRetouch->squareSelectButton();
+            break;
+        case BarButtonRetouch::Circle:
+            barButtonRetouch->circleSelectButton();
+            break;
+    }
+
+    //barButtonRetouch->selectMode((BarButtonRetouch::Selection)trimSelect);
     actionRogner->setEnabled(true);
 
 

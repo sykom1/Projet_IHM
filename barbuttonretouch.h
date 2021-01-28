@@ -31,9 +31,9 @@ public:
 public slots:
     void doTrim();
     void deleteSelec();
-private slots:
     void squareSelectButton();
     void circleSelectButton();
+private slots:
 
 private:
     ImageForChange *imageForChange = nullptr;
