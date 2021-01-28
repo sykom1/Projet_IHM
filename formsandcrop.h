@@ -31,8 +31,8 @@ public:
 
     static int xCrop;
     static int yCrop;
-    int lastP;
-    int firstP;
+    int lastP =0;
+    int firstP = 0;
 
     int xScroll;
     int yScroll;

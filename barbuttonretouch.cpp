@@ -119,7 +119,9 @@ void BarButtonRetouch::selectMode(Selection select){
 }
 
 void BarButtonRetouch::doTrim(){
-    formsAndCrop->doTrim(imageForChange->getActualImg(), modState, displayContains->getLabelForImage());
+    if(formsAndCrop->x != formsAndCrop->y != formsAndCrop->firstP != formsAndCrop->lastP){
+        formsAndCrop->doTrim(imageForChange->getActualImg(), modState, displayContains->getLabelForImage());
+    }
     switch(modState){
         case Square :
         {
