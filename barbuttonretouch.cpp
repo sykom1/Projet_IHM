@@ -21,8 +21,6 @@ void BarButtonRetouch::initAllButton(){
     selectSquare->setFixedWidth(WIDTHVAL);
     selectSquare->setFixedHeight(HEIGHTVAL);
     selectSquare->move(0, (heightVar++)*HEIGHTVAL);
-    QPixmap squarePixmap("square.png");
-    QIcon squareIcon (squarePixmap);
     selectSquare->setIcon(QIcon(":/Resources/square.png"));
 
 
@@ -35,6 +33,7 @@ void BarButtonRetouch::initAllButton(){
     crop->setFixedWidth(WIDTHVAL);
     crop->setFixedHeight(HEIGHTVAL);
     crop->move(0, (heightVar++)*HEIGHTVAL);
+    crop->setIcon(QIcon(":/Resources/rognage.png"));
 
     deleteSelectionButton = new QPushButton(this);
     deleteSelectionButton->setFixedWidth(WIDTHVAL);
