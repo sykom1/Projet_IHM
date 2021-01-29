@@ -40,6 +40,7 @@ void BarButtonRetouch::initAllButton(){
     deleteSelectionButton->setFixedWidth(WIDTHVAL);
     deleteSelectionButton->setFixedHeight(HEIGHTVAL);
     deleteSelectionButton->move(0, (heightVar++)*HEIGHTVAL);
+    deleteSelectionButton->setIcon(QIcon(":/Resources/del.png"));
 }
 
 void BarButtonRetouch::runAllEvent(){

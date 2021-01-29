@@ -4,5 +4,6 @@
         <file>Resources/rognage.png</file>
         <file>Resources/crayon.png</file>
         <file>Resources/rond.png</file>
+        <file>Resources/del.png</file>
     </qresource>
 </RCC>
