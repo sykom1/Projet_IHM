@@ -28,6 +28,7 @@ void BarButtonRetouch::initAllButton(){
     selectCircle->setFixedWidth(WIDTHVAL);
     selectCircle->setFixedHeight(HEIGHTVAL);
     selectCircle->move(0, (heightVar++)*HEIGHTVAL);
+    selectCircle->setIcon(QIcon(":/Resources/rond.png"));
 
     crop = new QPushButton(this);
     crop->setFixedWidth(WIDTHVAL);

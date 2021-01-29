@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Resources/square.png</file>
         <file>Resources/rognage.png</file>
+        <file>Resources/crayon.png</file>
+        <file>Resources/rond.png</file>
     </qresource>
 </RCC>
