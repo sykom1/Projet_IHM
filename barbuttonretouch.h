@@ -7,6 +7,7 @@
 #include <iostream>
 #include <QMainWindow>
 #include <QLayout>
+#include <QResource>
 #include "formsandcrop.h"
 #include "imageforchange.h"
 #include "displaycontains.h"

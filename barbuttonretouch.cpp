@@ -23,7 +23,7 @@ void BarButtonRetouch::initAllButton(){
     selectSquare->move(0, (heightVar++)*HEIGHTVAL);
     QPixmap squarePixmap("square.png");
     QIcon squareIcon (squarePixmap);
-    selectSquare->setIcon(squareIcon);
+    selectSquare->setIcon(QIcon(":/Resources/square.png"));
 
 
     selectCircle = new QPushButton(this);
