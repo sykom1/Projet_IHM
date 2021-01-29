@@ -49,6 +49,8 @@ void DisplayContains::refreshImage(QImage img, int x, int y){
     scrollAreaForImage->setVisible(true);
     labelForImage->setFixedHeight(img.height());
     labelForImage->setFixedWidth(img.width());
+    scrollAreaForImage->setFixedHeight(img.height()>this->height()?this->height():img.height());
+    scrollAreaForImage->setFixedWidth(img.width()>this->width() ? this->width() : img.width());
     scrollAreaForImage->move(x, y);
 }
 
