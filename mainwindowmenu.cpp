@@ -234,33 +234,11 @@ void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
     barButtonRetouch->deleteSelec();
 }
 
-void mainWindowMenu::colorMenu(){
-
-
-
-
-    if(choseColor().isOpen == false){
-        colorWindow = new choseColor(this);
-        moveColorWindow();
-        colorWindow->show();
-
-        choseColor().isOpen = true;
-    }
-
-
-}
-
-void mainWindowMenu::moveColorWindow()
-{
-    QPoint p = mapToGlobal(QPoint(size().width()-5, size().height()-40)) -
-            QPoint(colorWindow->size().width(), colorWindow->size().height());
-    colorWindow->move(p);
-}
-
 
 void mainWindowMenu::moveEvent(QMoveEvent *event)
 {
-     moveColorWindow();
+     if(barButtonRetouch!=nullptr)
+        barButtonRetouch->moveColorWindow();
 
     QMainWindow::moveEvent(event);
 }
@@ -277,11 +255,11 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
 //        formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
 //        formAndCrop->move(0, menubar->height());
 //    }
-    if(!firstResize)
+
+    if(barButtonRetouch != nullptr){
         barButtonRetouch->recreateFormsAndCrop();
-    else
-        firstResize = false;
-    moveColorWindow();
+        barButtonRetouch->moveColorWindow();
+    }
 //    switch(mode){
 //        case 1:
 //            invertPixel();
@@ -382,14 +360,14 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});
     connect(action1024_par_768, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1024,768);});
     connect(actionPersonnalis_e,&QAction::triggered,this,[this]{doResizing(imageForChange->getActualImg());});
-    connect(actionRectangle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),1);});
-    connect(actionCercle, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),2);});
+    connect(actionRectangle, &QAction::triggered, this, [this]{barButtonRetouch->squareSelectButton();});
+    connect(actionCercle, &QAction::triggered, this, [this]{barButtonRetouch->circleSelectButton();});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),barButtonRetouch->getModState());});
     connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),barButtonRetouch->getModState());});
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
-    connect(actionDessiner, &QAction::triggered, this, [this]{selectMode(imageForChange->getActualImg(),3); colorMenu();});
+    connect(actionDessiner, &QAction::triggered, this, [this]{barButtonRetouch->drawSelectButton();});
     connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();});
     connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();});
 
