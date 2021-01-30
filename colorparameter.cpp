@@ -12,20 +12,20 @@ colorParameter::colorParameter(QWidget *parent) :
 
 }
 
-colorParameter::colorParameter(mainWindowMenu *mainWindMen, QWidget *parent) :
-    QDialog(parent)
-{
-    this->mainWindMen = mainWindMen;
-    setWindowTitle(tr("Reglage couleurs"));
-    setupUi(this);
+//colorParameter::colorParameter(mainWindowMenu *mainWindMen, QWidget *parent) :
+//    QDialog(parent)
+//{
+////    this->mainWindMen = mainWindMen;
+//    setWindowTitle(tr("Reglage couleurs"));
+//    setupUi(this);
 
-    connect(redSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-    connect(greenSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-    connect(blueSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
+//    connect(redSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
+//    connect(greenSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
+//    connect(blueSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
 
-}
+//}
 
-void colorChanged(){
+void colorParameter::colorChanged(){
 //    filters::sharpenFilter(mainWindMen.get)
 
 }

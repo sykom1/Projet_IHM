@@ -15,10 +15,9 @@ class colorParameter : public QDialog, private Ui::colorparameter
 {
     Q_OBJECT
 
-private :
-    mainWindowMenu *mainWindMen;
 public:
-    explicit colorParameter(mainWindowMenu *mainWindMen, QWidget *parent = nullptr);
+//    explicit colorParameter(mainWindowMenu *mainWindMen, QWidget *parent = nullptr);
+    colorParameter(QWidget *parent = nullptr);
     static void windowOpen(int r,int g, int b);
 
 protected slots:
