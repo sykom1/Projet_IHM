@@ -139,6 +139,9 @@
    <property name="text">
     <string>&amp;Ouvrir une image</string>
    </property>
+   <property name="toolTip">
+    <string>Ouvrir une image</string>
+   </property>
   </action>
   <action name="actionSaveOn">
    <property name="enabled">

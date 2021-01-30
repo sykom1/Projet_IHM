@@ -67,6 +67,41 @@ filters::filters()
      image->changeActualImg(img);
  }
 
+ void filters::sharpenFilter(ImageForChange *image, DisplayContains *displayCont, int red100, int green100, int blue100){
+     QImage img(image->getActualImg());
+     for(int y = 0; y < img.height(); y++){
+         for(int x = 0; x < img.width(); x++){
+             int red(image->getActualImg().pixelColor(x,y).red());
+             int green(image->getActualImg().pixelColor(x,y).green());
+             int blue(image->getActualImg().pixelColor(x,y).blue());
+
+             if(red+red100/100 < 255){
+                 red = red+red100/100;
+             }
+             else{
+                 red = 255;
+             }
+             if(green+green100/100 < 255){
+                 green = green+green100/100;
+             }
+             else{
+                 green = 255;
+             }
+             if(blue+blue100/100 < 255){
+                 blue = blue+blue100/100;
+             }
+             else{
+                 blue = 255;
+             }
+
+             QColor c(red,green,blue);
+             img.setPixelColor(x,y,c);
+         }
+     }
+     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
+     image->changeActualImg(img);
+ }
+
 
 
 
