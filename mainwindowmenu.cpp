@@ -108,6 +108,12 @@ void mainWindowMenu::zoom(){
     barButtonRetouch->getFormsAndCrop()->zoom(imageForChange,displayContains);
 }
 
+void mainWindowMenu::openColorParameter(){
+
+    colorParam = new colorParameter();
+    colorParam->show();
+}
+
 void mainWindowMenu::doResizing(QImage img, int x,int y){
     resizePicture *picture = new resizePicture();
     displayContains->refreshImage(picture->resize(imageForChange->getActualImg(), x, y), 0, 0);
@@ -260,6 +266,9 @@ void mainWindowMenu::moveEvent(QMoveEvent *event)
     QMainWindow::moveEvent(event);
 }
 
+QTranslator* mainWindowMenu::getTranslation(){
+    return this->translator;
+}
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
@@ -368,6 +377,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionRed_Filter, &QAction::triggered, this, [this]{filters::redFilter(imageForChange,displayContains);});
     connect(actionGreen_Filter, &QAction::triggered, this, [this]{filters::greenFilter(imageForChange,displayContains);});
     connect(actionBlue_Filter, &QAction::triggered, this, [this]{filters::blueFilter(imageForChange,displayContains);});
+    connect(actionPersonnalised, &QAction::triggered, this, &mainWindowMenu::openColorParameter);
     connect(action1980_par_1024, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1980,1024);});
     connect(action1600_par_900, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1600,900);});
     connect(action1680_par_1050, &QAction::triggered, this, [this]{doResizing(imageForChange->getActualImg(),1680,1050);});

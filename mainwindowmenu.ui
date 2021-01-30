@@ -79,6 +79,7 @@
       <addaction name="actionGreen_Filter"/>
       <addaction name="actionBlue_Filter"/>
       <addaction name="actionInverser_Pixels"/>
+      <addaction name="actionPersonnalised"/>
      </widget>
      <addaction name="menuCouleurs"/>
      <addaction name="menuMiroir"/>
@@ -304,6 +305,11 @@
   <action name="actionInverser_Pixels">
    <property name="text">
     <string>Inverser Pixels</string>
+   </property>
+  </action>
+  <action name="actionPersonnalised">
+   <property name="text">
+    <string>Personnaliser</string>
    </property>
   </action>
  </widget>

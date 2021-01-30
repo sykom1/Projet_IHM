@@ -20,6 +20,7 @@
 #include "imageforchange.h"
 #include "chosecolor.h"
 #include "barbuttonretouch.h"
+#include "colorparameter.h"
 
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -50,6 +51,8 @@ private slots:
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
     void colorMenu();
     void moveColorWindow();
+    QTranslator* getTranslation();
+    void openColorParameter();
 
 
 protected:
@@ -77,6 +80,7 @@ private:
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
     bool firstResize = true;
+    colorParameter *colorParam;
 
 };
 #endif // MAINWINDOWMENU_H

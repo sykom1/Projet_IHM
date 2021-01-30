@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     barbuttonretouch.cpp \
     chosecolor.cpp \
+    colorparameter.cpp \
     displaycontains.cpp \
     drawcolormenu.cpp \
     filters.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     barbuttonretouch.h \
     chosecolor.h \
+    colorparameter.h \
     displaycontains.h \
     drawcolormenu.h \
     filters.h \
@@ -33,6 +35,7 @@ HEADERS += \
 
 FORMS += \
     chosecolor.ui \
+    colorparameter.ui \
     mainwindowmenu.ui
 TRANSLATIONS += english.ts \ francais.ts
 
