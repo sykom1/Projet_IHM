@@ -109,8 +109,7 @@ void mainWindowMenu::zoom(){
 }
 
 void mainWindowMenu::openColorParameter(){
-
-    colorParam = new colorParameter();
+    colorParameter *colorParam = new colorParameter();
     colorParam->show();
 }
 

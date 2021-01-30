@@ -80,7 +80,7 @@ private:
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
     bool firstResize = true;
-    colorParameter *colorParam;
+//    colorParameter *colorParam;
 
 };
 #endif // MAINWINDOWMENU_H
