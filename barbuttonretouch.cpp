@@ -30,6 +30,12 @@ void BarButtonRetouch::initAllButton(){
     selectCircle->move(0, (heightVar++)*HEIGHTVAL);
     selectCircle->setIcon(QIcon(":/Resources/rond.png"));
 
+    selectDraw = new QPushButton(this);
+    selectDraw->setFixedWidth(WIDTHVAL);
+    selectDraw->setFixedHeight(HEIGHTVAL);
+    selectDraw->move(0, (heightVar++)*HEIGHTVAL);
+    selectDraw->setIcon(QIcon(":/Resources/crayon.png"));
+
     crop = new QPushButton(this);
     crop->setFixedWidth(WIDTHVAL);
     crop->setFixedHeight(HEIGHTVAL);
@@ -46,6 +52,7 @@ void BarButtonRetouch::initAllButton(){
 void BarButtonRetouch::runAllEvent(){
     connect(selectSquare, &QPushButton::clicked, this, &BarButtonRetouch::squareSelectButton);
     connect(selectCircle, &QPushButton::clicked, this, &BarButtonRetouch::circleSelectButton);
+    connect(selectDraw, &QPushButton::clicked, this, &BarButtonRetouch::drawSelectButton);
     connect(crop, &QPushButton::clicked, this, &BarButtonRetouch::doTrim);
     connect(deleteSelectionButton, &QPushButton::clicked, this, &BarButtonRetouch::deleteSelec);
 }
@@ -92,13 +99,40 @@ void BarButtonRetouch::circleSelectButton(){
     }
 }
 
+void BarButtonRetouch::drawSelectButton(){
+    if(!selectDrawIsDown){
+        upAllButton();
+        selectDraw->setDown(true);
+        selectDrawIsDown = true;
+        selectMode(Draw);
+        disableAllButton();
+    }
+    else{
+        disableAllButton();
+        selectDraw->setDown(false);
+        selectDrawIsDown = false;
+        if(formsAndCrop != nullptr){
+            ((QMainWindow *)this->parent())->layout()->removeWidget(formsAndCrop);
+            formsAndCrop->close();
+            formsAndCrop->clearImage();
+            if(colorWindow != nullptr){
+                colorWindow->close();
+                colorWindow = nullptr;
+            }
+        }
+        formsAndCrop = nullptr;
+    }
+}
+
 void BarButtonRetouch::upAllButton(){
     selectSquareIsDown = false;
     selectCircleIsDown = false;
+    selectDrawIsDown = false;
 
 
     selectSquare->setDown(false);
     selectCircle->setDown(false);
+    selectDraw->setDown(false);
 
 }
 
@@ -118,6 +152,9 @@ void BarButtonRetouch::selectMode(Selection select){
     formsAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
     formsAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
     ((QMainWindow*)this->parent())->layout()->addWidget(formsAndCrop);
+    if(modState == Draw){
+        colorMenu();
+    }
     raise();
 }
 
@@ -247,6 +284,27 @@ void BarButtonRetouch::closeFormsAndCrop(){
 
 int BarButtonRetouch::getModState(){
     return modState;
+}
+
+void BarButtonRetouch::colorMenu(){
+    if(colorWindow==nullptr){
+        colorWindow = new choseColor(((QMainWindow*)this->parent()));
+        moveColorWindow();
+        colorWindow->show();
+    }else{
+        colorWindow->close();
+        colorWindow->setParent(nullptr);
+        colorWindow = nullptr;
+    }
+}
+
+void BarButtonRetouch::moveColorWindow(){
+    if(colorWindow != nullptr){
+        QSize valueSize = ((QMainWindow*)this->parent())->size();
+        QPoint p = ((QMainWindow*)this->parent())->mapToGlobal(QPoint(valueSize.width()-5, valueSize.height()-40)) -
+                QPoint(colorWindow->size().width(), colorWindow->size().height());
+        colorWindow->move(p);
+    }
 }
 
 

@@ -49,8 +49,6 @@ private slots:
     void updateLanguage(const QString language);
     void initImgDisplay();
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
-    void colorMenu();
-    void moveColorWindow();
     QTranslator* getTranslation();
     void openColorParameter();
 
@@ -79,7 +77,6 @@ private:
     bool isOpen;
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
-    bool firstResize = true;
 
 };
 #endif // MAINWINDOWMENU_H
