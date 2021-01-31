@@ -25,6 +25,10 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     menuActions->setEnabled(false);
 }
 
+DisplayContains* mainWindowMenu::getDisplayContains(){
+    return this->displayContains;
+}
+
 void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
@@ -109,7 +113,7 @@ void mainWindowMenu::zoom(){
 }
 
 void mainWindowMenu::openColorParameter(){
-    colorParameter *colorParam = new colorParameter();
+    colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
     colorParam->show();
 }
 

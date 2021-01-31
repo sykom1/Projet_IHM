@@ -1,33 +1,31 @@
 #include "colorparameter.h"
 
+mainWindowMenu *mainWindMen;
+
 colorParameter::colorParameter(QWidget *parent) :
     QDialog(parent)
 {
     setWindowTitle(tr("Reglage couleurs"));
     setupUi(this);
 
-    connect(redSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-    connect(greenSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-    connect(blueSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
+    connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
+}
+
+colorParameter::colorParameter(ImageForChange* imgForChange,DisplayContains* dispCont, QWidget *parent) :
+    QDialog(parent)
+{
+    this->displayContains = dispCont;
+    this->imgForChange = imgForChange;
+    setWindowTitle(tr("Reglage couleurs"));
+    setupUi(this);
+
+    connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
+
 
 }
 
-//colorParameter::colorParameter(mainWindowMenu *mainWindMen, QWidget *parent) :
-//    QDialog(parent)
-//{
-////    this->mainWindMen = mainWindMen;
-//    setWindowTitle(tr("Reglage couleurs"));
-//    setupUi(this);
-
-//    connect(redSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-//    connect(greenSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-//    connect(blueSlider, &QSlider::valueChanged,this,&colorParameter::colorChanged);
-
-//}
-
 void colorParameter::colorChanged(){
-//    filters::sharpenFilter(mainWindMen.get)
-
+    filters::sharpenFilter(this->imgForChange,this->displayContains,redSlider->value(),greenSlider->value(),blueSlider->value());
 }
 
 void colorParameter::on_redValueLabel_windowIconTextChanged(const QString &iconText){

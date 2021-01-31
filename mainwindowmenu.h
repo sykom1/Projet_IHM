@@ -32,6 +32,7 @@ public:
     ~mainWindowMenu();
     static void printPixels(ImageForChange *image);
     ImageForChange* getImageForChange();
+    DisplayContains *getDisplayContains();
 
 private slots:
     void closeEvent(QCloseEvent *event);

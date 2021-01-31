@@ -126,12 +126,16 @@
         </spacer>
        </item>
        <item>
-        <widget class="QDialogButtonBox" name="colorParameter_buttonBox">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+        <widget class="QPushButton" name="accept_Button">
+         <property name="text">
+          <string>Valider</string>
          </property>
-         <property name="standardButtons">
-          <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="refuse_Button">
+         <property name="text">
+          <string>Annuler</string>
          </property>
         </widget>
        </item>
@@ -144,38 +148,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>colorParameter_buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>colorparameter</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>394</x>
-     <y>124</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>150</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>colorParameter_buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>colorparameter</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>394</x>
-     <y>130</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>150</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>redSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>redValueLabel</receiver>
@@ -186,8 +158,8 @@
      <y>18</y>
     </hint>
     <hint type="destinationlabel">
-     <x>390</x>
-     <y>31</y>
+     <x>393</x>
+     <y>26</y>
     </hint>
    </hints>
   </connection>
@@ -198,12 +170,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>28</x>
-     <y>58</y>
+     <x>52</x>
+     <y>49</y>
     </hint>
     <hint type="destinationlabel">
-     <x>392</x>
-     <y>58</y>
+     <x>393</x>
+     <y>49</y>
     </hint>
    </hints>
   </connection>
@@ -214,12 +186,28 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>29</x>
-     <y>83</y>
+     <x>53</x>
+     <y>72</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
-     <y>82</y>
+     <y>72</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>refuse_Button</sender>
+   <signal>clicked()</signal>
+   <receiver>colorparameter</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>147</x>
+     <y>118</y>
     </hint>
    </hints>
   </connection>

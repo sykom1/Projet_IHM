@@ -68,6 +68,10 @@ filters::filters()
  }
 
  void filters::sharpenFilter(ImageForChange *image, DisplayContains *displayCont, int red100, int green100, int blue100){
+//     std::cout << "Valeur Rouge : " << red100 << std::endl;
+//     std::cout << "Valeur Verte : " << green100 << std::endl;
+//     std::cout << "Valeur Bleue : " << blue100 << std::endl;
+
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
@@ -75,24 +79,31 @@ filters::filters()
              int green(image->getActualImg().pixelColor(x,y).green());
              int blue(image->getActualImg().pixelColor(x,y).blue());
 
-             if(red+red100/100 < 255){
-                 red = red+red100/100;
+             std::cout << "bleu avant : " << blue << std::endl;
+
+             if(red+255*red100/100 < 255){
+                 red = red+red*red100/100;
              }
              else{
                  red = 255;
              }
-             if(green+green100/100 < 255){
-                 green = green+green100/100;
+
+
+             if(green+255*green100/100 < 255){
+                 green = green+green*green100/100;
              }
              else{
                  green = 255;
              }
-             if(blue+blue100/100 < 255){
-                 blue = blue+blue100/100;
+             if(blue+255*blue100/100 < 255){
+                 blue = blue+blue*blue100/100;
              }
              else{
                  blue = 255;
              }
+
+             std::cout << "bleu apres : " << blue << std::endl;
+
 
              QColor c(red,green,blue);
              img.setPixelColor(x,y,c);

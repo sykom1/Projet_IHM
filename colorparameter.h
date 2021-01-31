@@ -4,6 +4,7 @@
 #include "ui_colorparameter.h"
 #include "mainwindowmenu.h"
 #include "filters.h"
+#include "displaycontains.h"
 
 #include <QObject>
 #include <QDialog>
@@ -16,15 +17,22 @@ class colorParameter : public QDialog, private Ui::colorparameter
     Q_OBJECT
 
 public:
-//    explicit colorParameter(mainWindowMenu *mainWindMen, QWidget *parent = nullptr);
-    colorParameter(QWidget *parent = nullptr);
+    colorParameter();
+    colorParameter(QWidget* parent = nullptr);
+    colorParameter(ImageForChange* imgForChange, DisplayContains* dispCont, QWidget *parent = nullptr);
     static void windowOpen(int r,int g, int b);
 
 protected slots:
         void colorChanged();
 
 private slots:
-    void on_redValueLabel_windowIconTextChanged(const QString &iconText);
+        void on_redValueLabel_windowIconTextChanged(const QString &iconText);
+
+private :
+        ImageForChange *imgForChange;
+        DisplayContains *displayContains;
+
+
 };
 
 #endif // COLORPARAMETER_H
