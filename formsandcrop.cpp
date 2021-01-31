@@ -269,8 +269,8 @@ QImage FormsAndCrop::doTrim(QImage img, int trimSelect, QLabel* labelForImage){
 void FormsAndCrop::zoom(ImageForChange *image, DisplayContains *displCont){
     QImage img = image->getActualImg();
     img = img.scaledToWidth(1500, Qt::FastTransformation);
-    displCont->refreshImage(image->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
     image->changeActualImg(img);
+    displCont->refreshImage(image->getActualImg(), displCont->getScrollArea()->x(), displCont->getScrollArea()->y());
     //imageForChange->getActualImg().invertPixels();
     //img.setOffset(QPoint(500,200)); // ne fonctionne pas
     std::cout << "rentrer dans la fonction filtre" << std::endl;
