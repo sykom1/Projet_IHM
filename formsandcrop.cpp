@@ -276,6 +276,16 @@ void FormsAndCrop::zoom(ImageForChange *image, DisplayContains *displCont){
     std::cout << "rentrer dans la fonction filtre" << std::endl;
 }
 
+void FormsAndCrop::dezoom(ImageForChange *image, DisplayContains *displCont){
+    QImage img = image->getActualImg();
+    img = img.scaledToWidth(100, Qt::FastTransformation);
+    image->changeActualImg(img);
+    displCont->refreshImage(image->getActualImg(), displCont->getScrollArea()->x(), displCont->getScrollArea()->y());
+    //imageForChange->getActualImg().invertPixels();
+    //img.setOffset(QPoint(500,200)); // ne fonctionne pas
+    std::cout << "rentrer dans la fonction filtre" << std::endl;
+}
+
 
 void FormsAndCrop::pictureArea(){
     QImage tempoImg = imgForChange->getActualImg();

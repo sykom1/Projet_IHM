@@ -123,6 +123,7 @@
      <string>Actions</string>
     </property>
     <addaction name="actionZoom"/>
+    <addaction name="actionDeZoom"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdition"/>
@@ -313,6 +314,11 @@
   <action name="actionPersonnalised">
    <property name="text">
     <string>Personnaliser</string>
+   </property>
+  </action>
+  <action name="actionDeZoom">
+   <property name="text">
+    <string>DeZoom</string>
    </property>
   </action>
  </widget>

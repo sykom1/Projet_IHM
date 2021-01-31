@@ -112,6 +112,10 @@ void mainWindowMenu::zoom(){
     barButtonRetouch->getFormsAndCrop()->zoom(imageForChange,displayContains);
 }
 
+void mainWindowMenu::dezoom(){
+    barButtonRetouch->getFormsAndCrop()->dezoom(imageForChange,displayContains);
+}
+
 void mainWindowMenu::openColorParameter(){
     colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
     colorParam->show();
@@ -355,6 +359,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionHorizontal, &QAction::triggered, this, [this]{filters::mirroredH(imageForChange,displayContains);});
     connect(actionVertical, &QAction::triggered, this, [this]{filters::mirroredV(imageForChange,displayContains);});
     connect(actionZoom, &QAction::triggered,this,&mainWindowMenu::zoom);
+    connect(actionDeZoom, &QAction::triggered,this,&mainWindowMenu::dezoom);
     connect(actionRed_Filter, &QAction::triggered, this, [this]{filters::redFilter(imageForChange,displayContains);});
     connect(actionGreen_Filter, &QAction::triggered, this, [this]{filters::greenFilter(imageForChange,displayContains);});
     connect(actionBlue_Filter, &QAction::triggered, this, [this]{filters::blueFilter(imageForChange,displayContains);});

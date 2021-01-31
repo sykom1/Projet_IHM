@@ -79,33 +79,32 @@ filters::filters()
              int green(image->getActualImg().pixelColor(x,y).green());
              int blue(image->getActualImg().pixelColor(x,y).blue());
 
-             std::cout << "bleu avant : " << blue << std::endl;
+             int newRed;
+             int newGreen;
+             int newBlue;
 
              if(red+255*red100/100 < 255){
-                 red = red+red*red100/100;
+                 newRed = red+red*red100/100;
              }
              else{
-                 red = 255;
+                 newRed = 255;
              }
 
 
              if(green+255*green100/100 < 255){
-                 green = green+green*green100/100;
+                 newGreen = green+green*green100/100;
              }
              else{
-                 green = 255;
+                 newGreen = 255;
              }
              if(blue+255*blue100/100 < 255){
-                 blue = blue+blue*blue100/100;
+                 newBlue = blue+blue*blue100/100;
              }
              else{
-                 blue = 255;
+                 newBlue = 255;
              }
 
-             std::cout << "bleu apres : " << blue << std::endl;
-
-
-             QColor c(red,green,blue);
+             QColor c(newRed,newGreen,newBlue);
              img.setPixelColor(x,y,c);
          }
      }
