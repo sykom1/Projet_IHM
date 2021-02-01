@@ -52,8 +52,12 @@ void mainWindowMenu::openNewFile(){
             displayContains->moveReducedLabel(620, 30);
             displayContains->changeSizeOfScrollBar(this->width(), this->height());
             setMenuEnabled(true);
-            barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
-            barButtonRetouch->show();
+            if(barButtonRetouch!=nullptr){
+                barButtonRetouch->recreateFormsAndCrop();
+            }else{
+                barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
+                barButtonRetouch->show();
+            }
         }
 
         //printPixels(imageForChange);
@@ -88,6 +92,12 @@ void mainWindowMenu::closeFile(){
     barButtonRetouch->closeFormsAndCrop();
     pathImg = nullptr;
     setMenuEnabled(false);
+    if(barButtonRetouch!=nullptr)
+    {
+        barButtonRetouch->recreateFormsAndCrop();
+        barButtonRetouch->close();
+        barButtonRetouch = nullptr;
+    }
 
 }
 

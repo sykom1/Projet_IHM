@@ -179,6 +179,11 @@ void BarButtonRetouch::recreateFormsAndCrop(){
                 circleSelectButton();
                 break;
         }
+    }else{
+        squareSelectButton();
+        formsAndCrop->initCrop();
+        squareSelectButton();
+        formsAndCrop=nullptr;
     }
 }
 
