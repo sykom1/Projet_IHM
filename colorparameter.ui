@@ -29,6 +29,9 @@
          </item>
          <item>
           <widget class="QSlider" name="redSlider">
+           <property name="minimum">
+            <number>-100</number>
+           </property>
            <property name="maximum">
             <number>100</number>
            </property>
@@ -60,8 +63,14 @@
          </item>
          <item>
           <widget class="QSlider" name="greenSlider">
+           <property name="minimum">
+            <number>-100</number>
+           </property>
            <property name="maximum">
             <number>100</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -88,6 +97,9 @@
          </item>
          <item>
           <widget class="QSlider" name="blueSlider">
+           <property name="minimum">
+            <number>-100</number>
+           </property>
            <property name="maximum">
             <number>100</number>
            </property>

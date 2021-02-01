@@ -79,6 +79,7 @@
       <addaction name="actionGreen_Filter"/>
       <addaction name="actionBlue_Filter"/>
       <addaction name="actionInverser_Pixels"/>
+      <addaction name="separator"/>
       <addaction name="actionPersonnalised"/>
      </widget>
      <addaction name="menuCouleurs"/>
