@@ -151,6 +151,7 @@ void BarButtonRetouch::selectMode(Selection select){
                                     displayContains->getScrollArea(), displayContains, imageForChange);
     formsAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
     formsAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
+    formsAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y()+displayContains->y());
     ((QMainWindow*)this->parent())->layout()->addWidget(formsAndCrop);
     if(modState == Draw){
         colorMenu();
@@ -163,6 +164,8 @@ void BarButtonRetouch::recreateFormsAndCrop(){
         ((QMainWindow*)this->parent())->layout()->removeWidget(formsAndCrop);
         formsAndCrop->close();
         formsAndCrop->clearImage();
+        formsAndCrop->initCrop();
+        formsAndCrop = nullptr;
 
         disableAllButton();
 
@@ -176,12 +179,18 @@ void BarButtonRetouch::recreateFormsAndCrop(){
                 circleSelectButton();
                 break;
         }
+    }else{
+        squareSelectButton();
+        formsAndCrop->initCrop();
+        squareSelectButton();
+        formsAndCrop=nullptr;
     }
 }
 
 void BarButtonRetouch::doTrim(){
     if(formsAndCrop->x != formsAndCrop->y != formsAndCrop->firstP != formsAndCrop->lastP){
         formsAndCrop->doTrim(imageForChange->getActualImg(), modState, displayContains->getLabelForImage());
+        //displayContains->getScrollArea()->move(formsAndCrop->xCrop, formsAndCrop->yCrop);
     }
     switch(modState){
         case Square :

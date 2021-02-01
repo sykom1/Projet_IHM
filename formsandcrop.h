@@ -40,6 +40,8 @@ public:
 
     QImage image;
 
+    void initCrop();
+
 
 public slots:
 
@@ -47,6 +49,7 @@ public slots:
     //void print();
     QImage doTrim(QImage img, int trimSelect, QLabel* labelForImage);
     void zoom(ImageForChange *image, DisplayContains * displCont);
+    void dezoom(ImageForChange *image, DisplayContains *displCont);
 
     void drawLineTo(const QPoint &endPoint);
     void displayContainsCrop(int x,int y,int lastP, int firstP);

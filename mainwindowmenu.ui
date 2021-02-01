@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -79,6 +79,7 @@
       <addaction name="actionGreen_Filter"/>
       <addaction name="actionBlue_Filter"/>
       <addaction name="actionInverser_Pixels"/>
+      <addaction name="separator"/>
       <addaction name="actionPersonnalised"/>
      </widget>
      <addaction name="menuCouleurs"/>
@@ -123,6 +124,7 @@
      <string>Actions</string>
     </property>
     <addaction name="actionZoom"/>
+    <addaction name="actionDeZoom"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdition"/>
@@ -313,6 +315,11 @@
   <action name="actionPersonnalised">
    <property name="text">
     <string>Personnaliser</string>
+   </property>
+  </action>
+  <action name="actionDeZoom">
+   <property name="text">
+    <string>DeZoom</string>
    </property>
   </action>
  </widget>

@@ -25,6 +25,10 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     menuActions->setEnabled(false);
 }
 
+DisplayContains* mainWindowMenu::getDisplayContains(){
+    return this->displayContains;
+}
+
 void mainWindowMenu::openNewFile(){
     QString pathImage = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Sélectionnez l'image"),
                                                                               QDir::currentPath(), tr("Fichier Image") +"(*.png *.jpg *.bmp)"));
@@ -48,8 +52,12 @@ void mainWindowMenu::openNewFile(){
             displayContains->moveReducedLabel(620, 30);
             displayContains->changeSizeOfScrollBar(this->width(), this->height());
             setMenuEnabled(true);
-            barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
-            barButtonRetouch->show();
+            if(barButtonRetouch!=nullptr){
+                barButtonRetouch->recreateFormsAndCrop();
+            }else{
+                barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
+                barButtonRetouch->show();
+            }
         }
 
         //printPixels(imageForChange);
@@ -84,6 +92,12 @@ void mainWindowMenu::closeFile(){
     barButtonRetouch->closeFormsAndCrop();
     pathImg = nullptr;
     setMenuEnabled(false);
+    if(barButtonRetouch!=nullptr)
+    {
+        barButtonRetouch->recreateFormsAndCrop();
+        barButtonRetouch->close();
+        barButtonRetouch = nullptr;
+    }
 
 }
 
@@ -95,21 +109,32 @@ void mainWindowMenu::saveFileOn(){
                                                         tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     imageForChange->saveImg(fileNameSave);
     pathImg = fileNameSave;
+    imageForChange->changeActualReduceImage();
+    imageForChange->changeSizeReduceImg();
+    displayContains->refreshReducedImage(imageForChange->getReduceImg());
 }
 
 void mainWindowMenu::saveFile(){
     if(pathImg!=nullptr){
         imageForChange->saveImg(pathImg);
-    }else
+        imageForChange->changeActualReduceImage();
+        imageForChange->changeSizeReduceImg();
+        displayContains->refreshReducedImage(imageForChange->getReduceImg());
+    }else{
         saveFileOn();
+    }
 }
 
 void mainWindowMenu::zoom(){
     barButtonRetouch->getFormsAndCrop()->zoom(imageForChange,displayContains);
 }
 
+void mainWindowMenu::dezoom(){
+    barButtonRetouch->getFormsAndCrop()->dezoom(imageForChange,displayContains);
+}
+
 void mainWindowMenu::openColorParameter(){
-    colorParameter *colorParam = new colorParameter();
+    colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
     colorParam->show();
 }
 
@@ -366,6 +391,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionHorizontal, &QAction::triggered, this, [this]{filters::mirroredH(imageForChange,displayContains);});
     connect(actionVertical, &QAction::triggered, this, [this]{filters::mirroredV(imageForChange,displayContains);});
     connect(actionZoom, &QAction::triggered,this,&mainWindowMenu::zoom);
+    connect(actionDeZoom, &QAction::triggered,this,&mainWindowMenu::dezoom);
     connect(actionRed_Filter, &QAction::triggered, this, [this]{filters::redFilter(imageForChange,displayContains);});
     connect(actionGreen_Filter, &QAction::triggered, this, [this]{filters::greenFilter(imageForChange,displayContains);});
     connect(actionBlue_Filter, &QAction::triggered, this, [this]{filters::blueFilter(imageForChange,displayContains);});
@@ -392,9 +418,14 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 }
 
 void mainWindowMenu::initImgDisplay(){
-    displayContains->moveScrollArea(0,0);
+    displayContains->moveScrollArea(0,menubar->height());
     imageForChange->initActualImg();
     displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
+    displayContains->changeSizeOfScrollBar(this->width(), this->height());
+    if(barButtonRetouch != nullptr){
+        barButtonRetouch->recreateFormsAndCrop();
+    }
+
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){

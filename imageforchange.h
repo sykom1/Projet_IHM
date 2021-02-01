@@ -28,6 +28,7 @@ public:
     void saveImg(QString pathNameSave);
     void changeActualImg(QImage newImg);
     void initActualImg();
+    void changeActualReduceImage();
 
 private:
     int idarrayImage = -1;

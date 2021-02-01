@@ -54,6 +54,10 @@ void ImageForChange::changeActualImg(QImage newImg){
     }
 }
 
+void ImageForChange::changeActualReduceImage(){
+    reduceImg = actualImg;
+}
+
 void ImageForChange::initActualImg(){
     actualImg = initImg.copy();
     ajouter();

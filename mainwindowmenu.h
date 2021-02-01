@@ -32,6 +32,7 @@ public:
     ~mainWindowMenu();
     static void printPixels(ImageForChange *image);
     ImageForChange* getImageForChange();
+    DisplayContains *getDisplayContains();
 
 private slots:
     void closeEvent(QCloseEvent *event);
@@ -41,6 +42,7 @@ private slots:
     void saveFileOn();
     void saveFile();
     void zoom();
+    void dezoom();
     void doResizing(QImage img, int x, int y);
     void doResizing(QImage img);
     void doTrim(QImage img,int trimSelect);
