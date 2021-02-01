@@ -148,7 +148,6 @@ void mainWindowMenu::doResizing(QImage img){
 
     connect(button,&QPushButton::clicked,&dialog,[this]{resizeClicked(lineEdit,lineEdit2,&dialog,imageForChange->getActualImg());});
 
-//    connect(button,SIGNAL(clicked()),&dialog,SLOT(resizeClicked(QLineEdit,QLineEdit,QDialog,QImage)));
 
     dialog.exec();
 
@@ -157,8 +156,24 @@ void mainWindowMenu::doResizing(QImage img){
 
 void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *qdialog,QImage img){
 
-    doResizing(img,lineEdit->text().toInt(),lineEdit2->text().toInt());
-    dialog.close();
+    if((lineEdit->text().toInt() >= 0 && lineEdit->text().toInt() <= 1980) && (lineEdit2->text().toInt() >=0 && lineEdit2->text().toInt() <= 1024)){
+        doResizing(img,lineEdit->text().toInt(),lineEdit2->text().toInt());
+        dialog.close();
+    } else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Une erreur est survenue.");
+        if(lineEdit->text().toInt() < 0 ){
+            msgBox.setText("LineEdit < 0 ");
+        } else if(lineEdit->text().toInt() > 1980 ){
+            msgBox.setText("LineEdit > 1980");
+        } else if(lineEdit2->text().toInt() < 0){
+            msgBox.setText(" LineEdit2 < 0");
+        } else if(lineEdit2->text().toInt() > 1024){
+            msgBox.setText(" LineEdit2 > 1024");
+        }
+        msgBox.exec();
+    }
 }
 
 

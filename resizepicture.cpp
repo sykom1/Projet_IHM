@@ -1,9 +1,16 @@
 #include "resizepicture.h"
+#include <QPushButton>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QFormLayout>
+
 
 resizePicture::resizePicture(QWidget *parent) : QWidget(parent)
 {
 
 }
+
+
 
 
 
