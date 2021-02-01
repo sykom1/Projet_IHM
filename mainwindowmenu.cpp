@@ -99,13 +99,20 @@ void mainWindowMenu::saveFileOn(){
                                                         tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     imageForChange->saveImg(fileNameSave);
     pathImg = fileNameSave;
+    imageForChange->changeActualReduceImage();
+    imageForChange->changeSizeReduceImg();
+    displayContains->refreshReducedImage(imageForChange->getReduceImg());
 }
 
 void mainWindowMenu::saveFile(){
     if(pathImg!=nullptr){
         imageForChange->saveImg(pathImg);
-    }else
+        imageForChange->changeActualReduceImage();
+        imageForChange->changeSizeReduceImg();
+        displayContains->refreshReducedImage(imageForChange->getReduceImg());
+    }else{
         saveFileOn();
+    }
 }
 
 void mainWindowMenu::zoom(){
@@ -386,9 +393,14 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 }
 
 void mainWindowMenu::initImgDisplay(){
-    displayContains->moveScrollArea(0,0);
+    displayContains->moveScrollArea(0,menubar->height());
     imageForChange->initActualImg();
     displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
+    displayContains->changeSizeOfScrollBar(this->width(), this->height());
+    if(barButtonRetouch != nullptr){
+        barButtonRetouch->recreateFormsAndCrop();
+    }
+
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){

@@ -58,6 +58,11 @@ void FormsAndCrop::clearImage()
     update();
 }
 
+void FormsAndCrop::initCrop(){
+    xCrop = 0;
+    yCrop = 0;
+}
+
 void FormsAndCrop::mousePressEvent(QMouseEvent *event)
 
 {

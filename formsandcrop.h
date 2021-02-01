@@ -40,6 +40,8 @@ public:
 
     QImage image;
 
+    void initCrop();
+
 
 public slots:
 
