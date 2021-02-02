@@ -20,7 +20,6 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     displayContains->move(0, menubar->height());
     imageForChange = new ImageForChange(action_Revenir, actionRevenir_en_avant,displayContains);
     runAllEventFromTheMainWindow();
-    actionRogner->setEnabled(false);
     menuFiltre->setEnabled(true);
     menuActions->setEnabled(false);
 }
@@ -134,6 +133,7 @@ void mainWindowMenu::dezoom(){
 }
 
 void mainWindowMenu::openColorParameter(){
+    this->imageForChange->setFilterImg(this->imageForChange->getActualImg());
     colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
     colorParam->show();
 }

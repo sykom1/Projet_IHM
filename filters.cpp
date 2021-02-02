@@ -75,37 +75,42 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             int red(image->getActualImg().pixelColor(x,y).red());
-             int green(image->getActualImg().pixelColor(x,y).green());
-             int blue(image->getActualImg().pixelColor(x,y).blue());
+             std::cout << img.rect().contains(x,y) << std::endl;
 
-             int newRed;
-             int newGreen;
-             int newBlue;
+             if(img.pixel(x,y) != 0){
 
-             if(red+255*red100/100 < 255){
-                 newRed = red+red*red100/100;
-             }
-             else{
-                 newRed = 255;
-             }
+                 int red(image->getFiltersImg().pixelColor(x,y).red());
+                 int green(image->getFiltersImg().pixelColor(x,y).green());
+                 int blue(image->getFiltersImg().pixelColor(x,y).blue());
+
+                 int newRed;
+                 int newGreen;
+                 int newBlue;
+
+                 if(red+255*red100/100 < 255){
+                     newRed = red+red*red100/100;
+                 }
+                 else{
+                     newRed = 255;
+                 }
 
 
-             if(green+255*green100/100 < 255){
-                 newGreen = green+green*green100/100;
-             }
-             else{
-                 newGreen = 255;
-             }
-             if(blue+255*blue100/100 < 255){
-                 newBlue = blue+blue*blue100/100;
-             }
-             else{
-                 newBlue = 255;
-             }
+                 if(green+255*green100/100 < 255){
+                     newGreen = green+green*green100/100;
+                 }
+                 else{
+                     newGreen = 255;
+                 }
+                 if(blue+255*blue100/100 < 255){
+                     newBlue = blue+blue*blue100/100;
+                 }
+                 else{
+                     newBlue = 255;
+                 }
 
-             QColor c(newRed,newGreen,newBlue);
-             img.setPixelColor(x,y,c);
+                 QColor c(newRed,newGreen,newBlue);
+                 img.setPixelColor(x,y,c);
+             }
          }
      }
      displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
