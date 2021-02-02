@@ -75,7 +75,6 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-<<<<<<< HEAD
              std::cout << img.rect().contains(x,y) << std::endl;
 
              if(img.pixel(x,y) != 0){
@@ -111,26 +110,6 @@ filters::filters()
 
                  QColor c(newRed,newGreen,newBlue);
                  img.setPixelColor(x,y,c);
-=======
-             int red(image->getActualImg().pixelColor(x,y).red());
-             int green(image->getActualImg().pixelColor(x,y).green());
-             int blue(image->getActualImg().pixelColor(x,y).blue());
-
-             int newRed;
-             int newGreen;
-             int newBlue;
-
-             if(red+255*red100/100 < 255){
-                 newRed = red+red*red100/100;
-             }
-             else{
-                 newRed = 255;
-             }
-
-
-             if(green+255*green100/100 < 255){
-                 newGreen = green+green*green100/100;
->>>>>>> c2b697c6fa764f30c652ed78b36d6831110ede14
              }
          }
      }
