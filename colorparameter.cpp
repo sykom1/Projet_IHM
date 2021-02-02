@@ -8,18 +8,26 @@ colorParameter::colorParameter(QWidget *parent) :
     setWindowTitle(tr("Reglage couleurs"));
     setupUi(this);
 
-    connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
+    //connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
+    connect(redSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+    connect(greenSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+    connect(blueSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+
 }
 
-colorParameter::colorParameter(ImageForChange* imgForChange,DisplayContains* dispCont, QWidget *parent) :
+colorParameter::colorParameter(ImageForChange* imgForChange,DisplayContains* dispCont, QImage annulImg, QWidget *parent) :
     QDialog(parent)
 {
     this->displayContains = dispCont;
     this->imgForChange = imgForChange;
+    this->annulImg = annulImg;
     setWindowTitle(tr("Reglage couleurs"));
     setupUi(this);
 
-    connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
+    connect(redSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+    connect(greenSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+    connect(blueSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
+    connect(refuse_Button, &QPushButton::clicked,this,&colorParameter::annulButton);
 
 
 }
@@ -30,5 +38,10 @@ void colorParameter::colorChanged(){
 
 void colorParameter::on_redValueLabel_windowIconTextChanged(const QString &iconText){
 
+}
+
+void colorParameter::annulButton(){
+    imgForChange->changeActualImg(annulImg);
+    displayContains->refreshImage(imgForChange->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
 }
 

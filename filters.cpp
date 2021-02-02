@@ -81,7 +81,6 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             std::cout << img.rect().contains(x,y) << std::endl;
 
              if(img.pixel(x,y) != 0){
 
@@ -119,8 +118,8 @@ filters::filters()
              }
          }
      }
-     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
      image->changeActualImg(img);
+     displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
  }
 
 

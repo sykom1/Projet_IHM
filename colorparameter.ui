@@ -35,7 +35,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="accept_Button">
+        <widget class="QPushButton" name="validate_Button">
          <property name="text">
           <string>Valider</string>
          </property>
@@ -57,12 +57,34 @@
          <item>
           <widget class="QLabel" name="redLabel">
            <property name="text">
-            <string>R</string>
+            <string>Rouge</string>
            </property>
           </widget>
          </item>
          <item>
+          <spacer name="redSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QSlider" name="redSlider">
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="minimum">
             <number>-100</number>
            </property>
@@ -76,6 +98,12 @@
          </item>
          <item>
           <widget class="QLabel" name="redValueLabel">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
@@ -91,12 +119,34 @@
          <item>
           <widget class="QLabel" name="greenLabel">
            <property name="text">
-            <string>V</string>
+            <string>Vert</string>
            </property>
           </widget>
          </item>
          <item>
+          <spacer name="greenSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>6</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QSlider" name="greenSlider">
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="minimum">
             <number>-100</number>
            </property>
@@ -113,6 +163,12 @@
          </item>
          <item>
           <widget class="QLabel" name="greenValueLabel">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
@@ -125,12 +181,34 @@
          <item>
           <widget class="QLabel" name="blueLabel">
            <property name="text">
-            <string>B</string>
+            <string>Bleu</string>
            </property>
           </widget>
          </item>
          <item>
+          <spacer name="blueSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>5</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QSlider" name="blueSlider">
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="minimum">
             <number>-100</number>
            </property>
@@ -144,6 +222,12 @@
          </item>
          <item>
           <widget class="QLabel" name="blueValueLabel">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
@@ -160,18 +244,34 @@
  <resources/>
  <connections>
   <connection>
+   <sender>refuse_Button</sender>
+   <signal>clicked()</signal>
+   <receiver>colorparameter</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>147</x>
+     <y>118</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>redSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>redValueLabel</receiver>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>31</x>
-     <y>18</y>
+     <x>206</x>
+     <y>17</y>
     </hint>
     <hint type="destinationlabel">
-     <x>393</x>
-     <y>26</y>
+     <x>388</x>
+     <y>16</y>
     </hint>
    </hints>
   </connection>
@@ -182,12 +282,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>52</x>
-     <y>49</y>
+     <x>200</x>
+     <y>44</y>
     </hint>
     <hint type="destinationlabel">
-     <x>393</x>
-     <y>49</y>
+     <x>391</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -198,28 +298,28 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>72</y>
+     <x>241</x>
+     <y>77</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
-     <y>72</y>
+     <y>68</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>refuse_Button</sender>
+   <sender>validate_Button</sender>
    <signal>clicked()</signal>
    <receiver>colorparameter</receiver>
-   <slot>reject()</slot>
+   <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>366</x>
-     <y>106</y>
+     <x>267</x>
+     <y>121</y>
     </hint>
     <hint type="destinationlabel">
-     <x>147</x>
-     <y>118</y>
+     <x>138</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>

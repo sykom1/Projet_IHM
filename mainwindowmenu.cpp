@@ -133,8 +133,9 @@ void mainWindowMenu::dezoom(){
 }
 
 void mainWindowMenu::openColorParameter(){
+    QImage imgAnnul = this->imageForChange->getActualImg();
     this->imageForChange->setFilterImg(this->imageForChange->getActualImg());
-    colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
+    colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains,imgAnnul);
     colorParam->show();
 }
 

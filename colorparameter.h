@@ -19,11 +19,12 @@ class colorParameter : public QDialog, private Ui::colorparameter
 public:
     colorParameter();
     colorParameter(QWidget* parent = nullptr);
-    colorParameter(ImageForChange* imgForChange, DisplayContains* dispCont, QWidget *parent = nullptr);
+    colorParameter(ImageForChange* imgForChange, DisplayContains* dispCont, QImage annulImg, QWidget *parent = nullptr);
     static void windowOpen(int r,int g, int b);
 
 protected slots:
         void colorChanged();
+        void annulButton();
 
 private slots:
         void on_redValueLabel_windowIconTextChanged(const QString &iconText);
@@ -31,6 +32,7 @@ private slots:
 private :
         ImageForChange *imgForChange;
         DisplayContains *displayContains;
+        QImage annulImg;
 
 
 };
