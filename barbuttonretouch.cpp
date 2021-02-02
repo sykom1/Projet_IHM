@@ -239,7 +239,7 @@ void BarButtonRetouch::deleteSelec(){
                 }
             }
         }
-        displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
+        displayContains->refreshImage(img, 0, 0);
         imageForChange->changeActualImg(img);
         displayContains->moveScrollArea(formsAndCrop->xCrop, formsAndCrop->yCrop);
 
