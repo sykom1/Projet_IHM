@@ -117,7 +117,7 @@ void BarButtonRetouch::drawSelectButton(){
             formsAndCrop->clearImage();
             if(colorWindow != nullptr){
                 colorWindow->close();
-                colorWindow = nullptr;
+                //colorWindow = nullptr;
             }
         }
         formsAndCrop = nullptr;
@@ -302,13 +302,17 @@ int BarButtonRetouch::getModState(){
 
 void BarButtonRetouch::colorMenu(){
     if(colorWindow==nullptr){
+        std::cout << "aaaé" << std::endl;
         colorWindow = new choseColor(((QMainWindow*)this->parent()));
+    }
+    if(colorWindow->close()){
+        //colorWindow = new choseColor(((QMainWindow*)this->parent()));
         moveColorWindow();
         colorWindow->show();
     }else{
         colorWindow->close();
-        colorWindow->setParent(nullptr);
-        colorWindow = nullptr;
+        //colorWindow->setParent(nullptr);
+        //colorWindow = nullptr;
     }
 }
 
