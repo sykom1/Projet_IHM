@@ -60,6 +60,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
     void pictureArea();
+//    void zommWheel(QKeyEvent *event, QWheelEvent *eventWheel);
+//    void dezoomWheel(QKeyEvent *event);
 
 //    void resizeEvent(QResizeEvent *event) override;
 

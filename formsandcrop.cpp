@@ -103,6 +103,24 @@ void FormsAndCrop::mouseMoveEvent(QMouseEvent *event)
 
 }
 
+//void FormsAndCrop::zommWheel(QKeyEvent *event, QWheelEvent *eventWheel,ImageForChange *image, DisplayContains *displCont){
+//    QPoint angleDelta = eventWheel->angleDelta();
+//    QImage img = image->getActualImg();
+//    if(event->key() == Qt::Key_Control){
+//        if(eventWheel->Scroll){
+//            if(angleDelta>0){
+//                img = img.scaledToWidth(, Qt::FastTransformation);
+//                image->changeActualImg(img);
+//                displCont->refreshImage(image->getActualImg(), displCont->getScrollArea()->x(), displCont->getScrollArea()->y());
+//            }
+//        }
+//    }
+//}
+
+//void FormsAndCrop::dezoomWheel(QKeyEvent *event){
+
+//}
+
 void FormsAndCrop::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {

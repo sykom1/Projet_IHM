@@ -85,6 +85,15 @@ QImage ImageForChange::getReduceImg(){
     return reduceImg;
 }
 
+
+QImage ImageForChange::getFiltersImg(){
+    return filterImg;
+}
+
+void ImageForChange::setFilterImg(QImage image){
+    filterImg = image;
+}
+
 void ImageForChange::ajouter(){
 
        if(idarrayImage < SIZEARRAY-1){

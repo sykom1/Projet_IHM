@@ -133,6 +133,7 @@ void mainWindowMenu::dezoom(){
 }
 
 void mainWindowMenu::openColorParameter(){
+    this->imageForChange->setFilterImg(this->imageForChange->getActualImg());
     colorParameter *colorParam = new colorParameter(this->imageForChange,this->displayContains);
     colorParam->show();
 }

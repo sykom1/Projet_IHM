@@ -18,7 +18,9 @@ public:
     void changeSizeReduceImg();
     QImage getActualImg();
     QImage getInitImg();
+    QImage getFiltersImg();
     QImage getReduceImg();
+    void setFilterImg(QImage image);
     void ajouter();
     void decaler();
     void retourArriere();
@@ -38,6 +40,7 @@ private:
     DisplayContains *displayContains;
     QImage initImg;
     QImage actualImg;
+    QImage filterImg;
     QImage reduceImg;
     QAction *actionUndo;
     QAction *actionRedo;
