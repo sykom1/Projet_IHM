@@ -180,9 +180,14 @@ void BarButtonRetouch::recreateFormsAndCrop(){
                 break;
         }
     }else{
-        squareSelectButton();
+        formsAndCrop = new FormsAndCrop(displayContains->x(),
+                                        displayContains->y(),
+                                        displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
+                                        displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),modState,
+                                        displayContains->getScrollArea(), displayContains, imageForChange);
         formsAndCrop->initCrop();
-        squareSelectButton();
+        formsAndCrop->clearImage();
+        formsAndCrop->close();
         formsAndCrop=nullptr;
     }
 }
