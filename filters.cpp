@@ -26,11 +26,13 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             //int red(image->getActualImg().pixelColor(x,y).red());
-             int green(image->getActualImg().pixelColor(x,y).green());
-             int blue(image->getActualImg().pixelColor(x,y).blue());
-             QColor c(255,green,blue);
-             img.setPixelColor(x,y,c);
+             if(img.pixel(x,y) != 0){
+                 //int red(image->getActualImg().pixelColor(x,y).red());
+                 int green(image->getActualImg().pixelColor(x,y).green());
+                 int blue(image->getActualImg().pixelColor(x,y).blue());
+                 QColor c(255,green,blue);
+                 img.setPixelColor(x,y,c);
+             }
          }
      }
      displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
@@ -41,11 +43,13 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             int red(image->getActualImg().pixelColor(x,y).red());
-             //int green(image->getActualImg().pixelColor(x,y).green());
-             int blue(image->getActualImg().pixelColor(x,y).blue());
-             QColor c(red,255,blue);
-             img.setPixelColor(x,y,c);
+             if(img.pixel(x,y) != 0){
+                 int red(image->getActualImg().pixelColor(x,y).red());
+                 //int green(image->getActualImg().pixelColor(x,y).green());
+                 int blue(image->getActualImg().pixelColor(x,y).blue());
+                 QColor c(red,255,blue);
+                 img.setPixelColor(x,y,c);
+             }
          }
      }
      displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
@@ -56,11 +60,13 @@ filters::filters()
      QImage img(image->getActualImg());
      for(int y = 0; y < img.height(); y++){
          for(int x = 0; x < img.width(); x++){
-             int red(image->getActualImg().pixelColor(x,y).red());
-             int green(image->getActualImg().pixelColor(x,y).green());
-             //int blue(image->getActualImg().pixelColor(x,y).blue());
-             QColor c(red,green,255);
-             img.setPixelColor(x,y,c);
+             if(img.pixel(x,y) != 0){
+                 int red(image->getActualImg().pixelColor(x,y).red());
+                 int green(image->getActualImg().pixelColor(x,y).green());
+                 //int blue(image->getActualImg().pixelColor(x,y).blue());
+                 QColor c(red,green,255);
+                 img.setPixelColor(x,y,c);
+             }
          }
      }
      displayCont->refreshImage(img, displayCont->getScrollArea()->x(), displayCont->getScrollArea()->y());
