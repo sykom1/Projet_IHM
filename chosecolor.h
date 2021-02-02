@@ -38,7 +38,7 @@ private slots:
 private:
     Ui::choseColor *ui;
     void createColorMenu();
-    void runEvents();
+
     QPushButton *m_button;
 
     void handleButton();

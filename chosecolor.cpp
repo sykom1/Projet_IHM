@@ -15,7 +15,6 @@ choseColor::choseColor(QWidget *parent) :
 
     ui->setupUi(this);
     createColorMenu();
-    runEvents();
     QMainWindow w;
     this->setFixedSize(w.width()*.3,w.height()*0.3);
 
@@ -35,13 +34,6 @@ void choseColor::createColorMenu()
 
     QGridLayout *layout = new QGridLayout;
 
-    m_button = new QPushButton("Confirmer",this );
-    m_button->setGeometry(QRect(QPoint(100, 100), QSize(200, 50)));
-
-    layout->addWidget(m_button);
-
-    //this->layout()->addItem(conect_box);
-    //setLayout(conect_box);
 
     QItemEditorFactory *factory = new QItemEditorFactory;
 
@@ -80,11 +72,6 @@ void choseColor::createColorMenu()
 
 }
 
-void choseColor::runEvents(){
-
-    connect(m_button, &QPushButton::clicked, this,[this]{handleButton();});
-
-}
 
 
 void choseColor::handleButton()
