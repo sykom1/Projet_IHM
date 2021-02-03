@@ -4,6 +4,7 @@
 #include <QInputDialog>
 #include <iostream>
 #include <string>
+#include "initconfig.h"
 using namespace std;
 
 
@@ -34,6 +35,8 @@ int main(int argc, char *argv[])
     }
 
     t.load(":/"+lang.toLower()+".qm");
+    /*InitConfig initconf;
+    initconf.show(); */
 
 
 

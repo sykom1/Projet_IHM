@@ -14,11 +14,14 @@
    <string>Form</string>
   </property>
   <widget class="QLineEdit" name="lineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>140</x>
      <y>230</y>
-     <width>113</width>
+     <width>351</width>
      <height>24</height>
     </rect>
    </property>
@@ -39,7 +42,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>500</x>
      <y>230</y>
      <width>80</width>
      <height>25</height>
@@ -49,49 +52,10 @@
     <string>Parcourir</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>60</y>
-     <width>97</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Francais</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_2">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>90</y>
-     <width>97</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Anglais</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>30</y>
-     <width>55</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Langues :</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>530</x>
      <y>30</y>
      <width>121</width>
      <height>16</height>
@@ -114,66 +78,14 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_3">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>60</y>
-     <width>97</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Maximisée</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_4">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>30</y>
-     <width>97</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Par défaut</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_5">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>90</y>
-     <width>97</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Plein Ecran</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_6">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>120</y>
-     <width>111</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Personnalisée</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>160</y>
+     <x>660</x>
+     <y>180</y>
      <width>161</width>
      <height>111</height>
     </rect>
@@ -228,7 +140,203 @@
     </property>
    </widget>
   </widget>
+  <widget class="QGroupBox" name="groupBoxLangues">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>120</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Langues</string>
+   </property>
+   <widget class="QRadioButton" name="radioButton_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anglais</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Francais</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBoxSize">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>10</y>
+     <width>120</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+   <widget class="QRadioButton" name="radioButton_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Personnalisée</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Maximisée</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Par défaut</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>97</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plein Ecran</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>radioButton_6</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>729</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>718</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_5</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>812</x>
+     <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>754</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>795</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>726</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>794</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>InitConfig</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>829</x>
+     <y>343</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>839</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -3,7 +3,11 @@
 
 #include "ui_initconfig.h"
 #include <QLabel>
-#include<QLineEdit>
+#include <QLineEdit>
+#include <QAction>
+#include <QDir>
+#include <QFileDialog>
+#include <QDialogButtonBox>
 
 
 class InitConfig : public QWidget, private Ui::InitConfig
@@ -15,7 +19,15 @@ public:
     void runAllEvent();
 
 
+public slots:
+    void setWindowSize();
+    void setLanguage();
+    void setPathImage();
+    void validConfig();
+
 private :
+    QString lang = QString();
+    QString pathDirImage = QString();
 
 };
 
