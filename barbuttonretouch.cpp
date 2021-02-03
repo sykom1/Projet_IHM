@@ -254,6 +254,7 @@ void BarButtonRetouch::deleteSelec(){
         displayContains->refreshImage(img, 0, 0);
         imageForChange->changeActualImg(img);
         displayContains->moveScrollArea(formsAndCrop->xCrop, formsAndCrop->yCrop);
+        displayContains->changeSizeOfScrollBar(((QMainWindow*)this->parent())->width(), ((QMainWindow*)this->parent())->height());
 
     }
     switch(modState){

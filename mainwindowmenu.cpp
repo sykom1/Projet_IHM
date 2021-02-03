@@ -413,6 +413,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(action_Revenir, &QAction::triggered, this, [this]{
         if(imageForChange->isPrevious()){
             imageForChange->retourArriere();
+            displayContains->changeSizeOfScrollBar(this->width(), this->height());
             if(barButtonRetouch!=nullptr){
                 barButtonRetouch->recreateFormsAndCrop();
             }
@@ -420,6 +421,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{
         if(imageForChange->isNext()){
             imageForChange->retourAvant();
+            displayContains->changeSizeOfScrollBar(this->width(), this->height());
             if(barButtonRetouch!=nullptr){
                 barButtonRetouch->recreateFormsAndCrop();
             }
