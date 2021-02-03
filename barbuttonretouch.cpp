@@ -149,8 +149,6 @@ void BarButtonRetouch::selectMode(Selection select){
                                     displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                     displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),select,
                                     displayContains->getScrollArea(), displayContains, imageForChange);
-    formsAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
-    formsAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
     formsAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y()+displayContains->y());
     ((QMainWindow*)this->parent())->layout()->addWidget(formsAndCrop);
     if(modState == Draw){
