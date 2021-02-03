@@ -1,7 +1,7 @@
 #include "barbuttonretouch.h"
 
 BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContains *displayContains,
-                                   QWidget *parent) : QWidget(parent)
+                                    QAction *cropAction, QAction *delAction,QWidget *parent) : QWidget(parent)
 {
     this->imageForChange = imageForChange;
     this->displayContains = displayContains;
@@ -10,6 +10,8 @@ BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContai
     this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
     this->setFixedWidth(WIDTHVAL);
     this->setFixedHeight(HEIGHTVAL * this->children().size());
+    this->cropAction = cropAction;
+    this->delAction = delAction;
     move(0, ((QMainWindow*)this->parent())->height()/2);
     runAllEvent();
     disableAllButton();
@@ -63,7 +65,6 @@ void BarButtonRetouch::squareSelectButton(){
         selectSquare->setDown(true);
         selectSquareIsDown = true;
         selectMode(Square);
-        enableAllButton();
     }
     else{
         disableAllButton();
@@ -84,7 +85,6 @@ void BarButtonRetouch::circleSelectButton(){
         selectCircle->setDown(true);
         selectCircleIsDown = true;
         selectMode(Circle);
-        enableAllButton();
     }
     else{
         disableAllButton();
@@ -155,7 +155,7 @@ void BarButtonRetouch::selectMode(Selection select){
                                     displayContains->y(),
                                     ((QMainWindow*)this->parent())->height(),
                                     ((QMainWindow*)this->parent())->width(),select,
-                                    displayContains->getScrollArea(), displayContains, imageForChange);
+                                    displayContains->getScrollArea(), displayContains, imageForChange,crop,deleteSelectionButton,cropAction,delAction);
     formsAndCrop->setFixedHeight(heightForms);
     formsAndCrop->setFixedWidth(widthForms);
     formsAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y()+displayContains->y());
@@ -191,7 +191,7 @@ void BarButtonRetouch::recreateFormsAndCrop(){
                                         displayContains->y(),
                                         displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                         displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),modState,
-                                        displayContains->getScrollArea(), displayContains, imageForChange);
+                                        displayContains->getScrollArea(), displayContains, imageForChange,crop,deleteSelectionButton,cropAction,delAction);
         formsAndCrop->initCrop();
         formsAndCrop->clearImage();
         formsAndCrop->close();
@@ -221,6 +221,7 @@ void BarButtonRetouch::doTrim(){
             selectMode(Circle);
         }
     }
+    disableAllButton();
 }
 
 void BarButtonRetouch::deleteSelec(){
@@ -274,6 +275,7 @@ void BarButtonRetouch::deleteSelec(){
             selectMode(Circle);
         }
     }
+    disableAllButton();
 }
 
 void BarButtonRetouch::disableAllButton(){
@@ -282,6 +284,12 @@ void BarButtonRetouch::disableAllButton(){
 
     deleteSelectionButton->setEnabled(false);
     deleteSelectionButton->setVisible(false);
+
+    cropAction->setEnabled(false);
+    cropAction->setVisible(false);
+
+    delAction->setEnabled(false);
+    delAction->setVisible(false);
 }
 
 void BarButtonRetouch::enableAllButton(){
@@ -290,6 +298,12 @@ void BarButtonRetouch::enableAllButton(){
 
     deleteSelectionButton->setEnabled(true);
     deleteSelectionButton->setVisible(true);
+
+    cropAction->setEnabled(true);
+    cropAction->setVisible(true);
+
+    delAction->setEnabled(true);
+    delAction->setVisible(true);
 }
 
 FormsAndCrop* BarButtonRetouch::getFormsAndCrop(){

@@ -24,7 +24,7 @@ class FormsAndCrop : public QWidget
     Q_OBJECT
 public:
     FormsAndCrop(int x, int y, int height, int width, int trimSelect, QScrollArea *scrollArea, DisplayContains* displayContains,
-                 ImageForChange *imgForChange);
+                 ImageForChange *imgForChange,QPushButton *crop, QPushButton *del,QAction *cropAction, QAction *delAction);
     int x = 0;
     int y = 0;
 
@@ -41,6 +41,10 @@ public:
     QImage image;
 
     void initCrop();
+    QPushButton *crop;
+    QPushButton *del;
+    QAction *cropAction;
+    QAction *delAction;
 
 
 public slots:

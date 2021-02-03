@@ -54,7 +54,7 @@ void mainWindowMenu::openNewFile(){
             if(barButtonRetouch!=nullptr){
                 barButtonRetouch->recreateFormsAndCrop();
             }else{
-                barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains, this);
+                barButtonRetouch = new BarButtonRetouch(imageForChange, displayContains,actionRogner,actionSupprimer, this);
                 barButtonRetouch->show();
             }
         }

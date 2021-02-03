@@ -15,7 +15,7 @@
 int FormsAndCrop::xCrop;
 int FormsAndCrop::yCrop;
 FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, QScrollArea *scrollArea,
-                           DisplayContains *displayContains, ImageForChange *imgForChange): QWidget()
+                           DisplayContains *displayContains, ImageForChange *imgForChange,QPushButton *crop, QPushButton *del,QAction *cropAction, QAction *delAction): QWidget()
 {
 
 
@@ -39,6 +39,10 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
     this->displayContains = displayContains;
     this->imgForChange = imgForChange;
     this->newImage = newImage;
+    this->crop=crop;
+    this->del=del;
+    this->cropAction=cropAction;
+    this->delAction=delAction;
 
     xScroll = x;
     yScroll = y;
@@ -75,6 +79,15 @@ void FormsAndCrop::mousePressEvent(QMouseEvent *event)
         if(scribbling == false){
             x = lastPoint.x();
             y = lastPoint.y();
+
+            crop->setEnabled(false);
+            crop->setVisible(false);
+            del->setEnabled(false);
+            del->setVisible(false);
+            cropAction->setEnabled(false);
+            cropAction->setVisible(false);
+            delAction->setEnabled(false);
+            delAction->setVisible(false);
 
         }
         scribbling = true;
@@ -159,7 +172,16 @@ void FormsAndCrop::drawFormTo(const QPoint &endPoint)
     painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform, true);
 
-
+    if(lastP!=firstP){
+        crop->setEnabled(true);
+        crop->setVisible(true);
+        del->setEnabled(true);
+        del->setVisible(true);
+        cropAction->setEnabled(true);
+        cropAction->setVisible(true);
+        delAction->setEnabled(true);
+        delAction->setVisible(true);
+    }
 
     if(trimSelect == 1 ){
 

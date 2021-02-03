@@ -21,7 +21,7 @@ class BarButtonRetouch : public QWidget
 
 public:
     explicit BarButtonRetouch(ImageForChange *imageForChange, DisplayContains *displayContains,
-                              QWidget *parent = nullptr);
+                               QAction *cropAction, QAction *delAction ,QWidget *parent = nullptr);
     enum Selection { Square = 1, Circle, Draw};
     FormsAndCrop* getFormsAndCrop();
     void closeFormsAndCrop();
@@ -47,6 +47,8 @@ private:
     QPushButton *selectDraw;
     QPushButton *crop;
     QPushButton *deleteSelectionButton;
+    QAction *cropAction;
+    QAction *delAction;
     bool selectSquareIsDown = false;
     bool selectCircleIsDown = false;
     bool selectDrawIsDown = false;
