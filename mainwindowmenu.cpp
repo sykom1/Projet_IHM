@@ -408,7 +408,7 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),barButtonRetouch->getModState());});
     connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
-    connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
+    connect(actionReturnInitImg, &QAction::triggered, this, [this]{barButtonRetouch->initImgFct();});
     connect(actionDessiner, &QAction::triggered, this, [this]{barButtonRetouch->drawSelectButton();});
     connect(action_Revenir, &QAction::triggered, this, [this]{
         if(imageForChange->isPrevious()){
@@ -429,17 +429,6 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 
     addShortCutToAction();
 
-
-}
-
-void mainWindowMenu::initImgDisplay(){
-    displayContains->moveScrollArea(0,menubar->height());
-    imageForChange->initActualImg();
-    displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
-    displayContains->changeSizeOfScrollBar(this->width(), this->height());
-    if(barButtonRetouch != nullptr){
-        barButtonRetouch->recreateFormsAndCrop();
-    }
 
 }
 

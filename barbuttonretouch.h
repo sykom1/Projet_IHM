@@ -37,6 +37,7 @@ public slots:
     void squareSelectButton();
     void circleSelectButton();
     void drawSelectButton();
+    void initImgFct();
 private slots:
 
 private:
@@ -47,6 +48,9 @@ private:
     QPushButton *selectDraw;
     QPushButton *crop;
     QPushButton *deleteSelectionButton;
+    QPushButton *initImgButton;
+    QPushButton *returnAfterButton;
+    QPushButton *returnBeforeButton;
     QAction *cropAction;
     QAction *delAction;
     bool selectSquareIsDown = false;

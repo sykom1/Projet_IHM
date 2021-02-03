@@ -95,6 +95,11 @@ void ImageForChange::setFilterImg(QImage image){
     filterImg = image;
 }
 
+void ImageForChange::setButtonUndoRedo(QPushButton *undoButton, QPushButton *redoButton){
+    this->buttonUndo = undoButton;
+    this->buttonRedo = redoButton;
+}
+
 void ImageForChange::ajouter(){
 
        if(idarrayImage < SIZEARRAY-1){
@@ -129,13 +134,17 @@ void ImageForChange::retourArriere(){
    }
    if(isNext()){
        actionRedo->setEnabled(true);
+       buttonRedo->setEnabled(true);
    }else{
        actionRedo->setEnabled(false);
+       buttonRedo->setEnabled(false);
    }
    if(isPrevious()){
        actionUndo->setEnabled(true);
+       buttonUndo->setEnabled(true);
    }else{
        actionUndo->setEnabled(false);
+       buttonUndo->setEnabled(false);
    }
 
 }
@@ -148,13 +157,17 @@ void ImageForChange::retourAvant(){
     }
     if(isNext()){
         actionRedo->setEnabled(true);
+        buttonRedo->setEnabled(true);
     }else{
         actionRedo->setEnabled(false);
+        buttonRedo->setEnabled(false);
     }
     if(isPrevious()){
         actionUndo->setEnabled(true);
+        buttonUndo->setEnabled(true);
     }else{
         actionUndo->setEnabled(false);
+        buttonUndo->setEnabled(false);
     }
 }
 

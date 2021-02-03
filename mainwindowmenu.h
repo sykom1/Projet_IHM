@@ -49,7 +49,6 @@ private slots:
     void selectMode(QImage img,int trimSelect);
     void deleteSelec(QImage img,int trimSelect);
     void updateLanguage(const QString language);
-    void initImgDisplay();
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
     QTranslator* getTranslation();
     void openColorParameter();

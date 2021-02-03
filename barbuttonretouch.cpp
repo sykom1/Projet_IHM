@@ -6,6 +6,7 @@ BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContai
     this->imageForChange = imageForChange;
     this->displayContains = displayContains;
     initAllButton();
+    imageForChange->setButtonUndoRedo(returnBeforeButton, returnAfterButton);
     //std::cout << ((QMainWindow*)this->parent())->height() << std::endl;
     this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
     this->setFixedWidth(WIDTHVAL);
@@ -49,6 +50,24 @@ void BarButtonRetouch::initAllButton(){
     deleteSelectionButton->setFixedHeight(HEIGHTVAL);
     deleteSelectionButton->move(0, (heightVar++)*HEIGHTVAL);
     deleteSelectionButton->setIcon(QIcon(":/Resources/del.png"));
+
+    initImgButton = new QPushButton(this);
+    initImgButton->setFixedWidth(WIDTHVAL);
+    initImgButton->setFixedHeight(HEIGHTVAL);
+    initImgButton->move(0, (heightVar++)*HEIGHTVAL);
+
+    returnBeforeButton = new QPushButton(this);
+    returnBeforeButton->setFixedWidth(WIDTHVAL);
+    returnBeforeButton->setFixedHeight(HEIGHTVAL);
+    returnBeforeButton->move(0, (heightVar++)*HEIGHTVAL);
+    returnBeforeButton->setEnabled(false);
+
+    returnAfterButton = new QPushButton(this);
+    returnAfterButton->setFixedWidth(WIDTHVAL);
+    returnAfterButton->setFixedHeight(HEIGHTVAL);
+    returnAfterButton->move(0, (heightVar++)*HEIGHTVAL);
+    returnAfterButton->setEnabled(false);
+
 }
 
 void BarButtonRetouch::runAllEvent(){
@@ -57,6 +76,29 @@ void BarButtonRetouch::runAllEvent(){
     connect(selectDraw, &QPushButton::clicked, this, &BarButtonRetouch::drawSelectButton);
     connect(crop, &QPushButton::clicked, this, &BarButtonRetouch::doTrim);
     connect(deleteSelectionButton, &QPushButton::clicked, this, &BarButtonRetouch::deleteSelec);
+    connect(initImgButton, &QPushButton::clicked, this, &BarButtonRetouch::initImgFct);
+    connect(returnBeforeButton, &QPushButton::clicked, this, [this]{
+        if(imageForChange->isPrevious()){
+            imageForChange->retourArriere();
+            displayContains->changeSizeOfScrollBar(((QMainWindow*)this->parent())->width(), ((QMainWindow*)this->parent())->height());
+            recreateFormsAndCrop();
+        }
+    });
+    connect(returnAfterButton, &QPushButton::clicked, this, [this]{
+        if(imageForChange->isNext()){
+            imageForChange->retourAvant();
+            displayContains->changeSizeOfScrollBar(this->width(), this->height());
+            recreateFormsAndCrop();
+        }
+    });
+}
+
+void BarButtonRetouch::initImgFct(){
+    displayContains->moveScrollArea(0, ((QMainWindow*)this->parent())->menuBar()->height());
+    imageForChange->initActualImg();
+    displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
+    displayContains->changeSizeOfScrollBar(((QMainWindow*)this->parent())->width(), ((QMainWindow*)this->parent())->height());
+    recreateFormsAndCrop();
 }
 
 void BarButtonRetouch::squareSelectButton(){

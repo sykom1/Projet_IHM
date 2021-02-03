@@ -4,8 +4,9 @@
 #include <QImage>
 #include <QImageReader>
 #include <QAction>
-#include "resizepicture.h"
 #include <iostream>
+#include <QPushButton>
+#include "resizepicture.h"
 #include "displaycontains.h"
 #define SIZEARRAY 4
 
@@ -31,6 +32,7 @@ public:
     void changeActualImg(QImage newImg);
     void initActualImg();
     void changeActualReduceImage();
+    void setButtonUndoRedo(QPushButton *undoButton, QPushButton *redoButton);
 
 private:
     int idarrayImage = -1;
@@ -44,6 +46,8 @@ private:
     QImage reduceImg;
     QAction *actionUndo;
     QAction *actionRedo;
+    QPushButton *buttonUndo = nullptr;
+    QPushButton *buttonRedo = nullptr;
 };
 
 #endif // IMAGEFORCHANGE_H
