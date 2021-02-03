@@ -8,5 +8,7 @@
         <file>Resources/ImageInitiale.png</file>
         <file>Resources/RetourArriere.png</file>
         <file>Resources/RetourAvant.png</file>
+        <file>Resources/EnregistrerSous.png</file>
+        <file>Resources/Enregistrer.png</file>
     </qresource>
 </RCC>

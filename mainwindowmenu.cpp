@@ -34,6 +34,9 @@ void mainWindowMenu::initLogo(){
     actionReturnInitImg->setIcon(QIcon(":/Resources/ImageInitiale.png"));
     action_Revenir->setIcon(QIcon(":/Resources/RetourArriere.png"));
     actionRevenir_en_avant->setIcon(QIcon(":/Resources/RetourAvant.png"));
+
+    actionSaveOn->setIcon(QIcon(":/Resources/EnregistrerSous.png"));
+    actionSave->setIcon(QIcon(":/Resources/Enregistrer.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){
