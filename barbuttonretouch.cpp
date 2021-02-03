@@ -153,8 +153,8 @@ void BarButtonRetouch::selectMode(Selection select){
         widthForms-=displayContains->getScrollArea()->verticalScrollBar()->width();
     formsAndCrop = new FormsAndCrop(displayContains->x(),
                                     displayContains->y(),
-                                    displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
-                                    displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),select,
+                                    ((QMainWindow*)this->parent())->height(),
+                                    ((QMainWindow*)this->parent())->width(),select,
                                     displayContains->getScrollArea(), displayContains, imageForChange);
     formsAndCrop->setFixedHeight(heightForms);
     formsAndCrop->setFixedWidth(widthForms);
@@ -310,7 +310,6 @@ int BarButtonRetouch::getModState(){
 
 void BarButtonRetouch::colorMenu(){
     if(colorWindow==nullptr){
-        std::cout << "aaaé" << std::endl;
         colorWindow = new choseColor(((QMainWindow*)this->parent()));
     }
     if(colorWindow->close()){

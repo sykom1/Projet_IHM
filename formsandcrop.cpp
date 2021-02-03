@@ -42,6 +42,8 @@ FormsAndCrop::FormsAndCrop(int x, int y, int height, int width,int trimSelect, Q
 
     xScroll = x;
     yScroll = y;
+    heightSave = height;
+    widthSave = width;
 
     pictureArea();
 }
@@ -230,6 +232,7 @@ void FormsAndCrop::drawLineTo(const QPoint &endPoint){
         lastPoint = change;
         displayContains->refreshImage(img, xCrop, yCrop);
         imgForChange->changeActualImg(img);
+        displayContains->changeSizeOfScrollBar(widthSave, heightSave);
 
     }
 

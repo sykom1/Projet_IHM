@@ -82,6 +82,8 @@ private:
     DisplayContains* displayContains = nullptr;
     QImage newImage;
     QPainter painter;
+    int heightSave;
+    int widthSave;
 
 
 };
