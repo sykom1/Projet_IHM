@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
     QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";
     QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFile);
-    //settings.setValue("langue", "francais");
+    //settings.setValue("langue", "");
     if(settings.value("langue").toString().toStdString().compare("")==0){
         lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
                                                            "Langage",languages);
@@ -35,19 +35,6 @@ int main(int argc, char *argv[])
 
     t.load(":/"+lang.toLower()+".qm");
 
-//    if( lang == "English"){
-//        t.load(":/english.qm");
-
-//    }
-//    else if(lang == "Francais"){
-//        t.load(":/francais.qm");
-//    }
-
-//    else {
-
-//        printf("Cette langue n'existe pas \n");
-//        return 0;
-//    }
 
 
 

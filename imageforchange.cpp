@@ -36,6 +36,7 @@ void ImageForChange::changeSizeReduceImg(){
 
 void ImageForChange::saveImg(QString pathNameSave){
     actualImg.save(pathNameSave);
+    initImg = actualImg;
 }
 
 void ImageForChange::changeActualImg(QImage newImg){
