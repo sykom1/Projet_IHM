@@ -42,6 +42,9 @@ void mainWindowMenu::initLogo(){
 
     actionOpenImage->setIcon(QIcon(":/Resources/OuvrirDoc.png"));
     menuRedimensionnement->setIcon(QIcon(":/Resources/redimentionner.png"));
+
+    actionHorizontal->setIcon(QIcon(":/Resources/Horizontal.png"));
+    actionVertical->setIcon(QIcon(":/Resources/Vertical.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){
