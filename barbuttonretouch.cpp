@@ -90,7 +90,7 @@ void BarButtonRetouch::runAllEvent(){
     connect(returnAfterButton, &QPushButton::clicked, this, [this]{
         if(imageForChange->isNext()){
             imageForChange->retourAvant();
-            displayContains->changeSizeOfScrollBar(this->width(), this->height());
+            displayContains->changeSizeOfScrollBar(((QMainWindow*)this->parent())->width(), ((QMainWindow*)this->parent())->height());
             recreateFormsAndCrop();
         }
     });
