@@ -37,6 +37,8 @@ void mainWindowMenu::initLogo(){
 
     actionSaveOn->setIcon(QIcon(":/Resources/EnregistrerSous.png"));
     actionSave->setIcon(QIcon(":/Resources/Enregistrer.png"));
+    actionZoom->setIcon(QIcon(":/Resources/zoom.png"));
+    actionDeZoom->setIcon(QIcon(":/Resources/dezoom.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){

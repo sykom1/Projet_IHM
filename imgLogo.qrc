@@ -10,5 +10,7 @@
         <file>Resources/RetourAvant.png</file>
         <file>Resources/EnregistrerSous.png</file>
         <file>Resources/Enregistrer.png</file>
+        <file>Resources/zoom.png</file>
+        <file>Resources/dezoom.png</file>
     </qresource>
 </RCC>
