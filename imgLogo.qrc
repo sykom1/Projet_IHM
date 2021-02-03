@@ -12,5 +12,7 @@
         <file>Resources/Enregistrer.png</file>
         <file>Resources/zoom.png</file>
         <file>Resources/dezoom.png</file>
+        <file>Resources/OuvrirDoc.png</file>
+        <file>Resources/redimentionner.png</file>
     </qresource>
 </RCC>
