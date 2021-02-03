@@ -45,13 +45,17 @@ void ImageForChange::changeActualImg(QImage newImg){
 
     if(isNext()){
         actionRedo->setEnabled(true);
+        buttonRedo->setEnabled(true);
     }else{
         actionRedo->setEnabled(false);
+        buttonRedo->setEnabled(false);
     }
     if(isPrevious()){
         actionUndo->setEnabled(true);
+        buttonUndo->setEnabled(true);
     }else{
         actionUndo->setEnabled(false);
+        buttonUndo->setEnabled(false);
     }
 }
 
@@ -64,13 +68,17 @@ void ImageForChange::initActualImg(){
     ajouter();
     if(isNext()){
         actionRedo->setEnabled(true);
+        buttonRedo->setEnabled(true);
     }else{
         actionRedo->setEnabled(false);
+        buttonRedo->setEnabled(false);
     }
     if(isPrevious()){
         actionUndo->setEnabled(true);
+        buttonUndo->setEnabled(true);
     }else{
         actionUndo->setEnabled(false);
+        buttonUndo->setEnabled(false);
     }
 }
 

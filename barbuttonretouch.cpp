@@ -62,12 +62,14 @@ void BarButtonRetouch::initAllButton(){
     returnBeforeButton->setFixedHeight(HEIGHTVAL);
     returnBeforeButton->move(0, (heightVar++)*HEIGHTVAL);
     returnBeforeButton->setEnabled(false);
+    returnBeforeButton->setIcon(QIcon(":/Resources/RetourArriere.png"));
 
     returnAfterButton = new QPushButton(this);
     returnAfterButton->setFixedWidth(WIDTHVAL);
     returnAfterButton->setFixedHeight(HEIGHTVAL);
     returnAfterButton->move(0, (heightVar++)*HEIGHTVAL);
     returnAfterButton->setEnabled(false);
+    returnAfterButton->setIcon(QIcon(":/Resources/RetourAvant.png"));
 
 }
 

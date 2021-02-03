@@ -6,5 +6,7 @@
         <file>Resources/rond.png</file>
         <file>Resources/del.png</file>
         <file>Resources/ImageInitiale.png</file>
+        <file>Resources/RetourArriere.png</file>
+        <file>Resources/RetourAvant.png</file>
     </qresource>
 </RCC>

@@ -32,6 +32,8 @@ void mainWindowMenu::initLogo(){
     actionRogner->setIcon(QIcon(":/Resources/rognage.png"));
     actionSupprimer->setIcon(QIcon(":/Resources/del.png"));
     actionReturnInitImg->setIcon(QIcon(":/Resources/ImageInitiale.png"));
+    action_Revenir->setIcon(QIcon(":/Resources/RetourArriere.png"));
+    actionRevenir_en_avant->setIcon(QIcon(":/Resources/RetourAvant.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){
