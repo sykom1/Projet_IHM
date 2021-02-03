@@ -16,6 +16,7 @@ SOURCES += \
     drawcolormenu.cpp \
     filters.cpp \
     imageforchange.cpp \
+    initconfig.cpp \
     main.cpp \
     mainwindowmenu.cpp \
     formsandcrop.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     drawcolormenu.h \
     filters.h \
     imageforchange.h \
+    initconfig.h \
     mainwindowmenu.h \
     formsandcrop.h \
     resizepicture.h
@@ -36,6 +38,7 @@ HEADERS += \
 FORMS += \
     chosecolor.ui \
     colorparameter.ui \
+    initconfig.ui \
     mainwindowmenu.ui
 TRANSLATIONS += english.ts \ francais.ts
 
