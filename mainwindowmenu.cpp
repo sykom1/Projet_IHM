@@ -22,6 +22,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     runAllEventFromTheMainWindow();
     menuFiltre->setEnabled(true);
     menuActions->setEnabled(false);
+    actionReturnInitImg->setIcon(QIcon(":/Resources/ImageInitiale.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){

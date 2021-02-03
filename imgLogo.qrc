@@ -5,5 +5,6 @@
         <file>Resources/crayon.png</file>
         <file>Resources/rond.png</file>
         <file>Resources/del.png</file>
+        <file>Resources/ImageInitiale.png</file>
     </qresource>
 </RCC>

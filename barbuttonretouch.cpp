@@ -55,6 +55,7 @@ void BarButtonRetouch::initAllButton(){
     initImgButton->setFixedWidth(WIDTHVAL);
     initImgButton->setFixedHeight(HEIGHTVAL);
     initImgButton->move(0, (heightVar++)*HEIGHTVAL);
+    initImgButton->setIcon(QIcon(":/Resources/ImageInitiale.png"));
 
     returnBeforeButton = new QPushButton(this);
     returnBeforeButton->setFixedWidth(WIDTHVAL);

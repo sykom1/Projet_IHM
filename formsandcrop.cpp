@@ -85,9 +85,9 @@ void FormsAndCrop::mousePressEvent(QMouseEvent *event)
             del->setEnabled(false);
             del->setVisible(false);
             cropAction->setEnabled(false);
-            cropAction->setVisible(false);
+            //cropAction->setVisible(false);
             delAction->setEnabled(false);
-            delAction->setVisible(false);
+            //delAction->setVisible(false);
 
         }
         scribbling = true;
