@@ -22,6 +22,15 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     runAllEventFromTheMainWindow();
     menuFiltre->setEnabled(true);
     menuActions->setEnabled(false);
+    initLogo();
+}
+
+void mainWindowMenu::initLogo(){
+    actionRectangle->setIcon(QIcon(":/Resources/square.png"));
+    actionCercle->setIcon(QIcon(":/Resources/rond.png"));
+    actionDessiner->setIcon(QIcon(":/Resources/crayon.png"));
+    actionRogner->setIcon(QIcon(":/Resources/rognage.png"));
+    actionSupprimer->setIcon(QIcon(":/Resources/del.png"));
     actionReturnInitImg->setIcon(QIcon(":/Resources/ImageInitiale.png"));
 }
 

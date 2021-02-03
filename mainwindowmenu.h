@@ -78,6 +78,7 @@ private:
     bool isOpen;
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
+    void initLogo();
 
 };
 #endif // MAINWINDOWMENU_H
