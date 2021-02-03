@@ -144,11 +144,20 @@ void BarButtonRetouch::selectMode(Selection select){
     }
 
     modState = select;
+    std::cout << displayContains->getScrollArea()->horizontalScrollBar()->isVisible() << std::endl;
+    int heightForms = displayContains->getScrollArea()->height();
+    int widthForms = displayContains->getScrollArea()->width();
+    if(displayContains->getScrollArea()->horizontalScrollBar()->isVisible())
+        heightForms-=displayContains->getScrollArea()->horizontalScrollBar()->height();
+    if(displayContains->getScrollArea()->verticalScrollBar()->isVisible())
+        widthForms-=displayContains->getScrollArea()->verticalScrollBar()->width();
     formsAndCrop = new FormsAndCrop(displayContains->x(),
                                     displayContains->y(),
                                     displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
                                     displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),select,
                                     displayContains->getScrollArea(), displayContains, imageForChange);
+    formsAndCrop->setFixedHeight(heightForms);
+    formsAndCrop->setFixedWidth(widthForms);
     formsAndCrop->move(displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y()+displayContains->y());
     ((QMainWindow*)this->parent())->layout()->addWidget(formsAndCrop);
     if(modState == Draw){
