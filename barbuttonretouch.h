@@ -29,6 +29,7 @@ public:
     void recreateFormsAndCrop();
     int getModState();
     void moveColorWindow();
+    void moveMenu();
 
 
 public slots:

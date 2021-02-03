@@ -323,6 +323,7 @@ void mainWindowMenu::resizeEvent(QResizeEvent *event){
     if(barButtonRetouch != nullptr){
         barButtonRetouch->recreateFormsAndCrop();
         barButtonRetouch->moveColorWindow();
+        barButtonRetouch->moveMenu();
     }
 //    switch(mode){
 //        case 1:

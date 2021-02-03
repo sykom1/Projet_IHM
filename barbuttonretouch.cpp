@@ -18,6 +18,10 @@ BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContai
     disableAllButton();
 }
 
+void BarButtonRetouch::moveMenu(){
+    move(0, ((QMainWindow*)this->parent())->height()/2);
+}
+
 void BarButtonRetouch::initAllButton(){
     int heightVar = 0;
     selectSquare = new QPushButton(this);
