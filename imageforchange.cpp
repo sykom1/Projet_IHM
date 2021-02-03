@@ -121,12 +121,9 @@ void ImageForChange::decaler(){
 }
 
 void ImageForChange::retourArriere(){
-        std::cout << idarrayImage << std::endl;
-
    if(isPrevious()){
        actualImg = arrayImage[--idarrayImage];
        displayContains->refreshImage(actualImg, arrayPosImage[idarrayImage].x(), arrayPosImage[idarrayImage].y());
-       std::cout << arrayPosImage[idarrayImage].x()  <<" " <<  arrayPosImage[idarrayImage].y() << std::endl;
 
 
    }

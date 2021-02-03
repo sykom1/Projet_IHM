@@ -410,8 +410,20 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, &mainWindowMenu::initImgDisplay);
     connect(actionDessiner, &QAction::triggered, this, [this]{barButtonRetouch->drawSelectButton();});
-    connect(action_Revenir, &QAction::triggered, this, [this]{imageForChange->retourArriere();});
-    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{imageForChange->retourAvant();});
+    connect(action_Revenir, &QAction::triggered, this, [this]{
+        if(imageForChange->isPrevious()){
+            imageForChange->retourArriere();
+            if(barButtonRetouch!=nullptr){
+                barButtonRetouch->recreateFormsAndCrop();
+            }
+        }});
+    connect(actionRevenir_en_avant, &QAction::triggered, this, [this]{
+        if(imageForChange->isNext()){
+            imageForChange->retourAvant();
+            if(barButtonRetouch!=nullptr){
+                barButtonRetouch->recreateFormsAndCrop();
+            }
+        }});
 
     addShortCutToAction();
 
