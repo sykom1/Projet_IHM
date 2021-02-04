@@ -2,13 +2,16 @@
 #define INITCONFIG_H
 
 #include "ui_initconfig.h"
+#include <iostream>
 #include <QLabel>
 #include <QLineEdit>
 #include <QAction>
 #include <QDir>
 #include <QFileDialog>
 #include <QDialogButtonBox>
-
+#include <QRadioButton>
+#include <QButtonGroup>
+#include <QSettings>
 
 class InitConfig : public QWidget, private Ui::InitConfig
 {
@@ -28,6 +31,10 @@ public slots:
 private :
     QString lang = QString();
     QString pathDirImage = QString();
+    bool languesReady = false;
+    bool windowSizeReady = false;
+    bool pathReady = false;
+    QButtonGroup group;
 
 };
 

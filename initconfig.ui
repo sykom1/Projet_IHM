@@ -152,7 +152,7 @@
    <property name="title">
     <string>Langues</string>
    </property>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="radioeng">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -165,7 +165,7 @@
      <string>Anglais</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="radiofr">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -202,7 +202,7 @@
    <property name="flat">
     <bool>false</bool>
    </property>
-   <widget class="QRadioButton" name="radioButton_6">
+   <widget class="QRadioButton" name="radiopers">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -215,7 +215,7 @@
      <string>Personnalisée</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_3">
+   <widget class="QRadioButton" name="radiomax">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -228,7 +228,7 @@
      <string>Maximisée</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_4">
+   <widget class="QRadioButton" name="radiodef">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -241,7 +241,7 @@
      <string>Par défaut</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_5">
+   <widget class="QRadioButton" name="radiofs">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -259,7 +259,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>radioButton_6</sender>
+   <sender>radiopers</sender>
    <signal>clicked(bool)</signal>
    <receiver>groupBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -275,7 +275,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_5</sender>
+   <sender>radiofs</sender>
    <signal>clicked(bool)</signal>
    <receiver>groupBox</receiver>
    <slot>setDisabled(bool)</slot>
@@ -291,7 +291,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_3</sender>
+   <sender>radiomax</sender>
    <signal>clicked(bool)</signal>
    <receiver>groupBox</receiver>
    <slot>setDisabled(bool)</slot>
@@ -307,7 +307,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton_4</sender>
+   <sender>radiodef</sender>
    <signal>clicked(bool)</signal>
    <receiver>groupBox</receiver>
    <slot>setDisabled(bool)</slot>

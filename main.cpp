@@ -21,12 +21,19 @@ int main(int argc, char *argv[])
     QStringList languages;
     languages << "Francais" << "English";
     QString lang;
+    QString path;
+    QString windowsize;
     string line;
 
-    QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";
-    QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFile);
+    QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
+    QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
     //settings.setValue("langue", "");
-    if(settings.value("langue").toString().toStdString().compare("")==0){
+   /* if(settings.value("langue").toString().toStdString().compare("")==0 &&
+       settings.value("path").toString().toStdString().compare("")==0 &&
+       settings.value("size").toString().toStdString().compare("")==0 ) */
+
+    if(settings.value("langue").toString().toStdString().compare("")==0)
+    {
         lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
                                                            "Langage",languages);
         settings.setValue("langue", lang);
@@ -36,7 +43,7 @@ int main(int argc, char *argv[])
 
     t.load(":/"+lang.toLower()+".qm");
     /*InitConfig initconf;
-    initconf.show(); */
+    initconf.show();*/
 
 
 
