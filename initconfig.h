@@ -12,13 +12,15 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QSettings>
+#include <iostream>
+#include <QIntValidator>
 
 class InitConfig : public QWidget, private Ui::InitConfig
 {
     Q_OBJECT
 
 public:
-    explicit InitConfig(QWidget *parent = nullptr);
+    explicit InitConfig(QStringList langues,QWidget *parent = nullptr);
     void runAllEvent();
 
 
@@ -27,6 +29,7 @@ public slots:
     void setLanguage();
     void setPathImage();
     void validConfig();
+    void verifConfig();
 
 private :
     QString lang = QString();

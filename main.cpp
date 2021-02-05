@@ -27,10 +27,15 @@ int main(int argc, char *argv[])
 
     QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
     QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
+    bool init = settings.value("init").toString().toStdString().compare("") == 0 ? true : false;
+    QStringList langues = {"Francais","English"};
     //settings.setValue("langue", "");
-   /* if(settings.value("langue").toString().toStdString().compare("")==0 &&
-       settings.value("path").toString().toStdString().compare("")==0 &&
-       settings.value("size").toString().toStdString().compare("")==0 ) */
+   /* if(init){
+        InitConfig initconf;
+        initconf.show();
+
+    }
+    */
 
     if(settings.value("langue").toString().toStdString().compare("")==0)
     {
@@ -42,8 +47,8 @@ int main(int argc, char *argv[])
     }
 
     t.load(":/"+lang.toLower()+".qm");
-    /*InitConfig initconf;
-    initconf.show();*/
+    /*InitConfig *initconf = new InitConfig(langues);
+    initconf->show(); */
 
 
 
