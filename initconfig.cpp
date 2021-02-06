@@ -49,8 +49,8 @@ void InitConfig::changeEvent(QEvent *event){
         doss->setText(tr("Dossier des images"));
 
         //Langues
-        comboLangues->setItemText(0,tr("Francais"));
-        comboLangues->setItemText(1,tr("Anglais"));
+        /*comboLangues->setItemText(0,tr("Francais"));
+        comboLangues->setItemText(1,tr("Anglais")); */
 
     }
 }
