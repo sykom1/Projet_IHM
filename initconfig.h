@@ -43,7 +43,7 @@ private :
     bool pathReady = false;
     QButtonGroup group;
     QTranslator *translator;
-
+    QStringList langues;
 
 };
 

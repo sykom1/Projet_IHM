@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         t.load(":/"+lang.toLower()+".qm");
 
 
-        mainWindowMenu *w = new mainWindowMenu(&t);
+        mainWindowMenu *w = new mainWindowMenu(&t, langues);
         w->show();
     }
 

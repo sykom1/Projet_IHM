@@ -18,6 +18,7 @@ InitConfig::InitConfig(QTranslator *t,QStringList langues,QWidget *parent) :
     hauteur->setValidator( new QIntValidator(0, 2000, this) );
     largeur->setValidator( new QIntValidator(0, 2000, this) );
     comboLangues->addItems(langues);
+    this->langues = langues;
 }
 
 void InitConfig::runAllEvent(){
@@ -129,7 +130,7 @@ void InitConfig::validConfig(){
 
             translator->load(":/"+lang.toLower()+".qm");
 
-            mainWindowMenu *w = new mainWindowMenu(translator);
+            mainWindowMenu *w = new mainWindowMenu(translator, langues);
             w->show();
         }
 

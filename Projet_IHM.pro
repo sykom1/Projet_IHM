@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindowmenu.cpp \
     formsandcrop.cpp \
+    menusettings.cpp \
     resizepicture.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     loadsettings.h \
     mainwindowmenu.h \
     formsandcrop.h \
+    menusettings.h \
     resizepicture.h
 
 FORMS += \

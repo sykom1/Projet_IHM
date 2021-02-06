@@ -22,6 +22,7 @@
 #include "barbuttonretouch.h"
 #include "colorparameter.h"
 #include "loadsettings.h"
+#include "menusettings.h"
 
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -29,7 +30,7 @@ class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
     Q_OBJECT
 
 public:
-    mainWindowMenu(QTranslator *t, QWidget *parent = nullptr);
+    mainWindowMenu(QTranslator *t, QStringList langues, QWidget *parent = nullptr);
     ~mainWindowMenu();
     static void printPixels(ImageForChange *image);
     ImageForChange* getImageForChange();
@@ -53,6 +54,7 @@ private slots:
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
     QTranslator* getTranslation();
     void openColorParameter();
+    void openSettings();
 
 
 protected:
@@ -60,6 +62,7 @@ protected:
     void changeEvent(QEvent *event);
 
 private:
+    QStringList langues;
     LoadSettings *loadSettings = nullptr;
     QString pathForFileImg = nullptr;
     DisplayContains *displayContains = nullptr;

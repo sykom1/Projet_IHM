@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -37,6 +37,7 @@
     <addaction name="actionSaveOn"/>
     <addaction name="actionSave"/>
     <addaction name="actionCloseImage"/>
+    <addaction name="actionConfig"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuRetouche">
@@ -320,6 +321,11 @@
   <action name="actionDeZoom">
    <property name="text">
     <string>DeZoom</string>
+   </property>
+  </action>
+  <action name="actionConfig">
+   <property name="text">
+    <string>Configuration</string>
    </property>
   </action>
  </widget>

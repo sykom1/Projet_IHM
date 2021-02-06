@@ -7,11 +7,12 @@
 #include <QFormLayout>
 
 
-mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
+mainWindowMenu::mainWindowMenu(QTranslator *t, QStringList langues, QWidget *parent)
     : QMainWindow(parent)
 {
     setupUi(this);
     translator = t;
+    this->langues = langues;
     setWindowTitle(tr("Retouche d'Image"));
 
     displayContains = new DisplayContains(this, menubar->height(), this->width(), this->height()-menubar->height());
@@ -458,9 +459,16 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
             }
         }});
 
+    connect(actionConfig, &QAction::triggered, this, &mainWindowMenu::openSettings);
+
     addShortCutToAction();
 
 
+}
+
+void mainWindowMenu::openSettings(){
+    MenuSettings *menuSettings = new MenuSettings(langues);
+    menuSettings->show();
 }
 
 void mainWindowMenu::setMenuEnabled(bool valueMenuEnabled){
