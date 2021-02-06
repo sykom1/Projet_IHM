@@ -15,6 +15,7 @@
 #include <iostream>
 #include <QIntValidator>
 #include <QTranslator>
+#include "mainwindowmenu.h"
 
 class InitConfig : public QWidget, private Ui::InitConfig
 {

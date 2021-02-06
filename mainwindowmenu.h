@@ -21,6 +21,7 @@
 #include "chosecolor.h"
 #include "barbuttonretouch.h"
 #include "colorparameter.h"
+#include "loadsettings.h"
 
 
 class mainWindowMenu : public QMainWindow, private Ui::mainWindowMenu
@@ -59,6 +60,8 @@ protected:
     void changeEvent(QEvent *event);
 
 private:
+    LoadSettings *loadSettings = nullptr;
+    QString pathForFileImg = nullptr;
     DisplayContains *displayContains = nullptr;
     ImageForChange *imageForChange = nullptr;
     QLabel *name = new QLabel();

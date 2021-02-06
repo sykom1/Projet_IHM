@@ -125,7 +125,12 @@ void InitConfig::validConfig(){
         if(validInit){
             settings.setValue("init","false");
             this->close();
-             // lancer l'application
+            lang = settings.value("langue").toString();
+
+            translator->load(":/"+lang.toLower()+".qm");
+
+            mainWindowMenu *w = new mainWindowMenu(translator);
+            w->show();
         }
 
 

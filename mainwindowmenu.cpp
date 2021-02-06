@@ -23,6 +23,9 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QWidget *parent)
     menuFiltre->setEnabled(true);
     menuActions->setEnabled(false);
     initLogo();
+    loadSettings = new LoadSettings(this, translator);
+    loadSettings->loadAllConfig();
+    pathForFileImg = loadSettings->getPathFileForImg();
 }
 
 void mainWindowMenu::initLogo(){
@@ -126,8 +129,12 @@ void mainWindowMenu::closeFile(){
 
 
 void mainWindowMenu::saveFileOn(){
+    QString pathImg = "";
+    if(pathForFileImg!=nullptr)
+        pathImg +=(pathForFileImg + "/");
+    pathImg+=QString::fromStdString(nameImage);
     QString fileNameSave = QFileDialog::getSaveFileName(this,
-                                                        tr("Sauvegarder l'image"), QString::fromStdString(nameImage),
+                                                        tr("Sauvegarder l'image"), pathImg,
                                                         tr("Fichier Image") +"(*.png *.jpg *.bmp)");
     imageForChange->saveImg(fileNameSave);
     pathImg = fileNameSave;

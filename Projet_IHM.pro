@@ -17,6 +17,7 @@ SOURCES += \
     filters.cpp \
     imageforchange.cpp \
     initconfig.cpp \
+    loadsettings.cpp \
     main.cpp \
     mainwindowmenu.cpp \
     formsandcrop.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     filters.h \
     imageforchange.h \
     initconfig.h \
+    loadsettings.h \
     mainwindowmenu.h \
     formsandcrop.h \
     resizepicture.h
