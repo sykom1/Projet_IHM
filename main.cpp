@@ -30,25 +30,17 @@ int main(int argc, char *argv[])
     bool init = settings.value("init").toString().toStdString().compare("") == 0 ? true : false;
     QStringList langues = {"Francais","English"};
     //settings.setValue("langue", "");
-   /* if(init){
-        InitConfig initconf;
-        initconf.show();
+    /*if(init){
+        InitConfig *initconf = new InitConfig(&t,langues);
+        initconf->show();
 
-    }
-    */
+    } */
 
-    if(settings.value("langue").toString().toStdString().compare("")==0)
-    {
-        lang = QInputDialog::getItem(NULL,"Selectionnez La Langue",
-                                                           "Langage",languages);
-        settings.setValue("langue", lang);
-    }else{
-        lang = settings.value("langue").toString();
-    }
+       lang = settings.value("langue").toString();
 
-    t.load(":/"+lang.toLower()+".qm");
-    /*InitConfig *initconf = new InitConfig(langues);
-    initconf->show(); */
+       t.load(":/"+lang.toLower()+".qm");
+
+
 
 
 

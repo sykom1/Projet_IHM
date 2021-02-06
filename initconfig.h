@@ -14,14 +14,16 @@
 #include <QSettings>
 #include <iostream>
 #include <QIntValidator>
+#include <QTranslator>
 
 class InitConfig : public QWidget, private Ui::InitConfig
 {
     Q_OBJECT
 
 public:
-    explicit InitConfig(QStringList langues,QWidget *parent = nullptr);
+    explicit InitConfig(QTranslator *t,QStringList langues,QWidget *parent = nullptr);
     void runAllEvent();
+
 
 
 public slots:
@@ -30,6 +32,7 @@ public slots:
     void setPathImage();
     void validConfig();
     void verifConfig();
+    void changeEvent(QEvent *event);
 
 private :
     QString lang = QString();
@@ -38,6 +41,8 @@ private :
     bool windowSizeReady = false;
     bool pathReady = false;
     QButtonGroup group;
+    QTranslator *translator;
+
 
 };
 
