@@ -467,7 +467,11 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
 }
 
 void mainWindowMenu::openSettings(){
-    MenuSettings *menuSettings = new MenuSettings(langues);
+    if(menuSettings!=nullptr){
+        menuSettings->close();
+        menuSettings = nullptr;
+    }
+    menuSettings = new MenuSettings(langues);
     menuSettings->show();
 }
 

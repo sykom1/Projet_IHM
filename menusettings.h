@@ -3,9 +3,11 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QTabWidget>
 #include <QComboBox>
 #include <QLabel>
+#include <QPushButton>
 
 class MenuSettings : public QWidget
 {
@@ -23,6 +25,10 @@ private:
     QLabel *labelLangue = new QLabel();
     QComboBox *langueChoice = new QComboBox;
     QVBoxLayout *layoutGeneral = new QVBoxLayout();
+
+    QHBoxLayout *layoutButton = nullptr;
+    QPushButton *buttonApply = nullptr;
+    QPushButton *buttonQuit = nullptr;
 
     void initAllTab();
     void initTabGeneral();

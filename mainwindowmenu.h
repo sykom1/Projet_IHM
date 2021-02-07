@@ -65,6 +65,7 @@ private:
     QStringList langues;
     LoadSettings *loadSettings = nullptr;
     QString pathForFileImg = nullptr;
+    MenuSettings *menuSettings = nullptr;
     DisplayContains *displayContains = nullptr;
     ImageForChange *imageForChange = nullptr;
     QLabel *name = new QLabel();
