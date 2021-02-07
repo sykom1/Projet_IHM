@@ -36,6 +36,7 @@ public:
     static void printPixels(ImageForChange *image);
     ImageForChange* getImageForChange();
     DisplayContains *getDisplayContains();
+    QTranslator* getTranslation();
 
 private slots:
     void closeEvent(QCloseEvent *event);
@@ -53,7 +54,6 @@ private slots:
     void deleteSelec(QImage img,int trimSelect);
     void updateLanguage(const QString language);
     void resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *dialog,QImage img);
-    QTranslator* getTranslation();
     void openColorParameter();
     void openSettings();
 
@@ -61,6 +61,7 @@ private slots:
 protected:
     void resizeEvent(QResizeEvent *event);
     void changeEvent(QEvent *event);
+    void wheelEvent(QWheelEvent *wheelEvent);
 
 private:
     QVector<QVector<QAction*>*> *listofListQAction = new QVector<QVector<QAction*>*>;

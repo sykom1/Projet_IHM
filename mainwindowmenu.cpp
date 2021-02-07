@@ -118,6 +118,7 @@ void mainWindowMenu::closeFile(){
     displayContains->clearDisplay();
     barButtonRetouch->closeFormsAndCrop();
     pathImg = nullptr;
+    imageForChange = nullptr;//casse tout
     setMenuEnabled(false);
     if(barButtonRetouch!=nullptr)
     {
@@ -404,6 +405,34 @@ void mainWindowMenu::changeEvent(QEvent *event){
 
     }
 
+}
+
+void mainWindowMenu::wheelEvent(QWheelEvent *wheelEvent)
+{
+
+    if(!imageForChange->getActualImg().isNull()){
+        QImage img = imageForChange->getActualImg();
+        int width = imageForChange->getActualImg().width();
+        int height = imageForChange->getActualImg().height();
+        if(QGuiApplication::keyboardModifiers().testFlag(Qt::ControlModifier)){
+            if(wheelEvent->delta()>0){
+                img = img.scaled(width*1.15,height*1.15,Qt::KeepAspectRatio,Qt::FastTransformation);
+                imageForChange->changeActualImg(img);
+                displayContains->refreshImage(imageForChange->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
+            }
+            else{
+                img = img.scaled(width*0.85,height*0.85,Qt::KeepAspectRatio,Qt::FastTransformation);
+                imageForChange->changeActualImg(img);
+                displayContains->refreshImage(imageForChange->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
+            }
+        }
+        else{
+            std::cout << "control pas appuyé" << std::endl;
+        }
+    }
+    else{
+        std::cout << "imùage fermée" << std::endl;
+    }
 }
 
 void mainWindowMenu::fillListQAction(){
