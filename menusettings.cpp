@@ -63,12 +63,51 @@ void MenuSettings::setAllText(){
 
 void MenuSettings::initTabShortcut(){
     tabWidget->addTab(tabShortcut, tr("Raccourcis"));
+    scrollAreaShortcut->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollAreaShortcut->setWidgetResizable(true);
+    scrollAreaShortcut->setFixedHeight(200);
+    tabShortcut->setFixedWidth(300);
     tabShortcut->setLayout(layoutShortcut);
     layoutShortcut->addWidget(scrollAreaShortcut);
-    scrollAreaShortcut->setLayout(layoutScroll);
 
-    for(int i=0; i<listOfListQAction->at(0)->size();i++){
-        layoutScroll->addWidget(new QLabel(listOfListQAction->at(0)->at(i)->text()));
+    widgetScroll = new QWidget();
+    scrollAreaShortcut->setWidget(widgetScroll);
+
+    QLabel *lblNamePartShortcutFile = new QLabel();
+    lblNamePartShortcutFile->setText(tr("Fichier"));
+    //widgetScroll->setLayout(layoutScroll);
+    layoutScroll = new QVBoxLayout(widgetScroll);
+    layoutScroll->addWidget(lblNamePartShortcutFile);
+
+    loadShortcut(0);
+
+    QFrame *line = new QFrame;
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Sunken);
+    layoutScroll->addWidget(line);
+
+    loadShortcut(1);
+
+
+    //scrollAreaShortcut->verticalScrollBar()->setSingleStep(layoutScroll->sizeHint().height()/24);
+
+}
+
+void MenuSettings::loadShortcut(int indOfThePartOfTheShortcut){
+    for(int i=0; i<listOfListQAction->at(indOfThePartOfTheShortcut)->size();i++){
+        QHBoxLayout *layoutBox = new QHBoxLayout;
+        QLabel *lblShortcutName = new QLabel(listOfListQAction->at(indOfThePartOfTheShortcut)->at(i)->text());
+        if(lblShortcutName->text().at(0) == '&'){
+            lblShortcutName->setText(lblShortcutName->text().remove(0, 1));
+        }
+        lblShortcutName->setFixedWidth(WIDTHLABELSHORTCUT);
+        layoutBox->addWidget(lblShortcutName);
+        QLabel *labelShortcut = new QLabel(listOfListQAction->at(indOfThePartOfTheShortcut)->at(i)->shortcut().toString());
+        labelShortcut->setFixedWidth(WIDTHLABELSHORTCUT/2);
+        layoutBox->addWidget(labelShortcut);
+        labelShortcut->move(WIDTHLABELSHORTCUT+1, 0);
+        //layoutScroll->addWidget(new QLabel(listOfListQAction->at(0)->at(i)->text()));
+        layoutScroll->addLayout(layoutBox);
     }
 }
 

@@ -14,8 +14,11 @@
 #include <QApplication>
 #include <QSettings>
 #include <QScrollArea>
+#include <QScrollBar>
 #include <QAction>
 #include <iostream>
+
+#define WIDTHLABELSHORTCUT 150
 
 class MenuSettings : public QWidget
 {
@@ -37,7 +40,8 @@ private:
     QWidget *tabShortcut = new QWidget();
     QScrollArea *scrollAreaShortcut = new QScrollArea();
     QVBoxLayout *layoutShortcut = new QVBoxLayout;
-    QVBoxLayout *layoutScroll = new QVBoxLayout;
+    QWidget *widgetScroll = nullptr;
+    QVBoxLayout *layoutScroll = nullptr;
     QStringList languesDisplay;
     QLabel *labelLangue = new QLabel();
     QComboBox *langueChoice = nullptr;
@@ -59,6 +63,7 @@ private:
     bool verifyLanguage();
     void verifyClose();
     void applyConfig();
+    void loadShortcut(int indOfThePartOfTheShortcut);
 };
 
 #endif // MENUSETTINGS_H
