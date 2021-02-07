@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QPainterPath>
 #include <QLayout>
+#include <QVector>
 #include <cmath>
 #include <string>
 #include <iostream>
@@ -62,6 +63,11 @@ protected:
     void changeEvent(QEvent *event);
 
 private:
+    QVector<QVector<QAction*>*> *listofListQAction = new QVector<QVector<QAction*>*>;
+    QVector<QAction*> *listQActionFile = new QVector<QAction*>;
+    QVector<QAction*> *listQActionRetouch = new QVector<QAction*>;
+    QVector<QAction*> *listQActionEdition = new QVector<QAction*>;
+    QVector<QAction*> *listQActionSelection = new QVector<QAction*>;
     QStringList langues;
     LoadSettings *loadSettings = nullptr;
     QString pathForFileImg = nullptr;
@@ -86,6 +92,7 @@ private:
     choseColor *colorWindow = new choseColor(this);
     BarButtonRetouch *barButtonRetouch = nullptr;
     void initLogo();
+    void fillListQAction();
 
 };
 #endif // MAINWINDOWMENU_H

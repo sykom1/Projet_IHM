@@ -1,11 +1,13 @@
 #include "menusettings.h"
 
-MenuSettings::MenuSettings(QStringList langues, QTranslator *translator, QWidget *parent) : QWidget(parent)
+MenuSettings::MenuSettings(QStringList langues, QTranslator *translator,
+                           QVector<QVector<QAction*>*> *listOfListQAction, QWidget *parent) : QWidget(parent)
 {
     layoutSettings = new QVBoxLayout();
     QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
     settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
     this->setLayout(layoutSettings);
+    this->listOfListQAction = listOfListQAction;
     //this->languesDisplay = langues;
     for(int i=0; i<langues.size(); i++){
         if(settings->value("langue").toString().compare(langues.at(i).toLower())==0)
@@ -61,6 +63,13 @@ void MenuSettings::setAllText(){
 
 void MenuSettings::initTabShortcut(){
     tabWidget->addTab(tabShortcut, tr("Raccourcis"));
+    tabShortcut->setLayout(layoutShortcut);
+    layoutShortcut->addWidget(scrollAreaShortcut);
+    scrollAreaShortcut->setLayout(layoutScroll);
+
+    for(int i=0; i<listOfListQAction->at(0)->size();i++){
+        layoutScroll->addWidget(new QLabel(listOfListQAction->at(0)->at(i)->text()));
+    }
 }
 
 void MenuSettings::changeLanguage(){

@@ -27,6 +27,7 @@ mainWindowMenu::mainWindowMenu(QTranslator *t, QStringList langues, QWidget *par
     loadSettings = new LoadSettings(this, translator);
     loadSettings->loadAllConfig();
     pathForFileImg = loadSettings->getPathFileForImg();
+    fillListQAction();
 }
 
 void mainWindowMenu::initLogo(){
@@ -405,6 +406,35 @@ void mainWindowMenu::changeEvent(QEvent *event){
 
 }
 
+void mainWindowMenu::fillListQAction(){
+    listQActionFile->append(actionOpenImage);
+    listQActionFile->append(actionSaveOn);
+    listQActionFile->append(actionSave);
+    listQActionFile->append(actionQuit);
+    listQActionFile->append(actionCloseImage);
+
+    listQActionRetouch->append(actionHorizontal);
+    listQActionRetouch->append(actionVertical);
+    listQActionRetouch->append(actionInverser_Pixels);
+    listQActionRetouch->append(actionSupprimer);
+    listQActionRetouch->append(actionRogner);
+    listQActionRetouch->append(actionReturnInitImg);
+    listQActionRetouch->append(actionGreen_Filter);
+    listQActionRetouch->append(actionRed_Filter);
+    listQActionRetouch->append(actionBlue_Filter);
+
+    listQActionSelection->append(actionRectangle);
+    listQActionSelection->append(actionRogner);
+
+    listQActionEdition->append(action_Revenir);
+    listQActionEdition->append(actionRevenir_en_avant);
+
+    listofListQAction->append(listQActionFile);
+    listofListQAction->append(listQActionRetouch);
+    listofListQAction->append(listQActionSelection);
+    listofListQAction->append(listQActionEdition);
+}
+
 void mainWindowMenu::updateLanguage(const QString language) {
     QString pathFile = QApplication::applicationDirPath().left(1)+":/options.ini";
     QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFile);
@@ -471,7 +501,7 @@ void mainWindowMenu::openSettings(){
         menuSettings->close();
         menuSettings = nullptr;
     }
-    menuSettings = new MenuSettings(langues, translator);
+    menuSettings = new MenuSettings(langues, translator, listofListQAction);
     menuSettings->show();
 }
 

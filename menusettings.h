@@ -13,23 +13,31 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QSettings>
+#include <QScrollArea>
+#include <QAction>
 #include <iostream>
 
 class MenuSettings : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MenuSettings(QStringList langues, QTranslator *translator, QWidget *parent = nullptr);
+    explicit MenuSettings(QStringList langues, QTranslator *translator,
+                          QVector<QVector<QAction*>*> *listOfListQAction, QWidget *parent = nullptr);
 
 
 private:
     QSettings *settings = nullptr;
+
+    QVector<QVector<QAction*>*> *listOfListQAction = nullptr;
 
     QTranslator *translator = nullptr;
     QVBoxLayout *layoutSettings = nullptr;
     QTabWidget *tabWidget = new QTabWidget();
     QWidget *tabGeneral = new QWidget();
     QWidget *tabShortcut = new QWidget();
+    QScrollArea *scrollAreaShortcut = new QScrollArea();
+    QVBoxLayout *layoutShortcut = new QVBoxLayout;
+    QVBoxLayout *layoutScroll = new QVBoxLayout;
     QStringList languesDisplay;
     QLabel *labelLangue = new QLabel();
     QComboBox *langueChoice = nullptr;
