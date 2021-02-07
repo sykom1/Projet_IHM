@@ -111,23 +111,23 @@
         <location filename="menusettings.cpp" line="32"/>
         <location filename="menusettings.cpp" line="43"/>
         <source>Générale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Général</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="42"/>
         <source>Langues : </source>
-        <translation type="unfinished"></translation>
+        <translation>Langues :</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="44"/>
         <location filename="menusettings.cpp" line="51"/>
         <source>Raccourcis</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Raccourcis</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="45"/>
         <source>Appliquer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Appliquer</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="46"/>
