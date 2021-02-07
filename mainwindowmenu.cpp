@@ -471,7 +471,7 @@ void mainWindowMenu::openSettings(){
         menuSettings->close();
         menuSettings = nullptr;
     }
-    menuSettings = new MenuSettings(langues);
+    menuSettings = new MenuSettings(langues, translator);
     menuSettings->show();
 }
 

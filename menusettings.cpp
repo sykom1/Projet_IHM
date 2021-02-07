@@ -1,19 +1,32 @@
 #include "menusettings.h"
 
-MenuSettings::MenuSettings(QStringList langues, QWidget *parent) : QWidget(parent)
+MenuSettings::MenuSettings(QStringList langues, QTranslator *translator, QWidget *parent) : QWidget(parent)
 {
     layoutSettings = new QVBoxLayout();
+    QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
+    settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
     this->setLayout(layoutSettings);
-    this->langues = langues;
+    //this->languesDisplay = langues;
+    for(int i=0; i<langues.size(); i++){
+        if(settings->value("langue").toString().compare(langues.at(i).toLower())==0)
+        {
+            this->languesDisplay.append(langues.at(i));
+        }
+    }
+    for(int i=0; i<langues.size();i++){
+        if(settings->value("langue").toString().compare(langues.at(i).toLower())!=0){
+            this->languesDisplay.append(langues.at(i));
+        }
+    }
     //this->setFixedHeight(300);
     //this->setFixedWidth(500);
     initAllTab();
     createConnection();
+    this->translator = translator;
 }
 
 
 void MenuSettings::initAllTab(){
-    tabWidget = new QTabWidget;
 
     initTabGeneral();
 
@@ -31,7 +44,7 @@ void MenuSettings::initAllTab(){
 void MenuSettings::initTabGeneral(){
     tabWidget->addTab(tabGeneral, tr("Générale"));
     langueChoice = new QComboBox();
-    langueChoice->addItems(langues);
+    langueChoice->addItems(languesDisplay);
     layoutGeneral->addWidget(labelLangue, 0);
     layoutGeneral->addWidget(langueChoice, 1);
     tabGeneral->setLayout(layoutGeneral);
@@ -47,11 +60,74 @@ void MenuSettings::setAllText(){
 }
 
 void MenuSettings::initTabShortcut(){
-    tabShortcut = new QWidget();
     tabWidget->addTab(tabShortcut, tr("Raccourcis"));
 }
 
-void MenuSettings::createConnection(){
-    connect(buttonQuit, &QPushButton::clicked, this, &MenuSettings::close);
-    connect(langueChoice, &QComboBox::currentTextChanged, this, [this]{std::cout << "ok"<< std::endl;});
+void MenuSettings::changeLanguage(){
+    translator->load(":/"+langueChoice->currentText().toLower()+".qm");
 }
+
+void MenuSettings::createConnection(){
+    connect(buttonQuit, &QPushButton::clicked, this, &MenuSettings::verifyClose);
+    connect(buttonApply, &QPushButton::clicked, this, &MenuSettings::applyConfig);
+    connect(langueChoice, &QComboBox::currentTextChanged, this, &MenuSettings::changeLanguage);
+}
+
+void MenuSettings::undoLanguage(){
+    translator->load(":/"+settings->value("langue").toString().toLower()+".qm");
+}
+
+void MenuSettings::changeEvent(QEvent *event){
+    if(event->type() == QEvent::LanguageChange){
+        setAllText();
+    }
+}
+
+bool MenuSettings::verifyLanguage(){
+    return langueChoice->currentText().toLower().compare(settings->value("langue").toString().toLower())==0;
+}
+
+void MenuSettings::verifyClose(){
+    if(!verifyLanguage()){
+        int undoChanges = QMessageBox::question(this, tr("Fermer les settings"),
+                                                tr("Voulez-vous vraiment quitter sans appliquer les modifications ?"),
+                                                QMessageBox::Yes, QMessageBox::No);
+        switch(undoChanges){
+            case QMessageBox::Yes:{
+                undoLanguage();
+                close();
+                break;
+            }
+            case QMessageBox::No:{
+
+                break;
+            }
+        }
+    }else{
+        close();
+    }
+}
+
+void MenuSettings::applyConfig(){
+    settings->setValue("langue", langueChoice->currentText().toLower());
+    close();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
