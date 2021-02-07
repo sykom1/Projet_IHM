@@ -19,24 +19,24 @@
         <location filename="initconfig.ui" line="39"/>
         <location filename="initconfig.cpp" line="50"/>
         <source>Dossier des images</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Images Folder</translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="52"/>
         <location filename="initconfig.cpp" line="49"/>
         <source>Parcourir</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Browse</translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="65"/>
         <source>Taille de la fenêtre : </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Window Size : </translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="94"/>
         <location filename="initconfig.cpp" line="46"/>
         <source>Personnalisation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Personalization</translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="106"/>
@@ -62,47 +62,47 @@
     <message>
         <location filename="initconfig.ui" line="212"/>
         <source>Maximisée</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximize</translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="225"/>
         <source>Par défaut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">By Default</translation>
     </message>
     <message>
         <location filename="initconfig.ui" line="238"/>
         <source>Plein Ecran</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Full Screen</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="37"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Settings</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="40"/>
         <source>Par Defaut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">By Default</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="41"/>
         <source>Plein écran</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Full Screen</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="42"/>
         <source>Maximiser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximize</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="43"/>
         <source>Personnaliser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Personalize</translation>
     </message>
     <message>
         <location filename="initconfig.cpp" line="71"/>
         <source>Choisir un dossier</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Select a folder</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="menusettings.cpp" line="42"/>
         <source>Langues : </source>
-        <translation type="unfinished">Languages :</translation>
+        <translation type="unfinished">Languages : </translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="44"/>
@@ -154,7 +154,7 @@
         <location filename="colorparameter.cpp" line="8"/>
         <location filename="colorparameter.cpp" line="24"/>
         <source>Reglage couleurs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Color Adjustment</translation>
     </message>
 </context>
 <context>
@@ -167,17 +167,17 @@
     <message>
         <location filename="colorparameter.ui" line="40"/>
         <source>Valider</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Validate</translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="47"/>
         <source>Annuler</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel</translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="60"/>
         <source>Rouge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Red</translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="108"/>
@@ -189,12 +189,12 @@
     <message>
         <location filename="colorparameter.ui" line="122"/>
         <source>Vert</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Green</translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="184"/>
         <source>Bleu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Blue</translation>
     </message>
 </context>
 <context>
@@ -290,22 +290,22 @@
         <location filename="mainwindowmenu.ui" line="293"/>
         <location filename="mainwindowmenu.ui" line="318"/>
         <source>Personnaliser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Personalize</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="298"/>
         <source>Couleur Rouge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Red Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="303"/>
         <source>Couleur Verte</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Green Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="308"/>
         <source>Couleur Bleue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Blue Color</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="313"/>
@@ -316,7 +316,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="323"/>
         <source>DeZoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DeZoom</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="328"/>
@@ -489,12 +489,12 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="99"/>
         <source>Fermer le programme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Close the program</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="99"/>
         <source>Voulez vous vraiment fermer le programme?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Are you sure you want to close the program?</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="138"/>
@@ -504,7 +504,7 @@
     <message>
         <location filename="mainwindowmenu.cpp" line="186"/>
         <source>Veuillez choisir le format de l&apos;image :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Please choose the image format:</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="193"/>
