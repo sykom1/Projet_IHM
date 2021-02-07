@@ -8,6 +8,7 @@ MenuSettings::MenuSettings(QStringList langues, QWidget *parent) : QWidget(paren
     //this->setFixedHeight(300);
     //this->setFixedWidth(500);
     initAllTab();
+    createConnection();
 }
 
 
@@ -29,6 +30,7 @@ void MenuSettings::initAllTab(){
 
 void MenuSettings::initTabGeneral(){
     tabWidget->addTab(tabGeneral, tr("Générale"));
+    langueChoice = new QComboBox();
     langueChoice->addItems(langues);
     layoutGeneral->addWidget(labelLangue, 0);
     layoutGeneral->addWidget(langueChoice, 1);
@@ -47,4 +49,9 @@ void MenuSettings::setAllText(){
 void MenuSettings::initTabShortcut(){
     tabShortcut = new QWidget();
     tabWidget->addTab(tabShortcut, tr("Raccourcis"));
+}
+
+void MenuSettings::createConnection(){
+    connect(buttonQuit, &QPushButton::clicked, this, &MenuSettings::close);
+    connect(langueChoice, &QComboBox::currentTextChanged, this, [this]{std::cout << "ok"<< std::endl;});
 }

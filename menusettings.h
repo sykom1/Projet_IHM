@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
+#include <iostream>
 
 class MenuSettings : public QWidget
 {
@@ -23,7 +24,7 @@ private:
     QWidget *tabShortcut = nullptr;
     QStringList langues;
     QLabel *labelLangue = new QLabel();
-    QComboBox *langueChoice = new QComboBox;
+    QComboBox *langueChoice = nullptr;
     QVBoxLayout *layoutGeneral = new QVBoxLayout();
 
     QHBoxLayout *layoutButton = nullptr;
@@ -34,6 +35,8 @@ private:
     void initTabGeneral();
     void initTabShortcut();
     void setAllText();
+
+    void createConnection();
 
 };
 
