@@ -32,6 +32,8 @@ void MenuSettings::initAllTab(){
 
     initTabGeneral();
 
+    initTabWindow();
+
     initTabShortcut();
     buttonApply = new QPushButton();
     buttonQuit = new QPushButton();
@@ -53,12 +55,46 @@ void MenuSettings::initTabGeneral(){
 
 }
 
+void MenuSettings::initTabWindow(){
+    tabWidget->addTab(tabWindow, tr("Fenêtre"));
+    boxForSizeSettings = new QGroupBox;
+    layoutQRadioButton->addWidget(buttonForDefault);
+    layoutQRadioButton->addWidget(buttonForMaximize);
+    layoutQRadioButton->addWidget(buttonForFullscreen);
+    layoutQRadioButton->addWidget(buttonForPersonalize);
+    //buttonForDefault->setChecked(true);
+    boxForSizeSettings->setLayout(layoutQRadioButton);
+
+    //std::cout << settings->value("size").toString().contains("default") << std::endl;
+    if(settings->value("size").toString().contains("default")){
+        buttonForDefault->setChecked(true);
+    }
+    else if(settings->value("size").toString().contains("maximised")){
+        buttonForMaximize->setChecked(true);
+    }else if(settings->value("size").toString().contains("fullscreen")){
+        buttonForFullscreen->setChecked(true);
+    }else if(settings->value("size").toString().contains("personalize")){
+        buttonForPersonalize->setChecked(true);
+    }
+
+    tabWindow->setLayout(layoutWindow);
+    layoutWindow->addWidget(lblInfoSizeWindow);
+    layoutWindow->addWidget(boxForSizeSettings);
+}
+
 void MenuSettings::setAllText(){
     labelLangue->setText(tr("Langues : "));
     tabWidget->setTabText(0, tr("Générale"));
-    tabWidget->setTabText(1, tr("Raccourcis"));
+    tabWidget->setTabText(1, tr("Fenêtre"));
+    tabWidget->setTabText(2, tr("Raccourcis"));
     buttonApply->setText(tr("Appliquer"));
     buttonQuit->setText(tr("Quitter"));
+
+    lblInfoSizeWindow->setText(tr("Taille de la fenêtre : "));
+    buttonForDefault->setText(tr("Par défaut"));
+    buttonForMaximize->setText(tr("Maximisée"));
+    buttonForFullscreen->setText(tr("Plein Ecran"));
+    buttonForPersonalize->setText(tr("Personnalisée"));
 }
 
 void MenuSettings::initTabShortcut(){
@@ -88,8 +124,20 @@ void MenuSettings::initTabShortcut(){
 
     loadShortcut(1);
 
+    line = new QFrame;
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Sunken);
+    layoutScroll->addWidget(line);
 
-    //scrollAreaShortcut->verticalScrollBar()->setSingleStep(layoutScroll->sizeHint().height()/24);
+    loadShortcut(2);
+
+    line = new QFrame;
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Sunken);
+    layoutScroll->addWidget(line);
+
+    loadShortcut(3);
+
 
 }
 

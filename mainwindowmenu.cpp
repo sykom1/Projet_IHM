@@ -453,7 +453,7 @@ void mainWindowMenu::fillListQAction(){
     listQActionRetouch->append(actionBlue_Filter);
 
     listQActionSelection->append(actionRectangle);
-    listQActionSelection->append(actionRogner);
+    listQActionSelection->append(actionCercle);
 
     listQActionEdition->append(action_Revenir);
     listQActionEdition->append(actionRevenir_en_avant);

@@ -16,6 +16,8 @@
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QAction>
+#include <QGroupBox>
+#include <QRadioButton>
 #include <iostream>
 
 #define WIDTHLABELSHORTCUT 150
@@ -37,6 +39,17 @@ private:
     QVBoxLayout *layoutSettings = nullptr;
     QTabWidget *tabWidget = new QTabWidget();
     QWidget *tabGeneral = new QWidget();
+    QWidget *tabWindow = new QWidget;
+
+    QLabel *lblInfoSizeWindow = new QLabel;
+    QVBoxLayout *layoutWindow = new QVBoxLayout;
+    QGroupBox *boxForSizeSettings = nullptr;
+    QRadioButton *buttonForDefault = new QRadioButton;
+    QRadioButton *buttonForMaximize = new QRadioButton;
+    QRadioButton *buttonForFullscreen = new QRadioButton;
+    QRadioButton *buttonForPersonalize = new QRadioButton;
+    QVBoxLayout *layoutQRadioButton = new QVBoxLayout;
+
     QWidget *tabShortcut = new QWidget();
     QScrollArea *scrollAreaShortcut = new QScrollArea();
     QVBoxLayout *layoutShortcut = new QVBoxLayout;
@@ -53,6 +66,7 @@ private:
 
     void initAllTab();
     void initTabGeneral();
+    void initTabWindow();
     void initTabShortcut();
     void setAllText();
     void changeLanguage();
