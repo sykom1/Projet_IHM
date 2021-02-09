@@ -50,6 +50,8 @@ void mainWindowMenu::initLogo(){
 
     actionHorizontal->setIcon(QIcon(":/Resources/Horizontal.png"));
     actionVertical->setIcon(QIcon(":/Resources/Vertical.png"));
+
+    actionConfig->setIcon(QIcon(":/Resources/param.png"));
 }
 
 DisplayContains* mainWindowMenu::getDisplayContains(){

@@ -16,5 +16,6 @@
         <file>Resources/redimentionner.png</file>
         <file>Resources/Horizontal.png</file>
         <file>Resources/Vertical.png</file>
+        <file>Resources/param.png</file>
     </qresource>
 </RCC>
