@@ -17,5 +17,6 @@
         <file>Resources/Horizontal.png</file>
         <file>Resources/Vertical.png</file>
         <file>Resources/param.png</file>
+        <file>Resources/FermerDoc.png</file>
     </qresource>
 </RCC>
