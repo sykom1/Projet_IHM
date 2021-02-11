@@ -96,7 +96,9 @@ void MenuSettings::initTabWindow(){
         boxForPersonalizationLength->setDisabled(true);
     }else if(settings->value("size").toString().contains("personalize")){
         buttonForPersonalize->setChecked(true);
-        //std::cout << settings->value("size").toString().split(" ")[0].toStdString() << std::endl;
+        std::cout << settings->value("size").toString().split(" ")[1].toStdString() << std::endl;
+        editForHeight->setText(settings->value("size").toString().split(" ")[1]);
+        editForWidth->setText(settings->value("size").toString().split(" ")[2]);
     }
 
     tabWindow->setLayout(layoutWindow);
@@ -236,6 +238,8 @@ void MenuSettings::verifyClose(){
 
 void MenuSettings::applyConfig(){
     settings->setValue("langue", langueChoice->currentText().toLower());
+
+    //settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
     close();
 }
 
