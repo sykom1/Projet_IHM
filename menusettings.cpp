@@ -58,12 +58,30 @@ void MenuSettings::initTabGeneral(){
 void MenuSettings::initTabWindow(){
     tabWidget->addTab(tabWindow, tr("Fenêtre"));
     boxForSizeSettings = new QGroupBox;
+    layoutQRadioButton = new QVBoxLayout;
     layoutQRadioButton->addWidget(buttonForDefault);
     layoutQRadioButton->addWidget(buttonForMaximize);
     layoutQRadioButton->addWidget(buttonForFullscreen);
     layoutQRadioButton->addWidget(buttonForPersonalize);
-    //buttonForDefault->setChecked(true);
     boxForSizeSettings->setLayout(layoutQRadioButton);
+
+    boxForPersonalizationLength = new QGroupBox;
+    boxForPersonalizationLength->setTitle(tr("Personnalisation"));
+    QHBoxLayout *layoutHBoxHeight = new QHBoxLayout;
+    editForHeight = new QLineEdit;
+    layoutHBoxHeight->addWidget(lblForHeight);
+    layoutHBoxHeight->addWidget(editForHeight);
+
+
+    QHBoxLayout *layoutHBoxWidth = new QHBoxLayout;
+    editForWidth = new QLineEdit;
+    layoutHBoxWidth->addWidget(lblForWidth);
+    layoutHBoxWidth->addWidget(editForWidth);
+
+    layoutPersonalization = new QVBoxLayout;
+    layoutPersonalization->addLayout(layoutHBoxHeight);
+    layoutPersonalization->addLayout(layoutHBoxWidth);
+    boxForPersonalizationLength->setLayout(layoutPersonalization);
 
     //std::cout << settings->value("size").toString().contains("default") << std::endl;
     if(settings->value("size").toString().contains("default")){
@@ -80,6 +98,7 @@ void MenuSettings::initTabWindow(){
     tabWindow->setLayout(layoutWindow);
     layoutWindow->addWidget(lblInfoSizeWindow);
     layoutWindow->addWidget(boxForSizeSettings);
+    layoutWindow->addWidget(boxForPersonalizationLength);
 }
 
 void MenuSettings::setAllText(){
@@ -95,6 +114,9 @@ void MenuSettings::setAllText(){
     buttonForMaximize->setText(tr("Maximisée"));
     buttonForFullscreen->setText(tr("Plein Ecran"));
     buttonForPersonalize->setText(tr("Personnalisée"));
+
+    lblForHeight->setText(tr("Hauteur"));
+    lblForWidth->setText(tr("Largeur"));
 }
 
 void MenuSettings::initTabShortcut(){

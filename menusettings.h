@@ -18,6 +18,7 @@
 #include <QAction>
 #include <QGroupBox>
 #include <QRadioButton>
+#include <QLineEdit>
 #include <iostream>
 
 #define WIDTHLABELSHORTCUT 150
@@ -48,7 +49,14 @@ private:
     QRadioButton *buttonForMaximize = new QRadioButton;
     QRadioButton *buttonForFullscreen = new QRadioButton;
     QRadioButton *buttonForPersonalize = new QRadioButton;
-    QVBoxLayout *layoutQRadioButton = new QVBoxLayout;
+    QVBoxLayout *layoutQRadioButton = nullptr;
+
+    QGroupBox *boxForPersonalizationLength = nullptr;
+    QLabel *lblForHeight = new QLabel;
+    QLineEdit *editForHeight = nullptr;
+    QLabel *lblForWidth = new QLabel;
+    QLineEdit *editForWidth = nullptr;
+    QVBoxLayout *layoutPersonalization = nullptr;
 
     QWidget *tabShortcut = new QWidget();
     QScrollArea *scrollAreaShortcut = new QScrollArea();
