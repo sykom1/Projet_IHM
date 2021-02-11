@@ -86,13 +86,17 @@ void MenuSettings::initTabWindow(){
     //std::cout << settings->value("size").toString().contains("default") << std::endl;
     if(settings->value("size").toString().contains("default")){
         buttonForDefault->setChecked(true);
+        boxForPersonalizationLength->setDisabled(true);
     }
     else if(settings->value("size").toString().contains("maximised")){
         buttonForMaximize->setChecked(true);
+        boxForPersonalizationLength->setDisabled(true);
     }else if(settings->value("size").toString().contains("fullscreen")){
         buttonForFullscreen->setChecked(true);
+        boxForPersonalizationLength->setDisabled(true);
     }else if(settings->value("size").toString().contains("personalize")){
         buttonForPersonalize->setChecked(true);
+        //std::cout << settings->value("size").toString().split(" ")[0].toStdString() << std::endl;
     }
 
     tabWindow->setLayout(layoutWindow);
@@ -189,6 +193,10 @@ void MenuSettings::createConnection(){
     connect(buttonQuit, &QPushButton::clicked, this, &MenuSettings::verifyClose);
     connect(buttonApply, &QPushButton::clicked, this, &MenuSettings::applyConfig);
     connect(langueChoice, &QComboBox::currentTextChanged, this, &MenuSettings::changeLanguage);
+    connect(buttonForDefault, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
+    connect(buttonForMaximize, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
+    connect(buttonForFullscreen, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
+    connect(buttonForPersonalize, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setEnabled(true);});
 }
 
 void MenuSettings::undoLanguage(){
