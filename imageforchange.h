@@ -6,6 +6,8 @@
 #include <QAction>
 #include <iostream>
 #include <QPushButton>
+#include <QWidget>
+#include <QtWidgets>
 #include "resizepicture.h"
 #include "displaycontains.h"
 #define SIZEARRAY 4
@@ -33,6 +35,7 @@ public:
     void initActualImg();
     void changeActualReduceImage();
     void setButtonUndoRedo(QPushButton *undoButton, QPushButton *redoButton);
+    void wheelEvent(QWheelEvent *wheelEvent);
 
 private:
     int idarrayImage = -1;
