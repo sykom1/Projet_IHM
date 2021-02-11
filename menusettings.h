@@ -20,6 +20,7 @@
 #include <QRadioButton>
 #include <QLineEdit>
 #include <iostream>
+#include "loadsettings.h"
 
 #define WIDTHLABELSHORTCUT 150
 

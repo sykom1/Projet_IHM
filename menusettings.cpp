@@ -239,6 +239,26 @@ void MenuSettings::verifyClose(){
 void MenuSettings::applyConfig(){
     settings->setValue("langue", langueChoice->currentText().toLower());
 
+    if(buttonForDefault->isChecked()){
+        settings->setValue("size","default");
+    }
+    else if(buttonForMaximize->isChecked()){
+        settings->setValue("size","maximised");
+    }
+    else if(buttonForFullscreen->isChecked()){
+        settings->setValue("size","fullscreen");
+    }
+    else if(buttonForPersonalize->isChecked()){
+        if(editForHeight->text().compare("") == 0 || editForWidth->text().compare("") == 0){
+            //Test false.
+        }else{
+            settings->setValue("size","personalize " + editForHeight->text() + " " + editForWidth->text());
+            //std::cout << "personalize " << hauteur->text().toStdString() << " " << largeur->text().toStdString() << std::endl;
+        }
+
+   }
+//    LoadSettings *loadSettings = new LoadSettings(((QMainWindow*)this->parent()), translator);
+//    loadSettings->loadAllConfig();
     //settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
     close();
 }
