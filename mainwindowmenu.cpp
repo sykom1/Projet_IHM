@@ -76,7 +76,6 @@ void mainWindowMenu::openNewFile(){
         if(!imageForChange->isNull()){
             displayContains->refreshImage(imageForChange->getActualImg(), 0, 0);
             imageForChange->changeSizeReduceImg();
-            //refreshReduceImage();
             displayContains->createNewReducedLabel(imageForChange->getReduceImg());
             displayContains->refreshReducedImage(imageForChange->getReduceImg());
             displayContains->moveReducedLabel(620, 30);
@@ -89,8 +88,6 @@ void mainWindowMenu::openNewFile(){
                 barButtonRetouch->show();
             }
         }
-
-        //printPixels(imageForChange);
     }
 
 
@@ -121,7 +118,6 @@ void mainWindowMenu::closeFile(){
     displayContains->clearDisplay();
     barButtonRetouch->closeFormsAndCrop();
     pathImg = nullptr;
-    imageForChange = nullptr;//casse tout
     setMenuEnabled(false);
     if(barButtonRetouch!=nullptr)
     {
