@@ -103,13 +103,6 @@
     <addaction name="actionRectangle"/>
     <addaction name="actionCercle"/>
    </widget>
-   <widget class="QMenu" name="menuLangues">
-    <property name="title">
-     <string>Langues</string>
-    </property>
-    <addaction name="actionFrancais"/>
-    <addaction name="actionAnglais"/>
-   </widget>
    <widget class="QMenu" name="menuEdition">
     <property name="title">
      <string>Edition</string>
@@ -131,7 +124,6 @@
    <addaction name="menuEdition"/>
    <addaction name="menuRetouche"/>
    <addaction name="menuSelection"/>
-   <addaction name="menuLangues"/>
    <addaction name="menuActions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

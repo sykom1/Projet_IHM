@@ -396,11 +396,6 @@ void mainWindowMenu::changeEvent(QEvent *event){
         actionRectangle->setText("&" + tr("Rectangle"));
         actionCercle->setText("&" + tr("Cercle"));
 
-        // Langues Menu
-        menuLangues->setTitle("&" + tr("Langues"));
-        actionFrancais->setText("&" + tr("Français"));
-        actionAnglais->setText("&" + tr("Anglais"));
-
         // Edition Menu
         menuEdition->setTitle("&" + tr("Edition"));
         action_Revenir->setText("&" + tr("Revenir en arrière"));
@@ -487,8 +482,6 @@ void mainWindowMenu::runAllEventFromTheMainWindow(){
     connect(actionCercle, &QAction::triggered, this, [this]{barButtonRetouch->circleSelectButton();});
     connect(actionRogner, &QAction::triggered, this, [this]{doTrim(imageForChange->getActualImg(),barButtonRetouch->getModState());});
     connect(actionSupprimer, &QAction::triggered, this, [this]{deleteSelec(imageForChange->getActualImg(),barButtonRetouch->getModState());});
-    connect(actionFrancais, &QAction::triggered, this, [this]{updateLanguage("Francais");});
-    connect(actionAnglais, &QAction::triggered, this, [this]{updateLanguage("English");});
     connect(actionReturnInitImg, &QAction::triggered, this, [this]{barButtonRetouch->initImgFct();});
     connect(actionDessiner, &QAction::triggered, this, [this]{barButtonRetouch->drawSelectButton();});
     connect(action_Revenir, &QAction::triggered, this, [this]{
