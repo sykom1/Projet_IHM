@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QFormLayout>
+#include <string>
 
 
 mainWindowMenu::mainWindowMenu(QTranslator *t, QStringList langues, QWidget *parent)
@@ -92,6 +93,28 @@ void mainWindowMenu::openNewFile(){
 
 
 
+}
+
+void mainWindowMenu::wheelEvent(QWheelEvent *wheelEvent)
+{
+
+    if(barButtonRetouch!=nullptr){
+        QImage img = imageForChange->getActualImg();
+        int width = imageForChange->getActualImg().width();
+        int height = imageForChange->getActualImg().height();
+        if(QGuiApplication::keyboardModifiers().testFlag(Qt::ControlModifier)){
+            if(wheelEvent->delta()>0){
+                img = img.scaled(width*1.15,height*1.15,Qt::IgnoreAspectRatio,Qt::FastTransformation);
+                imageForChange->changeActualImg(img);
+                displayContains->refreshImage(imageForChange->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
+            }
+            else{
+                img = img.scaled(width*0.85,height*0.85,Qt::IgnoreAspectRatio,Qt::FastTransformation);
+                imageForChange->changeActualImg(img);
+                displayContains->refreshImage(imageForChange->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
+            }
+        }
+    }
 }
 
 
@@ -409,11 +432,6 @@ void mainWindowMenu::changeEvent(QEvent *event){
 
     }
 
-}
-
-void mainWindowMenu::wheelEvent(QWheelEvent *wheelEvent)
-{
-    imageForChange->wheelEvent(wheelEvent);
 }
 
 void mainWindowMenu::fillListQAction(){

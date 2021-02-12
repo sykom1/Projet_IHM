@@ -189,34 +189,6 @@ bool ImageForChange::isPrevious(){
     return idarrayImage > 0;
 }
 
-void ImageForChange::wheelEvent(QWheelEvent *wheelEvent)
-{
-
-    if(!this->getActualImg().isNull()){
-        QImage img = this->getActualImg();
-        int width = this->getActualImg().width();
-        int height = this->getActualImg().height();
-        if(QGuiApplication::keyboardModifiers().testFlag(Qt::ControlModifier)){
-            if(wheelEvent->delta()>0){
-                img = img.scaled(width*1.15,height*1.15,Qt::IgnoreAspectRatio,Qt::FastTransformation);
-                this->changeActualImg(img);
-                displayContains->refreshImage(this->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
-            }
-            else{
-                img = img.scaled(width*0.85,height*0.85,Qt::IgnoreAspectRatio,Qt::FastTransformation);
-                this->changeActualImg(img);
-                displayContains->refreshImage(this->getActualImg(), displayContains->getScrollArea()->x(), displayContains->getScrollArea()->y());
-            }
-        }
-        else{
-            std::cout << "control pas appuyé" << std::endl;
-        }
-    }
-    else{
-        std::cout << "imùage fermée" << std::endl;
-    }
-}
-
 
 
 

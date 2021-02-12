@@ -35,7 +35,6 @@ public:
     void initActualImg();
     void changeActualReduceImage();
     void setButtonUndoRedo(QPushButton *undoButton, QPushButton *redoButton);
-    void wheelEvent(QWheelEvent *wheelEvent);
 
 private:
     int idarrayImage = -1;
