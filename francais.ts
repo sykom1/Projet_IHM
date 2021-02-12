@@ -117,7 +117,7 @@
         <location filename="menusettings.cpp" line="60"/>
         <location filename="menusettings.cpp" line="115"/>
         <source>Fenêtre</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fenêtre</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="70"/>
@@ -188,27 +188,27 @@
     <message>
         <location filename="menusettings.cpp" line="222"/>
         <source>Fermer les settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fermer les options</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="223"/>
         <source>Voulez-vous vraiment quitter sans appliquer les modifications ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voulez-vous vraiment quitter sans appliquer les modifications ?</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="292"/>
         <source>Rentrer une valeur.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Entrer une valeur</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="295"/>
         <source>Vous n&apos;avez pas rentrer une valeur valide.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vous n&apos;avez pas entré une valeur valide</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="298"/>
         <source>La taille demandée n&apos;est pas valide.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La taille demandée n&apos;est pas valide.</translation>
     </message>
 </context>
 <context>
@@ -253,14 +253,14 @@
     <message>
         <location filename="colorparameter.ui" line="60"/>
         <source>Rouge</source>
-        <translation type="unfinished">Rouge</translation>
+        <translation>Rouge</translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="108"/>
         <location filename="colorparameter.ui" line="173"/>
         <location filename="colorparameter.ui" line="232"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="colorparameter.ui" line="122"/>
@@ -315,7 +315,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="77"/>
         <source>Couleurs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Couleurs</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="101"/>
@@ -447,7 +447,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="320"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="215"/>

@@ -117,7 +117,7 @@
         <location filename="menusettings.cpp" line="60"/>
         <location filename="menusettings.cpp" line="115"/>
         <source>Fenêtre</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Window</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="70"/>
@@ -188,27 +188,28 @@
     <message>
         <location filename="menusettings.cpp" line="222"/>
         <source>Fermer les settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Close Settings</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="223"/>
         <source>Voulez-vous vraiment quitter sans appliquer les modifications ?</source>
+        <translatorcomment>Are you sure you want to exit without applying the changes?</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="292"/>
         <source>Rentrer une valeur.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enter a value</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="295"/>
         <source>Vous n&apos;avez pas rentrer une valeur valide.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">You didn&apos;t enter a valid value</translation>
     </message>
     <message>
         <location filename="menusettings.cpp" line="298"/>
         <source>La taille demandée n&apos;est pas valide.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">The requested size is not valid</translation>
     </message>
 </context>
 <context>
@@ -408,7 +409,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="77"/>
         <source>Couleurs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Colors</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="220"/>
@@ -425,7 +426,7 @@
     <message>
         <location filename="mainwindowmenu.ui" line="233"/>
         <source>&amp;Sauvegarder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Save</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="255"/>
