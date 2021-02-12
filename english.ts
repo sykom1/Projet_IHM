@@ -108,31 +108,107 @@
 <context>
     <name>MenuSettings</name>
     <message>
-        <location filename="menusettings.cpp" line="32"/>
-        <location filename="menusettings.cpp" line="43"/>
+        <location filename="menusettings.cpp" line="50"/>
+        <location filename="menusettings.cpp" line="114"/>
         <source>Générale</source>
         <translation type="unfinished">General</translation>
     </message>
     <message>
-        <location filename="menusettings.cpp" line="42"/>
+        <location filename="menusettings.cpp" line="60"/>
+        <location filename="menusettings.cpp" line="115"/>
+        <source>Fenêtre</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="70"/>
+        <source>Personnalisation</source>
+        <translation type="unfinished">Personalization</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="113"/>
         <source>Langues : </source>
         <translation type="unfinished">Languages : </translation>
     </message>
     <message>
-        <location filename="menusettings.cpp" line="44"/>
-        <location filename="menusettings.cpp" line="51"/>
+        <location filename="menusettings.cpp" line="116"/>
+        <location filename="menusettings.cpp" line="131"/>
         <source>Raccourcis</source>
         <translation type="unfinished">Shortcuts</translation>
     </message>
     <message>
-        <location filename="menusettings.cpp" line="45"/>
+        <location filename="menusettings.cpp" line="117"/>
         <source>Appliquer</source>
         <translation type="unfinished">Apply</translation>
     </message>
     <message>
-        <location filename="menusettings.cpp" line="46"/>
+        <location filename="menusettings.cpp" line="118"/>
         <source>Quitter</source>
         <translation type="unfinished">Quit</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="120"/>
+        <source>Taille de la fenêtre : </source>
+        <translation type="unfinished">Window Size : </translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="121"/>
+        <source>Par défaut</source>
+        <translation type="unfinished">By Default</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="122"/>
+        <source>Maximisée</source>
+        <translation type="unfinished">Maximize</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="123"/>
+        <source>Plein Ecran</source>
+        <translation type="unfinished">Full Screen</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="124"/>
+        <source>Personnalisée</source>
+        <translation type="unfinished">Personalize</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="126"/>
+        <source>Hauteur</source>
+        <translation type="unfinished">Height</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="127"/>
+        <source>Largeur</source>
+        <translation type="unfinished">Width</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="143"/>
+        <source>Fichier</source>
+        <translation type="unfinished">File</translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="222"/>
+        <source>Fermer les settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="223"/>
+        <source>Voulez-vous vraiment quitter sans appliquer les modifications ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="292"/>
+        <source>Rentrer une valeur.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="295"/>
+        <source>Vous n&apos;avez pas rentrer une valeur valide.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="menusettings.cpp" line="298"/>
+        <source>La taille demandée n&apos;est pas valide.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -206,126 +282,126 @@
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="34"/>
-        <location filename="mainwindowmenu.cpp" line="357"/>
+        <location filename="mainwindowmenu.cpp" line="372"/>
         <source>Fichier</source>
         <translation type="unfinished">File</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="48"/>
-        <location filename="mainwindowmenu.cpp" line="365"/>
+        <location filename="mainwindowmenu.cpp" line="380"/>
         <source>Retouche</source>
         <translation type="unfinished">Retouch</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="70"/>
-        <location filename="mainwindowmenu.cpp" line="368"/>
+        <location filename="mainwindowmenu.cpp" line="383"/>
         <source>Miroir</source>
         <translation type="unfinished">Mirror</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="101"/>
-        <location filename="mainwindowmenu.cpp" line="380"/>
+        <location filename="mainwindowmenu.cpp" line="395"/>
         <source>Selection</source>
         <translation type="unfinished">Selection</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="146"/>
-        <location filename="mainwindowmenu.cpp" line="358"/>
+        <location filename="mainwindowmenu.ui" line="138"/>
+        <location filename="mainwindowmenu.cpp" line="373"/>
         <source>Ouvrir une image</source>
         <translation type="unfinished">Open an image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="154"/>
-        <location filename="mainwindowmenu.cpp" line="359"/>
+        <location filename="mainwindowmenu.ui" line="146"/>
+        <location filename="mainwindowmenu.cpp" line="374"/>
         <source>Sauvegarder sous</source>
         <translation type="unfinished">Save as</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="360"/>
+        <location filename="mainwindowmenu.cpp" line="375"/>
         <source>Quitter</source>
         <translation type="unfinished">Quit</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="361"/>
+        <location filename="mainwindowmenu.cpp" line="376"/>
         <source>Fermer l&apos;image</source>
         <translation type="unfinished">Close Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="190"/>
-        <location filename="mainwindowmenu.cpp" line="381"/>
+        <location filename="mainwindowmenu.ui" line="182"/>
+        <location filename="mainwindowmenu.cpp" line="396"/>
         <source>Rectangle</source>
         <translation type="unfinished">Rectangle</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="198"/>
-        <location filename="mainwindowmenu.cpp" line="382"/>
+        <location filename="mainwindowmenu.ui" line="190"/>
+        <location filename="mainwindowmenu.cpp" line="397"/>
         <source>Cercle</source>
         <translation type="unfinished">Circle</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="203"/>
-        <location filename="mainwindowmenu.cpp" line="399"/>
+        <location filename="mainwindowmenu.ui" line="195"/>
+        <location filename="mainwindowmenu.cpp" line="409"/>
         <source>1980 par 1024</source>
         <translation type="unfinished">1980 By 1024</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="208"/>
-        <location filename="mainwindowmenu.cpp" line="396"/>
+        <location filename="mainwindowmenu.ui" line="200"/>
+        <location filename="mainwindowmenu.cpp" line="406"/>
         <source>1024 par 768</source>
         <translation type="unfinished">1024 By 768</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="213"/>
-        <location filename="mainwindowmenu.cpp" line="398"/>
+        <location filename="mainwindowmenu.ui" line="205"/>
+        <location filename="mainwindowmenu.cpp" line="408"/>
         <source>1680 par 1050</source>
         <translation type="unfinished">1680 By 1050</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="218"/>
-        <location filename="mainwindowmenu.cpp" line="397"/>
+        <location filename="mainwindowmenu.ui" line="210"/>
+        <location filename="mainwindowmenu.cpp" line="407"/>
         <source>1600 par 900</source>
         <translation type="unfinished">1600 By 900</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="293"/>
-        <location filename="mainwindowmenu.ui" line="318"/>
+        <location filename="mainwindowmenu.ui" line="285"/>
+        <location filename="mainwindowmenu.ui" line="310"/>
         <source>Personnaliser</source>
         <translation type="unfinished">Personalize</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="298"/>
+        <location filename="mainwindowmenu.ui" line="290"/>
         <source>Couleur Rouge</source>
         <translation type="unfinished">Red Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="303"/>
+        <location filename="mainwindowmenu.ui" line="295"/>
         <source>Couleur Verte</source>
         <translation type="unfinished">Green Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="308"/>
+        <location filename="mainwindowmenu.ui" line="300"/>
         <source>Couleur Bleue</source>
         <translation type="unfinished">Blue Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="313"/>
-        <location filename="mainwindowmenu.cpp" line="371"/>
+        <location filename="mainwindowmenu.ui" line="305"/>
+        <location filename="mainwindowmenu.cpp" line="386"/>
         <source>Inverser Pixels</source>
         <translation type="unfinished">Invert Pixels</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="323"/>
+        <location filename="mainwindowmenu.ui" line="315"/>
         <source>DeZoom</source>
         <translation type="unfinished">DeZoom</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="328"/>
+        <location filename="mainwindowmenu.ui" line="320"/>
         <source>Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="223"/>
-        <location filename="mainwindowmenu.cpp" line="369"/>
+        <location filename="mainwindowmenu.ui" line="215"/>
+        <location filename="mainwindowmenu.cpp" line="384"/>
         <source>Horizontal</source>
         <translation type="unfinished">Horizontal</translation>
     </message>
@@ -335,199 +411,195 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="228"/>
-        <location filename="mainwindowmenu.cpp" line="370"/>
+        <location filename="mainwindowmenu.ui" line="220"/>
+        <location filename="mainwindowmenu.cpp" line="385"/>
         <source>Vertical</source>
         <translation type="unfinished">Vertical</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="233"/>
-        <location filename="mainwindowmenu.cpp" line="372"/>
+        <location filename="mainwindowmenu.ui" line="225"/>
+        <location filename="mainwindowmenu.cpp" line="387"/>
         <source>Supprimer</source>
         <translation type="unfinished">Delete</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="241"/>
+        <location filename="mainwindowmenu.ui" line="233"/>
         <source>&amp;Sauvegarder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="263"/>
-        <location filename="mainwindowmenu.cpp" line="387"/>
+        <location filename="mainwindowmenu.ui" line="255"/>
         <source>Anglais</source>
         <translation type="unfinished">English</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="268"/>
-        <location filename="mainwindowmenu.cpp" line="374"/>
+        <location filename="mainwindowmenu.ui" line="260"/>
+        <location filename="mainwindowmenu.cpp" line="389"/>
         <source>Retour à l&apos;image initiale</source>
         <translation type="unfinished">Back to Initial Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="273"/>
+        <location filename="mainwindowmenu.ui" line="265"/>
         <source>Dessiner</source>
         <translation type="unfinished">Draw</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="278"/>
+        <location filename="mainwindowmenu.ui" line="270"/>
         <source> Revenir en arrière</source>
         <translation type="unfinished">Undo</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="283"/>
-        <location filename="mainwindowmenu.cpp" line="392"/>
+        <location filename="mainwindowmenu.ui" line="275"/>
+        <location filename="mainwindowmenu.cpp" line="402"/>
         <source>Revenir en avant</source>
         <translation type="unfinished">Redo</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="288"/>
+        <location filename="mainwindowmenu.ui" line="280"/>
         <source>Zoom</source>
         <translation type="unfinished">Zoom</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="376"/>
+        <location filename="mainwindowmenu.cpp" line="391"/>
         <source>Red Color</source>
         <translation type="unfinished">Red Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="375"/>
+        <location filename="mainwindowmenu.cpp" line="390"/>
         <source>Green Color</source>
         <translation type="unfinished">Green Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="377"/>
+        <location filename="mainwindowmenu.cpp" line="392"/>
         <source>Blue Color</source>
         <translation type="unfinished">Blue Color</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="400"/>
+        <location filename="mainwindowmenu.cpp" line="410"/>
         <source>Personnalisée</source>
         <translation type="unfinished">Personalize</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="66"/>
-        <location filename="mainwindowmenu.cpp" line="367"/>
+        <location filename="mainwindowmenu.cpp" line="382"/>
         <source>Filtre</source>
         <translation type="unfinished">Filter</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.ui" line="52"/>
-        <location filename="mainwindowmenu.cpp" line="182"/>
-        <location filename="mainwindowmenu.cpp" line="366"/>
-        <location filename="mainwindowmenu.cpp" line="395"/>
+        <location filename="mainwindowmenu.cpp" line="187"/>
+        <location filename="mainwindowmenu.cpp" line="381"/>
+        <location filename="mainwindowmenu.cpp" line="405"/>
         <source>Redimensionnement</source>
         <translation type="unfinished">Resize</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="108"/>
-        <location filename="mainwindowmenu.cpp" line="385"/>
         <source>Langues</source>
-        <translation type="unfinished">Languages</translation>
+        <translation type="obsolete">Languages</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="115"/>
-        <location filename="mainwindowmenu.cpp" line="390"/>
+        <location filename="mainwindowmenu.ui" line="108"/>
+        <location filename="mainwindowmenu.cpp" line="400"/>
         <source>Edition</source>
         <translation type="unfinished">Editing</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="125"/>
+        <location filename="mainwindowmenu.ui" line="118"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="143"/>
+        <location filename="mainwindowmenu.ui" line="135"/>
         <source>&amp;Ouvrir une image</source>
         <translation type="unfinished">Open Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="159"/>
+        <location filename="mainwindowmenu.ui" line="151"/>
         <source>&amp;Quitter</source>
         <translation type="unfinished">Quit</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="167"/>
+        <location filename="mainwindowmenu.ui" line="159"/>
         <source>&amp;Fermer l&apos;image</source>
         <translation type="unfinished">Close Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="172"/>
-        <location filename="mainwindowmenu.cpp" line="373"/>
+        <location filename="mainwindowmenu.ui" line="164"/>
+        <location filename="mainwindowmenu.cpp" line="388"/>
         <source>Rogner</source>
         <translation type="unfinished">Crop</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="177"/>
-        <location filename="mainwindowmenu.ui" line="255"/>
-        <location filename="mainwindowmenu.cpp" line="386"/>
+        <location filename="mainwindowmenu.ui" line="169"/>
+        <location filename="mainwindowmenu.ui" line="247"/>
         <source>Français</source>
         <translation type="unfinished">French</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.ui" line="182"/>
+        <location filename="mainwindowmenu.ui" line="174"/>
         <source>English</source>
         <translation type="unfinished">English</translation>
     </message>
     <message>
         <location filename="mainwindowmenu.cpp" line="16"/>
-        <location filename="mainwindowmenu.cpp" line="355"/>
+        <location filename="mainwindowmenu.cpp" line="370"/>
         <source>Retouche d&apos;Image</source>
         <translation type="unfinished">Image Touch</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="59"/>
+        <location filename="mainwindowmenu.cpp" line="63"/>
         <source>Sélectionnez l&apos;image</source>
         <translation type="unfinished">Select image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="60"/>
-        <location filename="mainwindowmenu.cpp" line="139"/>
+        <location filename="mainwindowmenu.cpp" line="64"/>
+        <location filename="mainwindowmenu.cpp" line="144"/>
         <source>Fichier Image</source>
         <oldsource>Fichier Image (*.png *.jpg *.bmp)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="99"/>
+        <location filename="mainwindowmenu.cpp" line="103"/>
         <source>Fermer le programme</source>
         <translation type="unfinished">Close the program</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="99"/>
+        <location filename="mainwindowmenu.cpp" line="103"/>
         <source>Voulez vous vraiment fermer le programme?</source>
         <translation type="unfinished">Are you sure you want to close the program?</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="138"/>
+        <location filename="mainwindowmenu.cpp" line="143"/>
         <source>Sauvegarder l&apos;image</source>
         <translation type="unfinished">Save Image</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="186"/>
+        <location filename="mainwindowmenu.cpp" line="191"/>
         <source>Veuillez choisir le format de l&apos;image :</source>
         <translation type="unfinished">Please choose the image format:</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="193"/>
+        <location filename="mainwindowmenu.cpp" line="198"/>
         <source>Hauteur</source>
         <translation type="unfinished">Height</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="197"/>
+        <location filename="mainwindowmenu.cpp" line="202"/>
         <source>Largeur</source>
         <translation type="unfinished">Width</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="203"/>
+        <location filename="mainwindowmenu.cpp" line="208"/>
         <source>Confirmer</source>
         <translation type="unfinished">Confirm</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="362"/>
+        <location filename="mainwindowmenu.cpp" line="377"/>
         <source>Sauvegarder</source>
         <translation type="unfinished">Save</translation>
     </message>
     <message>
-        <location filename="mainwindowmenu.cpp" line="391"/>
+        <location filename="mainwindowmenu.cpp" line="401"/>
         <source>Revenir en arrière</source>
         <translation type="unfinished">Undo</translation>
     </message>
