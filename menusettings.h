@@ -28,11 +28,12 @@ class MenuSettings : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MenuSettings(QStringList langues, QTranslator *translator,
+    explicit MenuSettings(QStringList langues, QTranslator *translator, LoadSettings *loadSettings,
                           QVector<QVector<QAction*>*> *listOfListQAction, QWidget *parent = nullptr);
 
 
 private:
+    LoadSettings *loadSettings = nullptr;
     QSettings *settings = nullptr;
 
     QVector<QVector<QAction*>*> *listOfListQAction = nullptr;

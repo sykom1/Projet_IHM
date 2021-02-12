@@ -217,8 +217,8 @@ void mainWindowMenu::doResizing(QImage img){
 
 
 void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *qdialog,QImage img){
-    boolean lineEditBoolean1 = true;
-    boolean lineEditBoolean2 = true;
+    bool lineEditBoolean1 = true;
+    bool lineEditBoolean2 = true;
 
     if((lineEdit->text().toInt() >= 0 && lineEdit->text().toInt() <= 1980) && (lineEdit2->text().toInt() >=0 && lineEdit2->text().toInt() <= 1024)){
         doResizing(img,lineEdit->text().toInt(),lineEdit2->text().toInt());
@@ -520,7 +520,7 @@ void mainWindowMenu::openSettings(){
         menuSettings->close();
         menuSettings = nullptr;
     }
-    menuSettings = new MenuSettings(langues, translator, listofListQAction);
+    menuSettings = new MenuSettings(langues, translator, loadSettings, listofListQAction);
     menuSettings->show();
 }
 

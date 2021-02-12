@@ -1,9 +1,10 @@
 #include "menusettings.h"
 
-MenuSettings::MenuSettings(QStringList langues, QTranslator *translator,
+MenuSettings::MenuSettings(QStringList langues, QTranslator *translator, LoadSettings *loadSettings,
                            QVector<QVector<QAction*>*> *listOfListQAction, QWidget *parent) : QWidget(parent)
 {
     layoutSettings = new QVBoxLayout();
+    this->loadSettings = loadSettings;
     QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
     settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
     this->setLayout(layoutSettings);
@@ -260,6 +261,7 @@ void MenuSettings::applyConfig(){
 //    LoadSettings *loadSettings = new LoadSettings(((QMainWindow*)this->parent()), translator);
 //    loadSettings->loadAllConfig();
     //settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
+    loadSettings->loadAllConfig();
     close();
 }
 
