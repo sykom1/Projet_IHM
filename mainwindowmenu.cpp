@@ -217,6 +217,8 @@ void mainWindowMenu::doResizing(QImage img){
 
 
 void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDialog *qdialog,QImage img){
+    boolean lineEditBoolean1 = true;
+    boolean lineEditBoolean2 = true;
 
     if((lineEdit->text().toInt() >= 0 && lineEdit->text().toInt() <= 1980) && (lineEdit2->text().toInt() >=0 && lineEdit2->text().toInt() <= 1024)){
         doResizing(img,lineEdit->text().toInt(),lineEdit2->text().toInt());
@@ -225,14 +227,22 @@ void mainWindowMenu::resizeClicked(QLineEdit *lineEdit, QLineEdit *lineEdit2,QDi
     {
         QMessageBox msgBox;
         msgBox.setText("Une erreur est survenue.");
-        if(lineEdit->text().toInt() < 0 ){
-            msgBox.setText("LineEdit < 0 ");
-        } else if(lineEdit->text().toInt() > 1980 ){
-            msgBox.setText("LineEdit > 1980");
-        } else if(lineEdit2->text().toInt() < 0){
-            msgBox.setText(" LineEdit2 < 0");
-        } else if(lineEdit2->text().toInt() > 1024){
-            msgBox.setText(" LineEdit2 > 1024");
+        if(lineEdit->text().toInt() < 0  || lineEdit->text().toInt() > 1980){
+            lineEditBoolean1 = false;
+        }
+        if(lineEdit2->text().toInt() < 0 || lineEdit2->text().toInt() > 1024)
+        {
+            lineEditBoolean2 = false;
+        }
+
+        if(lineEditBoolean1==false && lineEditBoolean2==false){
+            msgBox.setText("Veuillez saisir une largeur ET une hauteur valide !");
+        }
+        if(lineEditBoolean1==true && lineEditBoolean2 == false){
+            msgBox.setText("Veuillez saisisr une largeur valide");
+        }
+        if(lineEditBoolean1==false && lineEditBoolean2==true){
+            msgBox.setText("Veuillez saisir une hauteur valide");
         }
         msgBox.exec();
     }
