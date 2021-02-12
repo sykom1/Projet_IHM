@@ -106,6 +106,7 @@ void MenuSettings::initTabWindow(){
     layoutWindow->addWidget(lblInfoSizeWindow);
     layoutWindow->addWidget(boxForSizeSettings);
     layoutWindow->addWidget(boxForPersonalizationLength);
+    layoutWindow->addWidget(lblErrorPersonalization);
 }
 
 void MenuSettings::setAllText(){
@@ -196,9 +197,9 @@ void MenuSettings::createConnection(){
     connect(buttonQuit, &QPushButton::clicked, this, &MenuSettings::verifyClose);
     connect(buttonApply, &QPushButton::clicked, this, &MenuSettings::applyConfig);
     connect(langueChoice, &QComboBox::currentTextChanged, this, &MenuSettings::changeLanguage);
-    connect(buttonForDefault, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
-    connect(buttonForMaximize, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
-    connect(buttonForFullscreen, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);});
+    connect(buttonForDefault, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);numError = 0; displayLblErrorPersonalization();});
+    connect(buttonForMaximize, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);numError = 0; displayLblErrorPersonalization();});
+    connect(buttonForFullscreen, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setDisabled(true);numError = 0; displayLblErrorPersonalization();});
     connect(buttonForPersonalize, &QRadioButton::clicked, this, [this]{boxForPersonalizationLength->setEnabled(true);});
 }
 
@@ -223,6 +224,8 @@ void MenuSettings::verifyClose(){
                                                 QMessageBox::Yes, QMessageBox::No);
         switch(undoChanges){
             case QMessageBox::Yes:{
+                numError = 0;
+                displayLblErrorPersonalization();
                 undoLanguage();
                 close();
                 break;
@@ -238,8 +241,11 @@ void MenuSettings::verifyClose(){
 }
 
 void MenuSettings::applyConfig(){
+    numError = 0;
+    displayLblErrorPersonalization();
+    bool verifParam = true;
     settings->setValue("langue", langueChoice->currentText().toLower());
-
+    QRect rect = QGuiApplication::screens().at(0)->geometry();
     if(buttonForDefault->isChecked()){
         settings->setValue("size","default");
     }
@@ -251,19 +257,57 @@ void MenuSettings::applyConfig(){
     }
     else if(buttonForPersonalize->isChecked()){
         if(editForHeight->text().compare("") == 0 || editForWidth->text().compare("") == 0){
-            //Test false.
-        }else{
+            verifParam = false;
+            numError = 1;
+        }else if(!isNumber(editForHeight->text().toStdString()) || !isNumber(editForWidth->text().toStdString())){
+            verifParam = false;
+            numError = 2;
+        }else if(editForHeight->text().toInt()<0 || editForHeight->text()>rect.height() || editForWidth->text()<0 || editForWidth->text().toInt()>rect.width()){
+            verifParam = false;
+            numError = 3;
+        }
+        else{
             settings->setValue("size","personalize " + editForHeight->text() + " " + editForWidth->text());
             //std::cout << "personalize " << hauteur->text().toStdString() << " " << largeur->text().toStdString() << std::endl;
         }
+        displayLblErrorPersonalization();
 
    }
 //    LoadSettings *loadSettings = new LoadSettings(((QMainWindow*)this->parent()), translator);
 //    loadSettings->loadAllConfig();
     //settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
-    loadSettings->loadAllConfig();
-    close();
+    if(verifParam){
+        loadSettings->loadAllConfig();
+        close();
+    }
 }
+
+void MenuSettings::displayLblErrorPersonalization(){
+    lblErrorPersonalization->setStyleSheet("QLabel {color: red;}");
+    switch (numError) {
+        case 0:
+            lblErrorPersonalization->setText("");
+            break;
+        case 1:
+            lblErrorPersonalization->setText(tr("Rentrer une valeur."));
+            break;
+        case 2:
+            lblErrorPersonalization->setText(tr("Vous n'avez pas rentrer une valeur valide."));
+            break;
+        case 3:
+            lblErrorPersonalization->setText(tr("La taille demandée n'est pas valide."));
+            break;
+    }
+}
+
+
+
+bool MenuSettings::isNumber(const std::string& s)
+{
+    return !s.empty() && std::find_if(s.begin(),
+        s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
+}
+
 
 
 

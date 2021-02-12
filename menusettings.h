@@ -60,6 +60,9 @@ private:
     QLineEdit *editForWidth = nullptr;
     QVBoxLayout *layoutPersonalization = nullptr;
 
+    QLabel *lblErrorPersonalization = new QLabel;
+    int numError = 0;
+
     QWidget *tabShortcut = new QWidget();
     QScrollArea *scrollAreaShortcut = new QScrollArea();
     QVBoxLayout *layoutShortcut = new QVBoxLayout;
@@ -88,6 +91,8 @@ private:
     void verifyClose();
     void applyConfig();
     void loadShortcut(int indOfThePartOfTheShortcut);
+    void displayLblErrorPersonalization();
+    bool isNumber(const std::string& s);
 };
 
 #endif // MENUSETTINGS_H
