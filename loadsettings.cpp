@@ -23,12 +23,10 @@ void LoadSettings::loadSizeOnTheMainWindow(){
     QString configSize = settings->value("size").toString();
     QRect rect = QGuiApplication::screens().at(0)->geometry();
     mainWindow->showNormal();
-    //mainWindow->showMaximized();
     if(configSize.compare("maximised")==0){
         mainWindow->move(0, 0);
         mainWindow->setFixedWidth(rect.width());
         mainWindow->setFixedHeight(rect.height());
-        //mainWindow->showMaximized();
     }else if(configSize.compare("fullscreen")==0){
         mainWindow->showFullScreen();
     }

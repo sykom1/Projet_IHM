@@ -108,7 +108,6 @@ void InitConfig::validConfig(){
                 validInit = false;
             }else{
                 settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
-                //std::cout << "personalize " << hauteur->text().toStdString() << " " << largeur->text().toStdString() << std::endl;
             }
 
        }

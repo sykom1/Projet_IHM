@@ -9,7 +9,6 @@ MenuSettings::MenuSettings(QStringList langues, QTranslator *translator, LoadSet
     settings = new QSettings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
     this->setLayout(layoutSettings);
     this->listOfListQAction = listOfListQAction;
-    //this->languesDisplay = langues;
     for(int i=0; i<langues.size(); i++){
         if(settings->value("langue").toString().compare(langues.at(i).toLower())==0)
         {
@@ -21,8 +20,6 @@ MenuSettings::MenuSettings(QStringList langues, QTranslator *translator, LoadSet
             this->languesDisplay.append(langues.at(i));
         }
     }
-    //this->setFixedHeight(300);
-    //this->setFixedWidth(500);
     initAllTab();
     createConnection();
     this->translator = translator;
@@ -84,7 +81,6 @@ void MenuSettings::initTabWindow(){
     layoutPersonalization->addLayout(layoutHBoxWidth);
     boxForPersonalizationLength->setLayout(layoutPersonalization);
 
-    //std::cout << settings->value("size").toString().contains("default") << std::endl;
     if(settings->value("size").toString().contains("default")){
         buttonForDefault->setChecked(true);
         boxForPersonalizationLength->setDisabled(true);
@@ -97,7 +93,6 @@ void MenuSettings::initTabWindow(){
         boxForPersonalizationLength->setDisabled(true);
     }else if(settings->value("size").toString().contains("personalize")){
         buttonForPersonalize->setChecked(true);
-        std::cout << settings->value("size").toString().split(" ")[1].toStdString() << std::endl;
         editForHeight->setText(settings->value("size").toString().split(" ")[1]);
         editForWidth->setText(settings->value("size").toString().split(" ")[2]);
     }
@@ -141,7 +136,6 @@ void MenuSettings::initTabShortcut(){
 
     QLabel *lblNamePartShortcutFile = new QLabel();
     lblNamePartShortcutFile->setText(tr("Fichier"));
-    //widgetScroll->setLayout(layoutScroll);
     layoutScroll = new QVBoxLayout(widgetScroll);
     layoutScroll->addWidget(lblNamePartShortcutFile);
 
@@ -184,7 +178,6 @@ void MenuSettings::loadShortcut(int indOfThePartOfTheShortcut){
         labelShortcut->setFixedWidth(WIDTHLABELSHORTCUT/2);
         layoutBox->addWidget(labelShortcut);
         labelShortcut->move(WIDTHLABELSHORTCUT+1, 0);
-        //layoutScroll->addWidget(new QLabel(listOfListQAction->at(0)->at(i)->text()));
         layoutScroll->addLayout(layoutBox);
     }
 }
@@ -268,14 +261,10 @@ void MenuSettings::applyConfig(){
         }
         else{
             settings->setValue("size","personalize " + editForHeight->text() + " " + editForWidth->text());
-            //std::cout << "personalize " << hauteur->text().toStdString() << " " << largeur->text().toStdString() << std::endl;
         }
         displayLblErrorPersonalization();
 
    }
-//    LoadSettings *loadSettings = new LoadSettings(((QMainWindow*)this->parent()), translator);
-//    loadSettings->loadAllConfig();
-    //settings.setValue("size","personalize " + hauteur->text() + " " + largeur->text());
     if(verifParam){
         loadSettings->loadAllConfig();
         close();

@@ -148,7 +148,6 @@ void mainWindowMenu::closeFile(){
         barButtonRetouch->close();
         barButtonRetouch = nullptr;
     }
-
 }
 
 
@@ -213,18 +212,16 @@ void mainWindowMenu::doResizing(QImage img){
 
     QList<QLineEdit *> fields;
 
-    //QString label = QString(tr("Hauteur"));
     labelHauteur->setText(tr("Hauteur"));
     form.addRow(labelHauteur,lineEdit);
     fields << lineEdit;
-    //label = QString(tr("Largeur"));
     labelLargeur->setText(tr("Largeur"));
     form.addRow(labelLargeur,lineEdit2);
     fields << lineEdit2;
 
 
     QPushButton *button = new QPushButton;
-    button->setText(tr("Confirmer"));
+    button->setText(tr("Valider"));
     form.addRow(button);
 
     connect(button,&QPushButton::clicked,&dialog,[this]{resizeClicked(lineEdit,lineEdit2,&dialog,imageForChange->getActualImg());});
@@ -275,15 +272,6 @@ void mainWindowMenu::doTrim(QImage img, int trimSelect){
 void mainWindowMenu::selectMode(QImage img, int trimSelect){
     barButtonRetouch->closeFormsAndCrop();
 
-
-//    modState = trimSelect;
-//    formAndCrop = new FormsAndCrop(displayContains->x(),
-//                                   displayContains->y(),
-//                                   displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height(),
-//                                   displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width(),trimSelect,
-//                                   displayContains->getScrollArea(), displayContains, imageForChange);
-//    mode = 3;
-//    this->layout()->addWidget(formAndCrop);
     switch(trimSelect){
         case BarButtonRetouch::Square:
             barButtonRetouch->squareSelectButton();
@@ -301,42 +289,6 @@ void mainWindowMenu::selectMode(QImage img, int trimSelect){
 
 void mainWindowMenu::deleteSelec(QImage img,int trimSelect){
 
-//    QRect rect(formAndCrop->x,formAndCrop->y,formAndCrop->lastP,formAndCrop->firstP);
-//    rect = rect.normalized();
-
-
-//    if(trimSelect ==1){
-//        for(int i=rect.x(); i<=rect.width()+rect.x();i++)
-//        {
-//            for(int j=rect.y();j<=rect.height()+rect.y();j++){
-
-//                img.setPixelColor(i, j, Qt::transparent);
-
-//            }
-//        }
-
-//    }
-//    else if(trimSelect == 2){
-//        QPainterPath path;
-//        path.moveTo(rect.x(), rect.y());
-//        path.addEllipse(rect);
-
-//        for(int i=rect.x(); i<=rect.width()+rect.x();i++){
-//            for(int j=rect.y();j<=rect.height()+rect.y();j++){
-//                QPointF const *newPoint = new QPointF(i, j);
-//                if(path.contains(*newPoint)){
-//                    if(i<imageForChange->getActualImg().width()&&j<imageForChange->getActualImg().height())
-//                        img.setPixelColor(i, j, Qt::transparent);
-//                }
-//            }
-//        }
-
-//    }
-//    displayContains->refreshImage(img, formAndCrop->xCrop, formAndCrop->yCrop);
-//    imageForChange->changeActualImg(img);
-//    formAndCrop->clearImage();
-
-//    displayContains->moveScrollArea(formAndCrop->xCrop, formAndCrop->yCrop);
     barButtonRetouch->deleteSelec();
 }
 
@@ -355,32 +307,12 @@ QTranslator* mainWindowMenu::getTranslation(){
 
 void mainWindowMenu::resizeEvent(QResizeEvent *event){
     displayContains->changeSizeOfScrollBar(this->width(), this->height());
-//    if(formAndCrop!=nullptr){
-//        formAndCrop->clearImage();
-//        formAndCrop->setFixedHeight(displayContains->getScrollArea()->height()-displayContains->getScrollArea()->horizontalScrollBar()->height());
-//        formAndCrop->setFixedWidth(displayContains->getScrollArea()->width()-displayContains->getScrollArea()->verticalScrollBar()->width());
-//        formAndCrop->move(0, menubar->height());
-//    }
 
     if(barButtonRetouch != nullptr){
         barButtonRetouch->recreateFormsAndCrop();
         barButtonRetouch->moveColorWindow();
         barButtonRetouch->moveMenu();
     }
-//    switch(mode){
-//        case 1:
-//            invertPixel();
-//            break;
-//        case 2:
-//            doResizing(imageForChange->getActualImg(),0,0);
-//            break;
-//        case 3:
-//            selectMode(imageForChange->getActualImg(),modState);
-//            break;
-
-//        default:
-//            mode=0;
-//    }
 
 }
 

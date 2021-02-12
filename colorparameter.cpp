@@ -8,7 +8,6 @@ colorParameter::colorParameter(QWidget *parent) :
     setWindowTitle(tr("Reglage couleurs"));
     setupUi(this);
 
-    //connect(accept_Button, &QPushButton::clicked,this,&colorParameter::colorChanged);
     connect(redSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
     connect(greenSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);
     connect(blueSlider, &QSlider::actionTriggered,this,&colorParameter::colorChanged);

@@ -10,7 +10,7 @@
 #include <QtWidgets>
 #include "resizepicture.h"
 #include "displaycontains.h"
-#define SIZEARRAY 4
+#define SIZEARRAY 15
 
 class ImageForChange
 {

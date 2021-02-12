@@ -7,7 +7,6 @@ BarButtonRetouch::BarButtonRetouch(ImageForChange *imageForChange, DisplayContai
     this->displayContains = displayContains;
     initAllButton();
     imageForChange->setButtonUndoRedo(returnBeforeButton, returnAfterButton);
-    //std::cout << ((QMainWindow*)this->parent())->height() << std::endl;
     this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
     this->setFixedWidth(WIDTHVAL);
     this->setFixedHeight(HEIGHTVAL * this->children().size());
@@ -166,7 +165,6 @@ void BarButtonRetouch::drawSelectButton(){
             formsAndCrop->clearImage();
             if(colorWindow != nullptr){
                 colorWindow->close();
-                //colorWindow = nullptr;
             }
         }
         formsAndCrop = nullptr;
@@ -193,7 +191,6 @@ void BarButtonRetouch::selectMode(Selection select){
     }
 
     modState = select;
-    std::cout << displayContains->getScrollArea()->horizontalScrollBar()->isVisible() << std::endl;
     int heightForms = displayContains->getScrollArea()->height();
     int widthForms = displayContains->getScrollArea()->width();
     if(displayContains->getScrollArea()->horizontalScrollBar()->isVisible())
@@ -251,7 +248,6 @@ void BarButtonRetouch::recreateFormsAndCrop(){
 void BarButtonRetouch::doTrim(){
     if(formsAndCrop->x != formsAndCrop->y != formsAndCrop->firstP != formsAndCrop->lastP){
         formsAndCrop->doTrim(imageForChange->getActualImg(), modState, displayContains->getLabelForImage());
-        //displayContains->getScrollArea()->move(formsAndCrop->xCrop, formsAndCrop->yCrop);
     }
     switch(modState){
         case Square :
@@ -376,13 +372,10 @@ void BarButtonRetouch::colorMenu(){
         colorWindow = new choseColor(((QMainWindow*)this->parent()));
     }
     if(colorWindow->close()){
-        //colorWindow = new choseColor(((QMainWindow*)this->parent()));
         moveColorWindow();
         colorWindow->show();
     }else{
         colorWindow->close();
-        //colorWindow->setParent(nullptr);
-        //colorWindow = nullptr;
     }
 }
 

@@ -27,11 +27,9 @@ int main(int argc, char *argv[])
 
     QString pathFileSettings = QApplication::applicationDirPath().left(1)+":/options.ini";
     QSettings settings(QSettings::NativeFormat, QSettings::UserScope, pathFileSettings);
-    //settings.setValue("init","");
     bool init = settings.value("init").toString().toStdString().compare("") == 0 ? true : false;
     QStringList langues = {"Francais","English"};
     a.installTranslator(&t);
-    //settings.setValue("langue", "");
     if(init){
         InitConfig *initconf = new InitConfig(&t,langues);
         initconf->show();

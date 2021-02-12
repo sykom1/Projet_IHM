@@ -115,8 +115,6 @@ void ImageForChange::ajouter(){
            idLimite = idarrayImage;
            arrayPosImage[idarrayImage] = QPoint(displayContains->getScrollArea()->x(),displayContains->getScrollArea()->y());
 
-           std::cout << arrayPosImage[idarrayImage].x()  <<" | " <<  arrayPosImage[idarrayImage].y() << std::endl;
-
        }else{
            decaler();
            arrayImage[SIZEARRAY-1] = actualImg;
