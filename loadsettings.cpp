@@ -31,8 +31,7 @@ void LoadSettings::loadSizeOnTheMainWindow(){
     }
     else if(configSize.compare("default")!=0){
         mainWindow->move(0, 0);
-        mainWindow->setFixedHeight(configSize.split(" ")[1].toInt());
-        mainWindow->setFixedWidth(configSize.split(" ")[2].toInt());
+        mainWindow->resize(configSize.split(" ")[2].toInt(), configSize.split(" ")[1].toInt());
     }
 }
 
